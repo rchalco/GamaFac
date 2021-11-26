@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SIN_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CabeceraFac">
+          <Key>
+            <PropertyRef Name="idCabeceraFac" />
+          </Key>
+          <Property Name="idCabeceraFac" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nitEmisor" Type="bigint" Nullable="false" />
+          <Property Name="razonSocialEmisor" Type="varchar" MaxLength="255" />
+          <Property Name="municipio" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="255" />
+          <Property Name="numeroFactura" Type="bigint" />
+          <Property Name="Cuf" Type="varchar" MaxLength="255" />
+          <Property Name="cufd" Type="varchar" MaxLength="255" />
+          <Property Name="codigoSucursal" Type="bigint" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="codigoPuntoVenta" Type="bigint" />
+          <Property Name="fechaEmision" Type="datetime" />
+          <Property Name="nombreRazonSocial" Type="varchar" MaxLength="255" />
+          <Property Name="codigoTipoDocumentoIdentidad" Type="bigint" />
+          <Property Name="numeroDocumento" Type="varchar" MaxLength="255" />
+          <Property Name="complemento" Type="varchar" MaxLength="255" />
+          <Property Name="codigoCliente" Type="varchar" MaxLength="255" />
+          <Property Name="codigoMetodoPago" Type="bigint" />
+          <Property Name="numeroTarjeta" Type="varchar" MaxLength="255" />
+          <Property Name="montoTotalArrendamientoFinanciero" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotal" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotalSujetoIva" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="codigoMoneda" Type="bigint" />
+          <Property Name="tipoCambio" Type="bigint" />
+          <Property Name="montoTotalMoneda" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="descuentoAdicional" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="codigoExcepcion" Type="bigint" />
+          <Property Name="cafc" Type="bigint" />
+          <Property Name="leyenda" Type="varchar" MaxLength="255" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="codigoDocumentoSector" Type="bigint" />
+          <Property Name="request" Type="varchar(max)" />
+          <Property Name="response" Type="varchar(max)" />
+          <Property Name="archivoXML" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="DetalleFac">
+          <Key>
+            <PropertyRef Name="idDetalleFac" />
+          </Key>
+          <Property Name="idDetalleFac" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCabeceraFac" Type="bigint" Nullable="false" />
+          <Property Name="actividadEconomica" Type="bigint" Nullable="false" />
+          <Property Name="codigoProductoSin" Type="bigint" Nullable="false" />
+          <Property Name="codigoProducto" Type="bigint" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="cantidad" Type="bigint" Nullable="false" />
+          <Property Name="unidadMedida" Type="bigint" Nullable="false" />
+          <Property Name="precioUnitario" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoDescuento" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="subTotal" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="detalle" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="SIN_BDModelStoreContainer">
+          <EntitySet Name="CabeceraFac" EntityType="Self.CabeceraFac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleFac" EntityType="Self.DetalleFac" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIN_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CabeceraFac">
+          <Key>
+            <PropertyRef Name="idCabeceraFac" />
+          </Key>
+          <Property Name="idCabeceraFac" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nitEmisor" Type="Int64" Nullable="false" />
+          <Property Name="razonSocialEmisor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="numeroFactura" Type="Int64" />
+          <Property Name="Cuf" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cufd" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoSucursal" Type="Int64" />
+          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPuntoVenta" Type="Int64" />
+          <Property Name="fechaEmision" Type="DateTime" Precision="3" />
+          <Property Name="nombreRazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoTipoDocumentoIdentidad" Type="Int64" />
+          <Property Name="numeroDocumento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoMetodoPago" Type="Int64" />
+          <Property Name="numeroTarjeta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="montoTotalArrendamientoFinanciero" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotal" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotalSujetoIva" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="codigoMoneda" Type="Int64" />
+          <Property Name="tipoCambio" Type="Int64" />
+          <Property Name="montoTotalMoneda" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="descuentoAdicional" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="codigoExcepcion" Type="Int64" />
+          <Property Name="cafc" Type="Int64" />
+          <Property Name="leyenda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoDocumentoSector" Type="Int64" />
+          <Property Name="request" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivoXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DetalleFac">
+          <Key>
+            <PropertyRef Name="idDetalleFac" />
+          </Key>
+          <Property Name="idDetalleFac" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCabeceraFac" Type="Int64" Nullable="false" />
+          <Property Name="actividadEconomica" Type="Int64" Nullable="false" />
+          <Property Name="codigoProductoSin" Type="Int64" Nullable="false" />
+          <Property Name="codigoProducto" Type="Int64" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int64" Nullable="false" />
+          <Property Name="unidadMedida" Type="Int64" Nullable="false" />
+          <Property Name="precioUnitario" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoDescuento" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="subTotal" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="detalle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SIN_BDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CabeceraFac" EntityType="Self.CabeceraFac" />
+          <EntitySet Name="DetalleFac" EntityType="Self.DetalleFac" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIN_BDModelStoreContainer" CdmEntityContainer="SIN_BDEntities">
+          <EntitySetMapping Name="CabeceraFac">
+            <EntityTypeMapping TypeName="SIN_BDModel.CabeceraFac">
+              <MappingFragment StoreEntitySet="CabeceraFac">
+                <ScalarProperty Name="archivoXML" ColumnName="archivoXML" />
+                <ScalarProperty Name="idCabeceraFac" ColumnName="idCabeceraFac" />
+                <ScalarProperty Name="nitEmisor" ColumnName="nitEmisor" />
+                <ScalarProperty Name="razonSocialEmisor" ColumnName="razonSocialEmisor" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="numeroFactura" ColumnName="numeroFactura" />
+                <ScalarProperty Name="Cuf" ColumnName="Cuf" />
+                <ScalarProperty Name="cufd" ColumnName="cufd" />
+                <ScalarProperty Name="codigoSucursal" ColumnName="codigoSucursal" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigoPuntoVenta" ColumnName="codigoPuntoVenta" />
+                <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+                <ScalarProperty Name="nombreRazonSocial" ColumnName="nombreRazonSocial" />
+                <ScalarProperty Name="codigoTipoDocumentoIdentidad" ColumnName="codigoTipoDocumentoIdentidad" />
+                <ScalarProperty Name="numeroDocumento" ColumnName="numeroDocumento" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="codigoCliente" ColumnName="codigoCliente" />
+                <ScalarProperty Name="codigoMetodoPago" ColumnName="codigoMetodoPago" />
+                <ScalarProperty Name="numeroTarjeta" ColumnName="numeroTarjeta" />
+                <ScalarProperty Name="montoTotalArrendamientoFinanciero" ColumnName="montoTotalArrendamientoFinanciero" />
+                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
+                <ScalarProperty Name="montoTotalSujetoIva" ColumnName="montoTotalSujetoIva" />
+                <ScalarProperty Name="codigoMoneda" ColumnName="codigoMoneda" />
+                <ScalarProperty Name="tipoCambio" ColumnName="tipoCambio" />
+                <ScalarProperty Name="montoTotalMoneda" ColumnName="montoTotalMoneda" />
+                <ScalarProperty Name="descuentoAdicional" ColumnName="descuentoAdicional" />
+                <ScalarProperty Name="codigoExcepcion" ColumnName="codigoExcepcion" />
+                <ScalarProperty Name="cafc" ColumnName="cafc" />
+                <ScalarProperty Name="leyenda" ColumnName="leyenda" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="codigoDocumentoSector" ColumnName="codigoDocumentoSector" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="response" ColumnName="response" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleFac">
+            <EntityTypeMapping TypeName="SIN_BDModel.DetalleFac">
+              <MappingFragment StoreEntitySet="DetalleFac">
+                <ScalarProperty Name="idDetalleFac" ColumnName="idDetalleFac" />
+                <ScalarProperty Name="idCabeceraFac" ColumnName="idCabeceraFac" />
+                <ScalarProperty Name="actividadEconomica" ColumnName="actividadEconomica" />
+                <ScalarProperty Name="codigoProductoSin" ColumnName="codigoProductoSin" />
+                <ScalarProperty Name="codigoProducto" ColumnName="codigoProducto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="unidadMedida" ColumnName="unidadMedida" />
+                <ScalarProperty Name="precioUnitario" ColumnName="precioUnitario" />
+                <ScalarProperty Name="montoDescuento" ColumnName="montoDescuento" />
+                <ScalarProperty Name="subTotal" ColumnName="subTotal" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

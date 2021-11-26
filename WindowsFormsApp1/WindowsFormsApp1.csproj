@@ -1,0 +1,611 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{259D6BCE-376D-478A-B1CC-E724CC5D4B40}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WindowsFormsApp1</RootNamespace>
+    <AssemblyName>WindowsFormsApp1</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.3.3.11, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.3.3\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CabeceraFac.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabeceraFac2.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FacturacionCodigos\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FacturacionCompraVenta\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FacturacionElectronica\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FacturacionEntidadFinanciera\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FacturacionOperaciones\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\FirmaDigital\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="CUFD.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cuis.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\SIN_BD.Designer.cs">
+      <DependentUpon>SIN_BD.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="FacturasAnuladas.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogMasivo.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OfficeSIN.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="ProofRegister\cabeceraFactura.cs" />
+    <Compile Include="ProofRegister\cabeceraFacturaCM.cs" />
+    <Compile Include="ProofRegister\cabeceraFacturaCV.cs" />
+    <Compile Include="ProofRegister\Conversor.cs" />
+    <Compile Include="ProofRegister\detalleFatura.cs" />
+    <Compile Include="ProofRegister\detalleFaturaCM.cs" />
+    <Compile Include="ProofRegister\detalleFaturaCV.cs" />
+    <Compile Include="ProofRegister\facturaElectronicaCompraVenta.cs" />
+    <Compile Include="ProofRegister\facturaElectronicaCompraVentaMonedaExtranjera.cs" />
+    <Compile Include="ProofRegister\facturaElectronicaEntidadFinanciera.cs" />
+    <Compile Include="ProofRegister\FacturaHelper.cs" />
+    <Compile Include="ProofRegister\ParameterRecepcion.cs" />
+    <Compile Include="ProofRegister\ParametrosCUF.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PruebasEventoSignificativo.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="puntoventa.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RegistroEvento.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SINDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SINDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SINDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SINDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SINDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="tProofDetailG.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tProofG.cs">
+      <DependentUpon>SINDB.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Connected Services\FacturacionCodigos\ServicioFacturacionCodigos.wsdl" />
+    <None Include="Connected Services\FacturacionCodigos\ServicioFacturacionCodigos1.wsdl" />
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.cufdMasivoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.cufdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.cuisMasivoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.cuisResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.notificaCertificadoRevocadoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaComunicacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaCufd.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaCufdMasivo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaCuis.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaCuisMasivo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaNotificaRevocado.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.respuestaVerificarNit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.verificarComunicacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCodigos\WindowsFormsApp1.FacturacionCodigos.verificarNitResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\ServicioFacturacion.wsdl" />
+    <None Include="Connected Services\FacturacionCompraVenta\ServicioFacturacion1.wsdl" />
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.anulacionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.recepcionAnexosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.recepcionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.recepcionMasivaFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.recepcionPaqueteFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.respuestaComunicacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.respuestaRecepcion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.validacionRecepcionMasivaFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.validacionRecepcionPaqueteFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.verificacionEstadoFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionCompraVenta\WindowsFormsApp1.FacturacionCompraVenta.verificarComunicacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\ServicioFacturacion.wsdl" />
+    <None Include="Connected Services\FacturacionElectronica\ServicioFacturacion1.wsdl" />
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.anulacionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.recepcionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.recepcionMasivaFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.recepcionPaqueteFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.respuestaComunicacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.respuestaRecepcion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.validacionRecepcionMasivaFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.validacionRecepcionPaqueteFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.verificacionEstadoFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionElectronica\WindowsFormsApp1.FacturacionElectronica.verificarComunicacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\ServicioFacturacion.wsdl" />
+    <None Include="Connected Services\FacturacionEntidadFinanciera\ServicioFacturacion1.wsdl" />
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.anulacionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.recepcionFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.recepcionMasivaFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.recepcionPaqueteFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.respuestaComunicacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.respuestaRecepcion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.validacionRecepcionMasivaFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.validacionRecepcionPaqueteFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.verificacionEstadoFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\WindowsFormsApp1.FacturacionEntidadFinanciera.verificarComunicacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\ServicioFacturacionOperaciones.wsdl" />
+    <None Include="Connected Services\FacturacionOperaciones\ServicioFacturacionOperaciones1.wsdl" />
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.cierreOperacionesSistemaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.cierrePuntoVentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.consultaEventoSignificativoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.consultaPuntoVentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.registroEventoSignificativoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.registroPuntoVentaComisionistaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.registroPuntoVentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaCierrePuntoVenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaCierreSistemas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaComunicacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaConsultaPuntoVenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaListaEventos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaPuntoVentaComisionista.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.respuestaRegistroPuntoVenta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FacturacionOperaciones\WindowsFormsApp1.FacturacionOperaciones.verificarComunicacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirmaDigital\SignDocument.wsdl" />
+    <None Include="Connected Services\FirmaDigital\WindowsFormsApp1.FirmaDigital.GetDocumentSignResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirmaDigital\WindowsFormsApp1.FirmaDigital.helloResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\FirmaDigital\WindowsFormsApp1.FirmaDigital.resulSign.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\ServicioFacturacionSincronizacion.wsdl" />
+    <None Include="Connected Services\ServiceReference1\ServicioFacturacionSincronizacion1.wsdl" />
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaComunicacion.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaFechaHora.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaListaActividades.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaListaActividadesDocumentoSector.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaListaParametricas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaListaParametricasLeyendas.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.respuestaListaProductos.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarActividadesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarFechaHoraResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarListaActividadesDocumentoSectorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarListaLeyendasFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarListaMensajesServiciosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarListaProductosServiciosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaEventosSignificativosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaMotivoAnulacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaPaisOrigenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoDocumentoIdentidadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoDocumentoSectorResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoEmisionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoHabitacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoMetodoPagoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoMonedaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTipoPuntoVentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaTiposFacturaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.sincronizarParametricaUnidadMedidaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference1\WindowsFormsApp1.ServiceReference1.verificarComunicacionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EntityDeploy Include="Data\SIN_BD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SIN_BD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="SINDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SINDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="SINDB.edmx.diagram">
+      <DependentUpon>SINDB.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\FacturacionCodigos\" />
+    <WCFMetadataStorage Include="Connected Services\FacturacionCompraVenta\" />
+    <WCFMetadataStorage Include="Connected Services\FacturacionElectronica\" />
+    <WCFMetadataStorage Include="Connected Services\FacturacionEntidadFinanciera\" />
+    <WCFMetadataStorage Include="Connected Services\FacturacionOperaciones\" />
+    <WCFMetadataStorage Include="Connected Services\FirmaDigital\" />
+    <WCFMetadataStorage Include="Connected Services\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionCodigos\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionCodigos\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionCodigos\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FirmaDigital\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FirmaDigital\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FirmaDigital\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionOperaciones\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionOperaciones\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionOperaciones\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionEntidadFinanciera\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionElectronica\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionElectronica\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionElectronica\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionCompraVenta\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionCompraVenta\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\FacturacionCompraVenta\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SINDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SINDB.edmx</DependentUpon>
+      <LastGenOutput>SINDB.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="SINDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SINDB.edmx</DependentUpon>
+      <LastGenOutput>SINDB.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

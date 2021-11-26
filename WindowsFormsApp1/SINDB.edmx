@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SIN_BDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CabeceraFac">
+          <Key>
+            <PropertyRef Name="idCabeceraFac" />
+          </Key>
+          <Property Name="idCabeceraFac" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nitEmisor" Type="bigint" Nullable="false" />
+          <Property Name="razonSocialEmisor" Type="varchar" MaxLength="255" />
+          <Property Name="municipio" Type="varchar" MaxLength="255" />
+          <Property Name="telefono" Type="varchar" MaxLength="255" />
+          <Property Name="numeroFactura" Type="bigint" />
+          <Property Name="Cuf" Type="varchar" MaxLength="255" />
+          <Property Name="cufd" Type="varchar" MaxLength="255" />
+          <Property Name="codigoSucursal" Type="bigint" />
+          <Property Name="direccion" Type="varchar" MaxLength="255" />
+          <Property Name="codigoPuntoVenta" Type="bigint" />
+          <Property Name="fechaEmision" Type="datetime" />
+          <Property Name="nombreRazonSocial" Type="varchar" MaxLength="255" />
+          <Property Name="codigoTipoDocumentoIdentidad" Type="bigint" />
+          <Property Name="numeroDocumento" Type="varchar" MaxLength="255" />
+          <Property Name="complemento" Type="varchar" MaxLength="255" />
+          <Property Name="codigoCliente" Type="varchar" MaxLength="255" />
+          <Property Name="codigoMetodoPago" Type="bigint" />
+          <Property Name="numeroTarjeta" Type="varchar" MaxLength="255" />
+          <Property Name="montoTotalArrendamientoFinanciero" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotal" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotalSujetoIva" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="codigoMoneda" Type="bigint" />
+          <Property Name="tipoCambio" Type="bigint" />
+          <Property Name="montoTotalMoneda" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="descuentoAdicional" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="codigoExcepcion" Type="bigint" />
+          <Property Name="cafc" Type="bigint" />
+          <Property Name="leyenda" Type="varchar" MaxLength="255" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="codigoDocumentoSector" Type="bigint" />
+          <Property Name="request" Type="varchar(max)" />
+          <Property Name="response" Type="varchar(max)" />
+          <Property Name="archivoXML" Type="varchar(max)" />
+          <Property Name="Anulado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CabeceraFac2">
+          <Key>
+            <PropertyRef Name="idCabeceraFac" />
+          </Key>
+          <Property Name="idCabeceraFac" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nitEmisor" Type="bigint" Nullable="false" />
+          <Property Name="razonSocialEmisor" Type="nvarchar" MaxLength="255" />
+          <Property Name="municipio" Type="nvarchar" MaxLength="255" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="255" />
+          <Property Name="numeroFactura" Type="bigint" />
+          <Property Name="Cuf" Type="nvarchar" MaxLength="255" />
+          <Property Name="cufd" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoSucursal" Type="bigint" />
+          <Property Name="direccion" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoPuntoVenta" Type="bigint" />
+          <Property Name="fechaEmision" Type="datetime" />
+          <Property Name="nombreRazonSocial" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoTipoDocumentoIdentidad" Type="bigint" />
+          <Property Name="numeroDocumento" Type="nvarchar" MaxLength="255" />
+          <Property Name="complemento" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoCliente" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoMetodoPago" Type="bigint" />
+          <Property Name="numeroTarjeta" Type="nvarchar" MaxLength="255" />
+          <Property Name="montoTotalArrendamientoFinanciero" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotal" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotalSujetoIva" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="codigoMoneda" Type="bigint" />
+          <Property Name="tipoCambio" Type="bigint" />
+          <Property Name="montoTotalMoneda" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="descuentoAdicional" Type="decimal" Precision="19" Scale="2" />
+          <Property Name="codigoExcepcion" Type="bigint" />
+          <Property Name="cafc" Type="bigint" />
+          <Property Name="leyenda" Type="nvarchar" MaxLength="255" />
+          <Property Name="usuario" Type="nvarchar" MaxLength="255" />
+          <Property Name="codigoDocumentoSector" Type="bigint" />
+          <Property Name="request" Type="nvarchar(max)" />
+          <Property Name="response" Type="nvarchar(max)" />
+          <Property Name="archivoXML" Type="nvarchar(max)" />
+          <Property Name="Procesado" Type="bit" />
+        </EntityType>
+        <EntityType Name="CUFD">
+          <Key>
+            <PropertyRef Name="IdCUFD" />
+          </Key>
+          <Property Name="IdCUFD" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CufdValue" Type="varchar(max)" Nullable="false" />
+          <Property Name="Cuis" Type="varchar(max)" Nullable="false" />
+          <Property Name="CodSucursal" Type="int" Nullable="false" />
+          <Property Name="XMLRequest" Type="varchar(max)" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="CodigoControl" Type="varchar(max)" Nullable="false" />
+          <Property Name="CodpuntoVenta" Type="int" />
+          <Property Name="FechaVigenciaSIN" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Cuis">
+          <Key>
+            <PropertyRef Name="IdCUI" />
+          </Key>
+          <Property Name="IdCUI" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUI" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sucursal" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="XML" Type="varchar(max)" Nullable="false" />
+          <Property Name="IdSucursal" Type="int" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="CodPuntoVenta" Type="int" />
+        </EntityType>
+        <EntityType Name="FacturasAnuladas">
+          <Key>
+            <PropertyRef Name="IdFacturaAnulada" />
+          </Key>
+          <Property Name="IdFacturaAnulada" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCabeceraFac" Type="bigint" Nullable="false" />
+          <Property Name="FechaProceso" Type="datetime" Nullable="false" />
+          <Property Name="XMLRequest" Type="varchar(max)" Nullable="false" />
+          <Property Name="XMLResponse" Type="varchar(max)" Nullable="false" />
+          <Property Name="Procesado" Type="bit" Nullable="false" />
+          <Property Name="codigoDescripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="codigoEstado" Type="int" Nullable="false" />
+          <Property Name="codigoRecepcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="TipoFactura" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="LogMasivo">
+          <Key>
+            <PropertyRef Name="IdLogMasivo" />
+          </Key>
+          <Property Name="IdLogMasivo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Codigo" Type="varchar(max)" Nullable="false" />
+          <Property Name="CodigoExcepcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="FechaProceso" Type="datetime" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="XMLRequest" Type="varchar(max)" Nullable="false" />
+          <Property Name="XMLResponse" Type="varchar(max)" Nullable="false" />
+          <Property Name="IdPruebaEvento" Type="bigint" Nullable="false" />
+          <Property Name="codigoSucursal" Type="bigint" />
+          <Property Name="codigoPuntoVenta" Type="bigint" />
+          <Property Name="TipoFactura" Type="bigint" />
+          <Property Name="CodigoRecepcion" Type="varchar(max)" />
+          <Property Name="Servicio" Type="varchar(max)" />
+          <Property Name="CodigoEvento" Type="bigint" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SIN_BD.dbo.OfficeSIN' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="OfficeSIN">
+          <Key>
+            <PropertyRef Name="IdOfficeMF" />
+            <PropertyRef Name="IdCodeSIN" />
+            <PropertyRef Name="NameOffice" />
+          </Key>
+          <Property Name="IdOfficeMF" Type="bigint" Nullable="false" />
+          <Property Name="IdCodeSIN" Type="int" Nullable="false" />
+          <Property Name="NameOffice" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PruebasEventoSignificativo">
+          <Key>
+            <PropertyRef Name="IdPruebaEvento" />
+          </Key>
+          <Property Name="IdPruebaEvento" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CodSucursal" Type="int" Nullable="false" />
+          <Property Name="CodPuntoVenta" Type="int" Nullable="false" />
+          <Property Name="codEvento" Type="int" Nullable="false" />
+          <Property Name="DescripcionEvento" Type="varchar(max)" Nullable="false" />
+          <Property Name="IDCUFD" Type="int" Nullable="false" />
+          <Property Name="CufdEvento" Type="varchar(max)" Nullable="false" />
+          <Property Name="XmlRequest" Type="varchar(max)" Nullable="false" />
+          <Property Name="XmlResponse" Type="varchar(max)" Nullable="false" />
+          <Property Name="CodEventoSignificativo" Type="varchar(max)" Nullable="false" />
+          <Property Name="Procesado" Type="bit" Nullable="false" />
+          <Property Name="IDCUFDEVENTO" Type="int" />
+          <Property Name="FechaHoraIni" Type="datetime" />
+          <Property Name="FechaHoraFin" Type="datetime" />
+          <Property Name="IdRegistroEvento" Type="int" />
+          <Property Name="CodigoControlCUFD" Type="varchar(max)" />
+          <Property Name="CodigoControlCUFDEvento" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="puntoventa">
+          <Key>
+            <PropertyRef Name="IdPuntodeVenta" />
+          </Key>
+          <Property Name="IdPuntodeVenta" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codSucursal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codpuntoventa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="XMLRespuesta" Type="varchar(max)" Nullable="false" />
+          <Property Name="FechaHora" Type="datetime" Nullable="false" />
+          <Property Name="Cerrado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroEvento">
+          <Key>
+            <PropertyRef Name="IdRegistroEvento" />
+          </Key>
+          <Property Name="IdRegistroEvento" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoevento" Type="bigint" Nullable="false" />
+          <Property Name="cufdevento" Type="varchar(max)" Nullable="false" />
+          <Property Name="cufd" Type="varchar(max)" Nullable="false" />
+          <Property Name="Cui" Type="varchar(max)" Nullable="false" />
+          <Property Name="CodigoSucursal" Type="int" Nullable="false" />
+          <Property Name="CodigoMotivoEvento" Type="int" Nullable="false" />
+          <Property Name="FechaHoraInicio" Type="datetime" Nullable="false" />
+          <Property Name="FechaHoraFin" Type="datetime" Nullable="false" />
+          <Property Name="FechaHoraRegistro" Type="datetime" Nullable="false" />
+          <Property Name="codpuntoventa" Type="int" Nullable="false" />
+          <Property Name="XMLRequest" Type="varchar(max)" />
+          <Property Name="XMLResponse" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tProofDetailG">
+          <Key>
+            <PropertyRef Name="IdProofDetail" />
+          </Key>
+          <Property Name="IdProofDetail" Type="bigint" Nullable="false" />
+          <Property Name="IdProof" Type="bigint" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="UnitPrice" Type="decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="IdMoney" Type="bigint" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tProofG">
+          <Key>
+            <PropertyRef Name="IdProof" />
+          </Key>
+          <Property Name="IdProof" Type="bigint" Nullable="false" />
+          <Property Name="IdOffice" Type="bigint" Nullable="false" />
+          <Property Name="IdProofType" Type="bigint" Nullable="false" />
+          <Property Name="IdUser" Type="bigint" Nullable="false" />
+          <Property Name="TotalProofPrinter" Type="decimal" Precision="19" Scale="5" />
+          <Property Name="IdMoney" Type="bigint" />
+        </EntityType>
+        <Association Name="FKG">
+          <End Role="tProofG" Type="Self.tProofG" Multiplicity="1" />
+          <End Role="tProofDetailG" Type="Self.tProofDetailG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProofG">
+              <PropertyRef Name="IdProof" />
+            </Principal>
+            <Dependent Role="tProofDetailG">
+              <PropertyRef Name="IdProof" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIN_BDModelStoreContainer">
+          <EntitySet Name="CabeceraFac" EntityType="Self.CabeceraFac" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CabeceraFac2" EntityType="Self.CabeceraFac2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUFD" EntityType="Self.CUFD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuis" EntityType="Self.Cuis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FacturasAnuladas" EntityType="Self.FacturasAnuladas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogMasivo" EntityType="Self.LogMasivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PruebasEventoSignificativo" EntityType="Self.PruebasEventoSignificativo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="puntoventa" EntityType="Self.puntoventa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistroEvento" EntityType="Self.RegistroEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProofDetailG" EntityType="Self.tProofDetailG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tProofG" EntityType="Self.tProofG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficeSIN" EntityType="Self.OfficeSIN" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [OfficeSIN].[IdOfficeMF] AS [IdOfficeMF], 
+    [OfficeSIN].[IdCodeSIN] AS [IdCodeSIN], 
+    [OfficeSIN].[NameOffice] AS [NameOffice]
+    FROM [dbo].[OfficeSIN] AS [OfficeSIN]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FKG" Association="Self.FKG">
+            <End Role="tProofG" EntitySet="tProofG" />
+            <End Role="tProofDetailG" EntitySet="tProofDetailG" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SIN_BDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CabeceraFac">
+          <Key>
+            <PropertyRef Name="idCabeceraFac" />
+          </Key>
+          <Property Name="idCabeceraFac" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nitEmisor" Type="Int64" Nullable="false" />
+          <Property Name="razonSocialEmisor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="numeroFactura" Type="Int64" />
+          <Property Name="Cuf" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="cufd" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoSucursal" Type="Int64" />
+          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPuntoVenta" Type="Int64" />
+          <Property Name="fechaEmision" Type="DateTime" Precision="3" />
+          <Property Name="nombreRazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoTipoDocumentoIdentidad" Type="Int64" />
+          <Property Name="numeroDocumento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoMetodoPago" Type="Int64" />
+          <Property Name="numeroTarjeta" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="montoTotalArrendamientoFinanciero" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotal" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotalSujetoIva" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="codigoMoneda" Type="Int64" />
+          <Property Name="tipoCambio" Type="Int64" />
+          <Property Name="montoTotalMoneda" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="descuentoAdicional" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="codigoExcepcion" Type="Int64" />
+          <Property Name="cafc" Type="Int64" />
+          <Property Name="leyenda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigoDocumentoSector" Type="Int64" />
+          <Property Name="request" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="archivoXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Anulado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="CUFD">
+          <Key>
+            <PropertyRef Name="IdCUFD" />
+          </Key>
+          <Property Name="IdCUFD" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CufdValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cuis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodSucursal" Type="Int32" Nullable="false" />
+          <Property Name="XMLRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodigoControl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodpuntoVenta" Type="Int32" />
+          <Property Name="FechaVigenciaSIN" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Cuis">
+          <Key>
+            <PropertyRef Name="IdCUI" />
+          </Key>
+          <Property Name="IdCUI" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUI" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sucursal" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XML" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdSucursal" Type="Int32" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CodPuntoVenta" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FacturasAnuladas">
+          <Key>
+            <PropertyRef Name="IdFacturaAnulada" />
+          </Key>
+          <Property Name="IdFacturaAnulada" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCabeceraFac" Type="Int64" Nullable="false" />
+          <Property Name="FechaProceso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="XMLRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XMLResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Procesado" Type="Boolean" Nullable="false" />
+          <Property Name="codigoDescripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigoEstado" Type="Int32" Nullable="false" />
+          <Property Name="codigoRecepcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoFactura" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="LogMasivo">
+          <Key>
+            <PropertyRef Name="IdLogMasivo" />
+          </Key>
+          <Property Name="IdLogMasivo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoExcepcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaProceso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="XMLRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XMLResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPruebaEvento" Type="Int64" Nullable="false" />
+          <Property Name="codigoSucursal" Type="Int64" />
+          <Property Name="codigoPuntoVenta" Type="Int64" />
+          <Property Name="TipoFactura" Type="Int64" />
+          <Property Name="CodigoRecepcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Servicio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoEvento" Type="Int64" />
+        </EntityType>
+        <EntityType Name="PruebasEventoSignificativo">
+          <Key>
+            <PropertyRef Name="IdPruebaEvento" />
+          </Key>
+          <Property Name="IdPruebaEvento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CodSucursal" Type="Int32" Nullable="false" />
+          <Property Name="CodPuntoVenta" Type="Int32" Nullable="false" />
+          <Property Name="codEvento" Type="Int32" Nullable="false" />
+          <Property Name="DescripcionEvento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDCUFD" Type="Int32" Nullable="false" />
+          <Property Name="CufdEvento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XmlRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XmlResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodEventoSignificativo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Procesado" Type="Boolean" Nullable="false" />
+          <Property Name="IDCUFDEVENTO" Type="Int32" />
+          <Property Name="FechaHoraIni" Type="DateTime" Precision="3" />
+          <Property Name="FechaHoraFin" Type="DateTime" Precision="3" />
+          <Property Name="IdRegistroEvento" Type="Int32" />
+          <Property Name="CodigoControlCUFD" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoControlCUFDEvento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="puntoventa">
+          <Key>
+            <PropertyRef Name="IdPuntodeVenta" />
+          </Key>
+          <Property Name="IdPuntodeVenta" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codSucursal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codpuntoventa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XMLRespuesta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaHora" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cerrado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistroEvento">
+          <Key>
+            <PropertyRef Name="IdRegistroEvento" />
+          </Key>
+          <Property Name="IdRegistroEvento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoevento" Type="Int64" Nullable="false" />
+          <Property Name="cufdevento" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cufd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cui" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoSucursal" Type="Int32" Nullable="false" />
+          <Property Name="CodigoMotivoEvento" Type="Int32" Nullable="false" />
+          <Property Name="FechaHoraInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaHoraFin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaHoraRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="codpuntoventa" Type="Int32" Nullable="false" />
+          <Property Name="XMLRequest" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="XMLResponse" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tProofDetailG">
+          <Key>
+            <PropertyRef Name="IdProofDetail" />
+          </Key>
+          <Property Name="IdProofDetail" Type="Int64" Nullable="false" />
+          <Property Name="IdProof" Type="Int64" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="5" Nullable="false" />
+          <Property Name="IdMoney" Type="Int64" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tProofG" Relationship="Self.FKG" FromRole="tProofDetailG" ToRole="tProofG" />
+        </EntityType>
+        <EntityType Name="tProofG">
+          <Key>
+            <PropertyRef Name="IdProof" />
+          </Key>
+          <Property Name="IdProof" Type="Int64" Nullable="false" />
+          <Property Name="IdOffice" Type="Int64" Nullable="false" />
+          <Property Name="IdProofType" Type="Int64" Nullable="false" />
+          <Property Name="IdUser" Type="Int64" Nullable="false" />
+          <Property Name="TotalProofPrinter" Type="Decimal" Precision="19" Scale="5" />
+          <Property Name="IdMoney" Type="Int64" />
+          <NavigationProperty Name="tProofDetailG" Relationship="Self.FKG" FromRole="tProofG" ToRole="tProofDetailG" />
+        </EntityType>
+        <EntityType Name="OfficeSIN">
+          <Key>
+            <PropertyRef Name="IdOfficeMF" />
+            <PropertyRef Name="IdCodeSIN" />
+            <PropertyRef Name="NameOffice" />
+          </Key>
+          <Property Name="IdOfficeMF" Type="Int64" Nullable="false" />
+          <Property Name="IdCodeSIN" Type="Int32" Nullable="false" />
+          <Property Name="NameOffice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FKG">
+          <End Role="tProofG" Type="Self.tProofG" Multiplicity="1" />
+          <End Role="tProofDetailG" Type="Self.tProofDetailG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tProofG">
+              <PropertyRef Name="IdProof" />
+            </Principal>
+            <Dependent Role="tProofDetailG">
+              <PropertyRef Name="IdProof" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SIN_BDEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CabeceraFac" EntityType="Self.CabeceraFac" />
+          <EntitySet Name="CUFD" EntityType="Self.CUFD" />
+          <EntitySet Name="Cuis" EntityType="Self.Cuis" />
+          <EntitySet Name="FacturasAnuladas" EntityType="Self.FacturasAnuladas" />
+          <EntitySet Name="LogMasivo" EntityType="Self.LogMasivo" />
+          <EntitySet Name="PruebasEventoSignificativo" EntityType="Self.PruebasEventoSignificativo" />
+          <EntitySet Name="puntoventa" EntityType="Self.puntoventa" />
+          <EntitySet Name="RegistroEvento" EntityType="Self.RegistroEvento" />
+          <EntitySet Name="tProofDetailG" EntityType="Self.tProofDetailG" />
+          <EntitySet Name="tProofG" EntityType="Self.tProofG" />
+          <EntitySet Name="OfficeSIN" EntityType="Self.OfficeSIN" />
+          <AssociationSet Name="FKG" Association="Self.FKG">
+            <End Role="tProofG" EntitySet="tProofG" />
+            <End Role="tProofDetailG" EntitySet="tProofDetailG" />
+          </AssociationSet>
+          <EntitySet Name="CabeceraFac2" EntityType="SIN_BDModel.CabeceraFac2" />
+        </EntityContainer>
+        <EntityType Name="CabeceraFac2">
+          <Key>
+            <PropertyRef Name="idCabeceraFac" />
+          </Key>
+          <Property Name="idCabeceraFac" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nitEmisor" Type="Int64" Nullable="false" />
+          <Property Name="razonSocialEmisor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="municipio" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="numeroFactura" Type="Int64" />
+          <Property Name="Cuf" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="cufd" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoSucursal" Type="Int64" />
+          <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoPuntoVenta" Type="Int64" />
+          <Property Name="fechaEmision" Type="DateTime" Precision="3" />
+          <Property Name="nombreRazonSocial" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoTipoDocumentoIdentidad" Type="Int64" />
+          <Property Name="numeroDocumento" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoCliente" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoMetodoPago" Type="Int64" />
+          <Property Name="numeroTarjeta" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="montoTotalArrendamientoFinanciero" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotal" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="montoTotalSujetoIva" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="codigoMoneda" Type="Int64" />
+          <Property Name="tipoCambio" Type="Int64" />
+          <Property Name="montoTotalMoneda" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="descuentoAdicional" Type="Decimal" Precision="19" Scale="2" />
+          <Property Name="codigoExcepcion" Type="Int64" />
+          <Property Name="cafc" Type="Int64" />
+          <Property Name="leyenda" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="codigoDocumentoSector" Type="Int64" />
+          <Property Name="request" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="response" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="archivoXML" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Procesado" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SIN_BDModelStoreContainer" CdmEntityContainer="SIN_BDEntities2">
+          <EntitySetMapping Name="CabeceraFac">
+            <EntityTypeMapping TypeName="SIN_BDModel.CabeceraFac">
+              <MappingFragment StoreEntitySet="CabeceraFac">
+                <ScalarProperty Name="idCabeceraFac" ColumnName="idCabeceraFac" />
+                <ScalarProperty Name="nitEmisor" ColumnName="nitEmisor" />
+                <ScalarProperty Name="razonSocialEmisor" ColumnName="razonSocialEmisor" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="numeroFactura" ColumnName="numeroFactura" />
+                <ScalarProperty Name="Cuf" ColumnName="Cuf" />
+                <ScalarProperty Name="cufd" ColumnName="cufd" />
+                <ScalarProperty Name="codigoSucursal" ColumnName="codigoSucursal" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigoPuntoVenta" ColumnName="codigoPuntoVenta" />
+                <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+                <ScalarProperty Name="nombreRazonSocial" ColumnName="nombreRazonSocial" />
+                <ScalarProperty Name="codigoTipoDocumentoIdentidad" ColumnName="codigoTipoDocumentoIdentidad" />
+                <ScalarProperty Name="numeroDocumento" ColumnName="numeroDocumento" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="codigoCliente" ColumnName="codigoCliente" />
+                <ScalarProperty Name="codigoMetodoPago" ColumnName="codigoMetodoPago" />
+                <ScalarProperty Name="numeroTarjeta" ColumnName="numeroTarjeta" />
+                <ScalarProperty Name="montoTotalArrendamientoFinanciero" ColumnName="montoTotalArrendamientoFinanciero" />
+                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
+                <ScalarProperty Name="montoTotalSujetoIva" ColumnName="montoTotalSujetoIva" />
+                <ScalarProperty Name="codigoMoneda" ColumnName="codigoMoneda" />
+                <ScalarProperty Name="tipoCambio" ColumnName="tipoCambio" />
+                <ScalarProperty Name="montoTotalMoneda" ColumnName="montoTotalMoneda" />
+                <ScalarProperty Name="descuentoAdicional" ColumnName="descuentoAdicional" />
+                <ScalarProperty Name="codigoExcepcion" ColumnName="codigoExcepcion" />
+                <ScalarProperty Name="cafc" ColumnName="cafc" />
+                <ScalarProperty Name="leyenda" ColumnName="leyenda" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="codigoDocumentoSector" ColumnName="codigoDocumentoSector" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="archivoXML" ColumnName="archivoXML" />
+                <ScalarProperty Name="Anulado" ColumnName="Anulado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUFD">
+            <EntityTypeMapping TypeName="SIN_BDModel.CUFD">
+              <MappingFragment StoreEntitySet="CUFD">
+                <ScalarProperty Name="IdCUFD" ColumnName="IdCUFD" />
+                <ScalarProperty Name="CufdValue" ColumnName="CufdValue" />
+                <ScalarProperty Name="Cuis" ColumnName="Cuis" />
+                <ScalarProperty Name="CodSucursal" ColumnName="CodSucursal" />
+                <ScalarProperty Name="XMLRequest" ColumnName="XMLRequest" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="CodigoControl" ColumnName="CodigoControl" />
+                <ScalarProperty Name="CodpuntoVenta" ColumnName="CodpuntoVenta" />
+                <ScalarProperty Name="FechaVigenciaSIN" ColumnName="FechaVigenciaSIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuis">
+            <EntityTypeMapping TypeName="SIN_BDModel.Cuis">
+              <MappingFragment StoreEntitySet="Cuis">
+                <ScalarProperty Name="IdCUI" ColumnName="IdCUI" />
+                <ScalarProperty Name="CUI" ColumnName="CUI" />
+                <ScalarProperty Name="Sucursal" ColumnName="Sucursal" />
+                <ScalarProperty Name="XML" ColumnName="XML" />
+                <ScalarProperty Name="IdSucursal" ColumnName="IdSucursal" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="CodPuntoVenta" ColumnName="CodPuntoVenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FacturasAnuladas">
+            <EntityTypeMapping TypeName="SIN_BDModel.FacturasAnuladas">
+              <MappingFragment StoreEntitySet="FacturasAnuladas">
+                <ScalarProperty Name="IdFacturaAnulada" ColumnName="IdFacturaAnulada" />
+                <ScalarProperty Name="IdCabeceraFac" ColumnName="IdCabeceraFac" />
+                <ScalarProperty Name="FechaProceso" ColumnName="FechaProceso" />
+                <ScalarProperty Name="XMLRequest" ColumnName="XMLRequest" />
+                <ScalarProperty Name="XMLResponse" ColumnName="XMLResponse" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="codigoDescripcion" ColumnName="codigoDescripcion" />
+                <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
+                <ScalarProperty Name="codigoRecepcion" ColumnName="codigoRecepcion" />
+                <ScalarProperty Name="TipoFactura" ColumnName="TipoFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogMasivo">
+            <EntityTypeMapping TypeName="SIN_BDModel.LogMasivo">
+              <MappingFragment StoreEntitySet="LogMasivo">
+                <ScalarProperty Name="IdLogMasivo" ColumnName="IdLogMasivo" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="CodigoExcepcion" ColumnName="CodigoExcepcion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="FechaProceso" ColumnName="FechaProceso" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="XMLRequest" ColumnName="XMLRequest" />
+                <ScalarProperty Name="XMLResponse" ColumnName="XMLResponse" />
+                <ScalarProperty Name="IdPruebaEvento" ColumnName="IdPruebaEvento" />
+                <ScalarProperty Name="codigoSucursal" ColumnName="codigoSucursal" />
+                <ScalarProperty Name="codigoPuntoVenta" ColumnName="codigoPuntoVenta" />
+                <ScalarProperty Name="TipoFactura" ColumnName="TipoFactura" />
+                <ScalarProperty Name="CodigoRecepcion" ColumnName="CodigoRecepcion" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="CodigoEvento" ColumnName="CodigoEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PruebasEventoSignificativo">
+            <EntityTypeMapping TypeName="SIN_BDModel.PruebasEventoSignificativo">
+              <MappingFragment StoreEntitySet="PruebasEventoSignificativo">
+                <ScalarProperty Name="IdPruebaEvento" ColumnName="IdPruebaEvento" />
+                <ScalarProperty Name="CodSucursal" ColumnName="CodSucursal" />
+                <ScalarProperty Name="CodPuntoVenta" ColumnName="CodPuntoVenta" />
+                <ScalarProperty Name="codEvento" ColumnName="codEvento" />
+                <ScalarProperty Name="DescripcionEvento" ColumnName="DescripcionEvento" />
+                <ScalarProperty Name="IDCUFD" ColumnName="IDCUFD" />
+                <ScalarProperty Name="CufdEvento" ColumnName="CufdEvento" />
+                <ScalarProperty Name="XmlRequest" ColumnName="XmlRequest" />
+                <ScalarProperty Name="XmlResponse" ColumnName="XmlResponse" />
+                <ScalarProperty Name="CodEventoSignificativo" ColumnName="CodEventoSignificativo" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="IDCUFDEVENTO" ColumnName="IDCUFDEVENTO" />
+                <ScalarProperty Name="FechaHoraIni" ColumnName="FechaHoraIni" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="IdRegistroEvento" ColumnName="IdRegistroEvento" />
+                <ScalarProperty Name="CodigoControlCUFD" ColumnName="CodigoControlCUFD" />
+                <ScalarProperty Name="CodigoControlCUFDEvento" ColumnName="CodigoControlCUFDEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="puntoventa">
+            <EntityTypeMapping TypeName="SIN_BDModel.puntoventa">
+              <MappingFragment StoreEntitySet="puntoventa">
+                <ScalarProperty Name="IdPuntodeVenta" ColumnName="IdPuntodeVenta" />
+                <ScalarProperty Name="codSucursal" ColumnName="codSucursal" />
+                <ScalarProperty Name="codpuntoventa" ColumnName="codpuntoventa" />
+                <ScalarProperty Name="XMLRespuesta" ColumnName="XMLRespuesta" />
+                <ScalarProperty Name="FechaHora" ColumnName="FechaHora" />
+                <ScalarProperty Name="Cerrado" ColumnName="Cerrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistroEvento">
+            <EntityTypeMapping TypeName="SIN_BDModel.RegistroEvento">
+              <MappingFragment StoreEntitySet="RegistroEvento">
+                <ScalarProperty Name="IdRegistroEvento" ColumnName="IdRegistroEvento" />
+                <ScalarProperty Name="codigoevento" ColumnName="codigoevento" />
+                <ScalarProperty Name="cufdevento" ColumnName="cufdevento" />
+                <ScalarProperty Name="cufd" ColumnName="cufd" />
+                <ScalarProperty Name="Cui" ColumnName="Cui" />
+                <ScalarProperty Name="CodigoSucursal" ColumnName="CodigoSucursal" />
+                <ScalarProperty Name="CodigoMotivoEvento" ColumnName="CodigoMotivoEvento" />
+                <ScalarProperty Name="FechaHoraInicio" ColumnName="FechaHoraInicio" />
+                <ScalarProperty Name="FechaHoraFin" ColumnName="FechaHoraFin" />
+                <ScalarProperty Name="FechaHoraRegistro" ColumnName="FechaHoraRegistro" />
+                <ScalarProperty Name="codpuntoventa" ColumnName="codpuntoventa" />
+                <ScalarProperty Name="XMLRequest" ColumnName="XMLRequest" />
+                <ScalarProperty Name="XMLResponse" ColumnName="XMLResponse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProofDetailG">
+            <EntityTypeMapping TypeName="SIN_BDModel.tProofDetailG">
+              <MappingFragment StoreEntitySet="tProofDetailG">
+                <ScalarProperty Name="IdProofDetail" ColumnName="IdProofDetail" />
+                <ScalarProperty Name="IdProof" ColumnName="IdProof" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IdMoney" ColumnName="IdMoney" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tProofG">
+            <EntityTypeMapping TypeName="SIN_BDModel.tProofG">
+              <MappingFragment StoreEntitySet="tProofG">
+                <ScalarProperty Name="IdProof" ColumnName="IdProof" />
+                <ScalarProperty Name="IdOffice" ColumnName="IdOffice" />
+                <ScalarProperty Name="IdProofType" ColumnName="IdProofType" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="TotalProofPrinter" ColumnName="TotalProofPrinter" />
+                <ScalarProperty Name="IdMoney" ColumnName="IdMoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficeSIN">
+            <EntityTypeMapping TypeName="SIN_BDModel.OfficeSIN">
+              <MappingFragment StoreEntitySet="OfficeSIN">
+                <ScalarProperty Name="IdOfficeMF" ColumnName="IdOfficeMF" />
+                <ScalarProperty Name="IdCodeSIN" ColumnName="IdCodeSIN" />
+                <ScalarProperty Name="NameOffice" ColumnName="NameOffice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CabeceraFac2">
+            <EntityTypeMapping TypeName="SIN_BDModel.CabeceraFac2">
+              <MappingFragment StoreEntitySet="CabeceraFac2">
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="archivoXML" ColumnName="archivoXML" />
+                <ScalarProperty Name="response" ColumnName="response" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="codigoDocumentoSector" ColumnName="codigoDocumentoSector" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="leyenda" ColumnName="leyenda" />
+                <ScalarProperty Name="cafc" ColumnName="cafc" />
+                <ScalarProperty Name="codigoExcepcion" ColumnName="codigoExcepcion" />
+                <ScalarProperty Name="descuentoAdicional" ColumnName="descuentoAdicional" />
+                <ScalarProperty Name="montoTotalMoneda" ColumnName="montoTotalMoneda" />
+                <ScalarProperty Name="tipoCambio" ColumnName="tipoCambio" />
+                <ScalarProperty Name="codigoMoneda" ColumnName="codigoMoneda" />
+                <ScalarProperty Name="montoTotalSujetoIva" ColumnName="montoTotalSujetoIva" />
+                <ScalarProperty Name="montoTotal" ColumnName="montoTotal" />
+                <ScalarProperty Name="montoTotalArrendamientoFinanciero" ColumnName="montoTotalArrendamientoFinanciero" />
+                <ScalarProperty Name="numeroTarjeta" ColumnName="numeroTarjeta" />
+                <ScalarProperty Name="codigoMetodoPago" ColumnName="codigoMetodoPago" />
+                <ScalarProperty Name="codigoCliente" ColumnName="codigoCliente" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="numeroDocumento" ColumnName="numeroDocumento" />
+                <ScalarProperty Name="codigoTipoDocumentoIdentidad" ColumnName="codigoTipoDocumentoIdentidad" />
+                <ScalarProperty Name="nombreRazonSocial" ColumnName="nombreRazonSocial" />
+                <ScalarProperty Name="fechaEmision" ColumnName="fechaEmision" />
+                <ScalarProperty Name="codigoPuntoVenta" ColumnName="codigoPuntoVenta" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigoSucursal" ColumnName="codigoSucursal" />
+                <ScalarProperty Name="cufd" ColumnName="cufd" />
+                <ScalarProperty Name="Cuf" ColumnName="Cuf" />
+                <ScalarProperty Name="numeroFactura" ColumnName="numeroFactura" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="razonSocialEmisor" ColumnName="razonSocialEmisor" />
+                <ScalarProperty Name="nitEmisor" ColumnName="nitEmisor" />
+                <ScalarProperty Name="idCabeceraFac" ColumnName="idCabeceraFac" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
