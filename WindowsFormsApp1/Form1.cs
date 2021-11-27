@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 
 using WindowsFormsApp1.FacturacionOperaciones;
+using WindowsFormsApp1.Managers;
 using WindowsFormsApp1.ProofRegister;
 using WindowsFormsApp1.ServiceReference1;
 
@@ -239,6 +240,11 @@ namespace WindowsFormsApp1
             {
                 //clienteCodigos.InnerChannel.Close();
             }
+
+            ///TODO llamando al Manager
+            ConfiguracionManager configuracionManager=new ConfiguracionManager();
+            var resulCuis = configuracionManager.GetCUIS();
+            lblCuiCode.Text = resulCuis;
 
 
         }
@@ -1003,6 +1009,14 @@ namespace WindowsFormsApp1
                 //resp = clientService.sincronizarFechaHora(objSend);
                 //MessageBox.Show("Fecha SIN", resp.fechaHora.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                //
+                ///TODO llamando al Manager
+                ///
+                var checkedButton = grpServicios.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+                string strParametroServicio = checkedButton.Text;
+                ConfiguracionManager configuracionManager = new ConfiguracionManager();
+                var resultParametros = configuracionManager.GetParametrosServcio(strParametroServicio, CuisValido);
+ 
 
             }
             catch (Exception ex)
@@ -1443,6 +1457,13 @@ namespace WindowsFormsApp1
             {
                 throw ex;
             }
+
+            ///TODO llamando al Manager
+            ///
+
+            ConfiguracionManager configuracionManager = new ConfiguracionManager();
+            var resultCUFD = configuracionManager.GetCUFD(CuisValido);
+
 
         }
 
