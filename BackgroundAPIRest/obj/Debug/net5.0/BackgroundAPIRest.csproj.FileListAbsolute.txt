@@ -1,0 +1,154 @@
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\NLog.config
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\appsettings.Development.json
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\appsettings.json
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.exe
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.deps.json
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.runtimeconfig.json
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.runtimeconfig.dev.json
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\ref\BackgroundAPIRest.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.pdb
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\NLog.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Business.Main.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\CoreAccesLayer.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Domain.Main.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\PlumbingProps.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Business.Main.pdb
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Domain.Main.pdb
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\CoreAccesLayer.pdb
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\PlumbingProps.pdb
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csprojAssemblyReference.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.GeneratedMSBuildEditorConfig.editorconfig
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.AssemblyInfoInputs.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.AssemblyInfo.cs
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.CoreCompileInputs.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.MvcApplicationPartsAssemblyInfo.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\staticwebassets\BackgroundAPIRest.StaticWebAssets.Manifest.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\staticwebassets\BackgroundAPIRest.StaticWebAssets.xml
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\scopedcss\bundle\BackgroundAPIRest.styles.css
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.RazorTargetAssemblyInfo.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.CopyComplete
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\ref\BackgroundAPIRest.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.pdb
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.genruntimeconfig.cache
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\MySqlConnector.dll
+E:\PROYECTOS\NetCoreBackendArq\backendNetCore\BackgroundAPIRest\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\appsettings.Development.json
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\appsettings.json
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.exe
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\NLog.config
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.deps.json
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.runtimeconfig.json
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.runtimeconfig.dev.json
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\ref\BackgroundAPIRest.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.pdb
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\AutoMapper.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\MySqlConnector.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\NLog.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Business.Main.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\CoreAccesLayer.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Domain.Main.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\PlumbingProps.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Business.Main.pdb
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Domain.Main.pdb
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\CoreAccesLayer.pdb
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\PlumbingProps.pdb
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csprojAssemblyReference.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.GeneratedMSBuildEditorConfig.editorconfig
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.AssemblyInfoInputs.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.AssemblyInfo.cs
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.CoreCompileInputs.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.MvcApplicationPartsAssemblyInfo.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\staticwebassets\BackgroundAPIRest.StaticWebAssets.Manifest.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\staticwebassets\BackgroundAPIRest.StaticWebAssets.xml
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\scopedcss\bundle\BackgroundAPIRest.styles.css
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.RazorTargetAssemblyInfo.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.CopyComplete
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\ref\BackgroundAPIRest.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.pdb
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.genruntimeconfig.cache
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\ExcelDataReader.dll
+E:\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\ExcelDataReader.DataSet.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\appsettings.Development.json
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\appsettings.json
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.exe
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\NLog.config
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.deps.json
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.runtimeconfig.json
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.runtimeconfig.dev.json
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\ref\BackgroundAPIRest.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\BackgroundAPIRest.pdb
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\AutoMapper.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\ExcelDataReader.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\ExcelDataReader.DataSet.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\MySqlConnector.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\NLog.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Pomelo.EntityFrameworkCore.MySql.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Business.Main.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\CoreAccesLayer.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Domain.Main.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\PlumbingProps.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Business.Main.pdb
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\Domain.Main.pdb
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\CoreAccesLayer.pdb
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\bin\Debug\net5.0\PlumbingProps.pdb
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.GeneratedMSBuildEditorConfig.editorconfig
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.AssemblyInfoInputs.cache
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.AssemblyInfo.cs
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.CoreCompileInputs.cache
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.MvcApplicationPartsAssemblyInfo.cache
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\staticwebassets\BackgroundAPIRest.StaticWebAssets.Manifest.cache
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\staticwebassets\BackgroundAPIRest.StaticWebAssets.xml
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\scopedcss\bundle\BackgroundAPIRest.styles.css
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.RazorTargetAssemblyInfo.cache
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.CopyComplete
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\ref\BackgroundAPIRest.dll
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.pdb
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.genruntimeconfig.cache
+D:\BckDell  15 5500\e\PROYECTOS\ibnorca\ibnorca_services\BackgroundAPIRest\obj\Debug\net5.0\BackgroundAPIRest.csproj.AssemblyReference.cache
