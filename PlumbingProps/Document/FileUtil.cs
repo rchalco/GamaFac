@@ -99,9 +99,9 @@ namespace PlumbingProps.Document
                     return false;
                 }
             }
-            catch (Exception e)
+            catch
             {
-                throw e;
+                throw;
             }
         }
 

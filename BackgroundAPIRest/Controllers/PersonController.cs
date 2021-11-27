@@ -1,6 +1,5 @@
 ﻿//using Business.Main.IbnorcaContext;
 using Business.Main.ModuloSample;
-using Domain.Main.sample;
 using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;

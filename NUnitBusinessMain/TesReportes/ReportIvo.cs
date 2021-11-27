@@ -1,6 +1,4 @@
-﻿using Business.Main.Modules.ElaboracionAuditoria;
-using Business.Main.Modules.TomaDecision;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace NUnitBusinessMain.TesReportes
 {
@@ -9,8 +7,8 @@ namespace NUnitBusinessMain.TesReportes
         [Test]
         public void DevuelveCorrelativoDocAuditoria()
         {
-            TomaDecisionManager elaboracionAuditoriaManager = new TomaDecisionManager();
-            var response = elaboracionAuditoriaManager.DevuelveCorrelativoDocAuditoria(1,2021,3);
+            //TomaDecisionManager elaboracionAuditoriaManager = new TomaDecisionManager();
+            //var response = elaboracionAuditoriaManager.DevuelveCorrelativoDocAuditoria(1,2021,3);
         }
 
         ////TCP

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +29,11 @@
     <ProjectReference Include="..\CoreAccesLayer\CoreAccesLayer.csproj" />
     <ProjectReference Include="..\Domain.Main\Domain.Main.csproj" />
     <ProjectReference Include="..\PlumbingProps\PlumbingProps.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DataMapping\" />
+    <Folder Include="Managers\" />
   </ItemGroup>
 
 </Project>

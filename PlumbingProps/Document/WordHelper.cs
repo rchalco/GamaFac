@@ -145,9 +145,9 @@ namespace PlumbingProps.Document
                 file.writeFile(_data.ToString());
                 file.closeFile();
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             //return file.NameFile;
             return file.NameFile.Replace(@"\\", @"\");
@@ -233,9 +233,9 @@ namespace PlumbingProps.Document
                 file.writeFile(_data.ToString());
                 file.closeFile();
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
             }
             //return file.NameFile;
             return file.NameFile.Replace(@"\\", @"\");

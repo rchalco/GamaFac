@@ -1,5 +1,4 @@
-﻿using Business.Main.DataMapping;
-using CoreAccesLayer.Interface;
+﻿using CoreAccesLayer.Interface;
 using Domain.Main.Wraper;
 using PlumbingProps.Exceptions;
 using System;
@@ -15,7 +14,7 @@ namespace Business.Main.Base
         internal IRepository repositoryMySql { get; set; } = null;
         public BaseManager()
         {
-            repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
+            //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
         }
 
         public string ProcessError(Exception ex)
