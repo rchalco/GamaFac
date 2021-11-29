@@ -126,9 +126,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Global\CustomSettings.cs" />
     <Compile Include="LogMasivo.cs">
       <DependentUpon>SINDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Managers\ConfiguracionManager.cs" />
     <Compile Include="OfficeSIN.cs">
       <DependentUpon>SINDB.tt</DependentUpon>
     </Compile>
