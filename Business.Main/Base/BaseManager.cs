@@ -11,10 +11,16 @@ namespace Business.Main.Base
 {
     public abstract class BaseManager
     {
-        internal IRepository repositoryMySql { get; set; } = null;
+        /// <summary>
+        /// se genera conla siguiente linea de codigo
+        /// Install-Package Microsoft.EntityFrameworkCore.Tools
+        /// Scaffold-DbContext "Server=.;Database=GamaFac;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataMapping
+        /// </summary>
+        internal IRepository repositoryGamaFac { get; set; } = null;
         public BaseManager()
         {
             //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
+            //repositoryGamaFac = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
         }
 
         public string ProcessError(Exception ex)
@@ -28,7 +34,7 @@ namespace Business.Main.Base
             ManagerException managerException = new ManagerException();
             response.State = ResponseType.Error;
             response.Message = managerException.ProcessException(ex);
-            repositoryMySql.Rollback();
+            repositoryGamaFac.Rollback();
             return managerException.ProcessException(ex);
         }
     }
