@@ -1,4 +1,5 @@
-﻿using CoreAccesLayer.Interface;
+﻿using Business.Main.DataMappingMicroVenta;
+using CoreAccesLayer.Interface;
 using Domain.Main.Wraper;
 using PlumbingProps.Exceptions;
 using System;
@@ -17,10 +18,12 @@ namespace Business.Main.Base
         /// Scaffold-DbContext "Server=.;Database=GamaFac;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataMapping
         /// </summary>
         internal IRepository repositoryGamaFac { get; set; } = null;
+        internal IRepository repositoryMicroventas { get; set; } = null;
         public BaseManager()
         {
             //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
             //repositoryGamaFac = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
+            repositoryMicroventas = FactoryDataInterfaz.CreateRepository<MicroventasContext>("sqlserver");
         }
 
         public string ProcessError(Exception ex)
@@ -34,7 +37,8 @@ namespace Business.Main.Base
             ManagerException managerException = new ManagerException();
             response.State = ResponseType.Error;
             response.Message = managerException.ProcessException(ex);
-            repositoryGamaFac.Rollback();
+            repositoryGamaFac?.Rollback();
+            repositoryMicroventas?.Rollback();
             return managerException.ProcessException(ex);
         }
     }
