@@ -1,1 +1,4 @@
+--facturacion
 dotnet ef dbcontext scaffold "Data Source=localhost;Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=admin.123;TrustServerCertificate=True" "Microsoft.EntityFrameworkCore.SqlServer" -o DataMapping -f 
+--microventas
+dotnet ef dbcontext scaffold "Data Source=localhost;Initial Catalog=Microventas;Persist Security Info=True;User ID=sa;Password=admin.123;TrustServerCertificate=True" "Microsoft.EntityFrameworkCore.SqlServer" -o DataMappingMicroVenta -f 
