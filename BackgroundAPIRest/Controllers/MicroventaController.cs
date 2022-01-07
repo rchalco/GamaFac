@@ -26,6 +26,15 @@ namespace BackgroundAPIRest.Controllers
             StockManger stockManger = new StockManger();
             return stockManger.RegistrarCompra(requestRegistrarCompra);
         }
+
+        [HttpPost("LoginUsuario")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.LoginUsuario(Usuario, Password);
+        }
+
     }
 
 

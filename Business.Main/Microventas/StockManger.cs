@@ -44,6 +44,7 @@ namespace Business.Main.Microventas
             return response;
         }
 
+<<<<<<< HEAD
         public Response RegistrarVentas(RequestRegistroVenta requestRegistroVentas)
         {
             Response response = new Response { Message = "Venta registrada correctamente", State = ResponseType.Success };
@@ -51,6 +52,25 @@ namespace Business.Main.Microventas
             {
                 repositoryMicroventas.CallProcedure<Response>("spVentaVentanilla", requestRegistroVentas.idSesion, requestRegistroVentas.idVentanilla, requestRegistroVentas.detalleVentas);
                 repositoryMicroventas.Commit();
+=======
+        public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
+        {
+
+            ResponseObject<LoginDTO> response = new ResponseObject<LoginDTO> { Message = "¨Inicio de Sesión Correcto", State = ResponseType.Success };
+            try
+            {
+                ///TODO:Encriptar el pass
+                ///
+                //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spProductosCantidad", Usuario, Password).FirstOrDefault();
+
+                response.Object = new LoginDTO { IdUsuario = 1, Usuario = Usuario, DescripcionError = "Usuario o contraseña incorrectos" };
+                if (!string.IsNullOrEmpty(response.Object.DescripcionError))
+                {
+                    response.Message = response.Object.DescripcionError;
+                    response.State = ResponseType.Error;
+                }
+
+>>>>>>> 8eef0f8b891ccf23fd61aa0c1dcdb66812904b5b
             }
             catch (Exception ex)
             {
@@ -58,5 +78,9 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8eef0f8b891ccf23fd61aa0c1dcdb66812904b5b
     }
 }
