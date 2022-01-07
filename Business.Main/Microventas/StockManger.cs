@@ -68,7 +68,7 @@ namespace Business.Main.Microventas
                 ///TODO:Encriptar el pass
                 ///
                 //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spProductosCantidad", Usuario, Password).FirstOrDefault();
-
+                
                 response.Object = new LoginDTO { IdUsuario = 1, Usuario = Usuario, DescripcionError = "Usuario o contraseña incorrectos" };
                 if (!string.IsNullOrEmpty(response.Object.DescripcionError))
                 {
