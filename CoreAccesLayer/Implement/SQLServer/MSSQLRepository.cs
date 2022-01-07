@@ -10,6 +10,8 @@ using System.Reflection;
 using System.Data;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Data.SqlClient;
+using PlumbingProps.CrossUtil;
+using System.Collections;
 
 namespace CoreAccesLayer.Implement.SQLServer
 {
@@ -334,6 +336,13 @@ namespace CoreAccesLayer.Implement.SQLServer
                             parametroSalida.Add(a, parametro);
                             commandText += " out,";
                         }
+                        else if (item.GetType().IsGenericType && item.GetType().GetGenericTypeDefinition() == typeof(List<>))
+                        {
+                            parametro.SqlDbType = SqlDbType.Structured;
+                            parametro.TypeName = item.GetType().GetGenericArguments()[0].Name;
+                            parametro.Value = CustomListExtension.ToDataTable((item as IList), item.GetType().GetGenericArguments()[0].UnderlyingSystemType);
+                            commandText += " ,";
+                        }
                         else
                         {
                             commandText += ",";
@@ -598,4 +607,5 @@ namespace CoreAccesLayer.Implement.SQLServer
         }
     }
 }
+
 

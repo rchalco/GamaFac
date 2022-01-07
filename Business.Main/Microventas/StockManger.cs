@@ -43,5 +43,20 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+        public Response RegistrarVentas(RequestRegistroVenta requestRegistroVentas)
+        {
+            Response response = new Response { Message = "Venta registrada correctamente", State = ResponseType.Success };
+            try
+            {
+                repositoryMicroventas.CallProcedure<Response>("spVentaVentanilla", requestRegistroVentas.idSesion, requestRegistroVentas.idVentanilla, requestRegistroVentas.detalleVentas);
+                repositoryMicroventas.Commit();
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
     }
 }
