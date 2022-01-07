@@ -35,6 +35,13 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.LoginUsuario(Usuario, Password);
         }
 
+        [HttpPost("CambioContrasena")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.CambioContrasena(Usuario, Password, PasswordNuevo);
+        }
     }
 
 
