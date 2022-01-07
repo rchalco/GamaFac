@@ -11,6 +11,7 @@ namespace Domain.Main.MicroVentas.SP
         public int IdUsuario { get; set; }
         public string Usuario { get; set; }
         public string Password { get; set; }
+        public string PasswordNuevo { get; set; }
         public string DescripcionError { get; set; }
     }
 }

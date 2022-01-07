@@ -69,5 +69,37 @@ namespace Business.Main.Microventas
             return response;
         }
 
+        public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
+        {
+
+            ResponseObject<LoginDTO> response = new ResponseObject<LoginDTO> { Message = "¨Se realizo el cambio de contraseña", State = ResponseType.Success };
+            try
+            {
+               
+                ///TODO:Encriptar el pass
+                LoginDTO ObjLoginDTO = new LoginDTO();
+                ObjLoginDTO = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spProductosCantidad", Usuario).FirstOrDefault();
+                if (Password != PasswordNuevo)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "";
+                }
+
+                response.Object = new LoginDTO { IdUsuario = 1, Usuario = Usuario, DescripcionError = "Usuario o contraseña incorrectos" };
+                if (!string.IsNullOrEmpty(response.Object.DescripcionError))
+                {
+                    response.Message = response.Object.DescripcionError;
+                    response.State = ResponseType.Error;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+
     }
 }
