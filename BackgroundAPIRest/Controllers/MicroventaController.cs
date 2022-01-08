@@ -42,6 +42,15 @@ namespace BackgroundAPIRest.Controllers
             StockManger stockManger = new StockManger();
             return stockManger.CambioContrasena(Usuario, Password, PasswordNuevo);
         }
+
+        [HttpPost("UltimasCajas")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int IdEmpresa)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.UltimasCajas(IdEmpresa);
+        }
+
     }
 
 
