@@ -29,34 +29,34 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("LoginUsuario")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
+        public ResponseObject<LoginDTO> LoginUsuario(string usuario, string password)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.LoginUsuario(Usuario, Password);
+            return stockManger.LoginUsuario(usuario, password);
         }
 
         [HttpPost("CambioContrasena")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
+        public ResponseObject<LoginDTO> CambioContrasena(string usuario, string password, string passwordNuevo)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CambioContrasena(Usuario, Password, PasswordNuevo);
+            return stockManger.CambioContrasena(usuario, password, passwordNuevo);
         }
 
         [HttpPost("UltimasCajas")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int IdEmpresa)
+        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int idEmpresa)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.UltimasCajas(IdEmpresa);
+            return stockManger.UltimasCajas(idEmpresa);
         }
 
         [HttpPost("CierreCaja")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<SaldoCajaDTO> CierreCaja(int IdCaja, decimal MontoCierre, string Observacion)
+        public ResponseObject<SaldoCajaDTO> CierreCaja(int idCaja, decimal montoCierre, string observacion)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CierreCaja(IdCaja, MontoCierre, Observacion);
+            return stockManger.CierreCaja(idCaja, montoCierre, observacion);
         }
     }
 
