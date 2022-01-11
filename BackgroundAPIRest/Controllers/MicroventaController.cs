@@ -51,6 +51,13 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.UltimasCajas(IdEmpresa);
         }
 
+        [HttpPost("CierreCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<SaldoCajaDTO> CierreCaja(int IdCaja, decimal MontoCierre, string Observacion)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.CierreCaja(IdCaja, MontoCierre, Observacion);
+        }
     }
 
 

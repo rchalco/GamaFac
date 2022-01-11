@@ -141,5 +141,43 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+        public ResponseObject<SaldoCajaDTO> CierreCaja(int IdCaja, decimal MontoCierre, string Observacion)
+        {
+
+            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se cerro correctamente", State = ResponseType.Success };
+            try
+            {
+
+                ///TODO:Encriptar el pass
+                /*
+                TUsuario ObjTUsuario = new TUsuario();
+                ObjTUsuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.Usuario == Usuario).FirstOrDefault();
+                if (ObjTUsuario ==  null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "El Usuario no existe";
+                    return response;
+                }
+                if (ObjTUsuario.Pass != Password)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "La contraseña es incorrecta";
+                    return response;
+                }
+                ObjTUsuario.Pass = PasswordNuevo;
+                Entity<TUsuario> entity = new Entity<TUsuario> { EntityDB = ObjTUsuario, stateEntity = StateEntity.modify };
+                repositoryMicroventas.SaveObject<TUsuario>(entity);
+                repositoryMicroventas.Commit();
+                */
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
     }
 }
