@@ -35,6 +35,29 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.LoginUsuario(Usuario, Password);
         }
 
+        [HttpPost("CambioContrasena")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.CambioContrasena(Usuario, Password, PasswordNuevo);
+        }
+
+        [HttpPost("UltimasCajas")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int IdEmpresa)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.UltimasCajas(IdEmpresa);
+        }
+
+        [HttpPost("CierreCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<SaldoCajaDTO> CierreCaja(int IdCaja, decimal MontoCierre, string Observacion)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.CierreCaja(IdCaja, MontoCierre, Observacion);
+        }
     }
 
 
