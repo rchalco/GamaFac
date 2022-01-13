@@ -8,10 +8,11 @@ namespace Domain.Main.MicroVentas.Usuarios
 {
     public class LoginDTO
     {
-        public int IdUsuario { get; set; }
-        public string Usuario { get; set; }
+        public long IdUsuario { get; set; }
+        public string usuario_vc { get; set; }
         public string Password { get; set; }
         public string PasswordNuevo { get; set; }
-        public string DescripcionError { get; set; }
+        public string Log_respuesta { get; set; }
+        public int sesion { get; set; }
     }
 }

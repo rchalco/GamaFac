@@ -69,12 +69,18 @@ namespace Business.Main.Microventas
             {
                 ///TODO:Encriptar el pass
                 ///
-                //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spProductosCantidad", Usuario, Password).FirstOrDefault();
-                
-                response.Object = new LoginDTO { IdUsuario = 1, Usuario = Usuario, DescripcionError = "Usuario o contraseña incorrectos" };
-                if (!string.IsNullOrEmpty(response.Object.DescripcionError))
+                response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password).FirstOrDefault();
+
+                if (response.Object == null)
                 {
-                    response.Message = response.Object.DescripcionError;
+                    response.Message = "Los datos ingresados no existen";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+                //response.Object = new LoginDTO { IdUsuario = 1, usuario_vc = Usuario, Log_respuesta = "Usuario o contraseña incorrectos" };
+                if (!string.IsNullOrEmpty(response.Object.Log_respuesta))
+                {
+                    response.Message = response.Object.Log_respuesta;
                     response.State = ResponseType.Error;
                 }
 
@@ -95,7 +101,7 @@ namespace Business.Main.Microventas
             {
 
                 ///TODO:Encriptar el pass
-                /*
+                
                 TUsuario ObjTUsuario = new TUsuario();
                 ObjTUsuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.Usuario == Usuario).FirstOrDefault();
                 if (ObjTUsuario ==  null)
@@ -114,8 +120,7 @@ namespace Business.Main.Microventas
                 Entity<TUsuario> entity = new Entity<TUsuario> { EntityDB = ObjTUsuario, stateEntity = StateEntity.modify };
                 repositoryMicroventas.SaveObject<TUsuario>(entity);
                 repositoryMicroventas.Commit();
-                */
-
+                
             }
             catch (Exception ex)
             {
