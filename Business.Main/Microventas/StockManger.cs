@@ -1,7 +1,9 @@
 ﻿using Business.Main.Base;
 using Business.Main.DataMappingMicroVenta;
 using CoreAccesLayer.Wraper;
+using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.SP;
+using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.Wraper;
 using System;
 using System.Collections.Generic;

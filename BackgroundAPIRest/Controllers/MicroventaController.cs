@@ -1,5 +1,7 @@
 ﻿using Business.Main.Microventas;
+using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.SP;
+using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -29,18 +31,18 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("LoginUsuario")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> LoginUsuario(string usuario, string password)
+        public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.LoginUsuario(usuario, password);
+            return stockManger.LoginUsuario(requestLogin.usuario, requestLogin.password);
         }
 
         [HttpPost("CambioContrasena")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> CambioContrasena(string usuario, string password, string passwordNuevo)
+        public ResponseObject<LoginDTO> CambioContrasena(RequestLogin requestLogin)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CambioContrasena(usuario, password, passwordNuevo);
+            return stockManger.CambioContrasena(requestLogin.usuario, requestLogin.password, requestLogin.passwordNuevo);
         }
 
         [HttpPost("UltimasCajas")]
@@ -53,10 +55,10 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("CierreCaja")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<SaldoCajaDTO> CierreCaja(int idCaja, decimal montoCierre, string observacion)
+        public ResponseObject<SaldoCajaDTO> CierreCaja(RequestCierreCaja requestCierreCaja)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CierreCaja(idCaja, montoCierre, observacion);
+            return stockManger.CierreCaja(requestCierreCaja.idCaja, requestCierreCaja.montoCierre, requestCierreCaja.observacion);
         }
     }
 

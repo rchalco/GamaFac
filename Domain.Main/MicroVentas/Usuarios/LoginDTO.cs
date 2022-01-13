@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Main.MicroVentas.SP
+namespace Domain.Main.MicroVentas.Usuarios
 {
     public class LoginDTO
     {
