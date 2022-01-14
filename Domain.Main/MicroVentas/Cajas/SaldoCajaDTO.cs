@@ -16,6 +16,7 @@ namespace Domain.Main.MicroVentas.Cajas
         public decimal Diferencia { get; set; }
         public string Observacion { get; set; }
         public bool EsCajaActual { get; set; }
+        public string EstadoCaja { get; set; }
 
     }
 }

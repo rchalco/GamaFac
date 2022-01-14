@@ -6,6 +6,7 @@ using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BackgroundAPIRest.Controllers
 {
@@ -60,6 +61,24 @@ namespace BackgroundAPIRest.Controllers
             StockManger stockManger = new StockManger();
             return stockManger.CierreCaja(requestCierreCaja.idCaja, requestCierreCaja.montoCierre, requestCierreCaja.observacion);
         }
+
+        [HttpPost("ObtieneCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<SaldoCajaDTO> ObtieneCaja(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ObtieneCaja(requestGral.ParametroFecha1);
+        }
+
+        [HttpPost("AperturaCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<SaldoCajaDTO> AperturaCaja(RequestParametrosGral requestAperturaCaja)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.AperturaCaja(requestAperturaCaja.ParametroFecha1, requestAperturaCaja.ParametroEntero1);
+        }
+
+
     }
 
 

@@ -136,8 +136,15 @@ namespace Business.Main.Microventas
             try
             {
                 List<SaldoCajaDTO> colSaldoCajaDTO = new List<SaldoCajaDTO>();
+                /*
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
+                */
+                colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
+                colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
+                colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 3, FechaCierre = (DateTime.Now.Date.AddDays(-2)).ToShortDateString(), SaldoCierre = 400, SaldoUsuario = 390, Diferencia = 0, Observacion = "ssss", EsCajaActual = false });
+
+
 
                 response.ListEntities = colSaldoCajaDTO;
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);
@@ -177,6 +184,42 @@ namespace Business.Main.Microventas
                 repositoryMicroventas.SaveObject<TUsuario>(entity);
                 repositoryMicroventas.Commit();
                 */
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseObject<SaldoCajaDTO> ObtieneCaja(DateTime fechaSeleccionada)
+        {
+
+            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨Caja obtenida", State = ResponseType.Success };
+            try
+            {
+               
+                response.Object = new SaldoCajaDTO { IdCaja = 1, FechaCierre = fechaSeleccionada.ToShortDateString(), SaldoCierre = 200, SaldoInicial = 10, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EstadoCaja = "APERTURADA" };
+                //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseObject<SaldoCajaDTO> AperturaCaja(DateTime fechaApertura, int idEmpresa)
+        {
+
+            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se aperturo correctamente", State = ResponseType.Success };
+            try
+            {
+
+                ///VERIFICAR QUE NO EXISTAN CAJAS ABIERTAS DE OTRAS FECHAS
+                ///ABRIR CAJAS
+               
 
             }
             catch (Exception ex)
