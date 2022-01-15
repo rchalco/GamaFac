@@ -1,9 +1,12 @@
 ﻿using Business.Main.Microventas;
+using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.SP;
+using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace BackgroundAPIRest.Controllers
 {
@@ -29,35 +32,53 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("LoginUsuario")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
+        public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.LoginUsuario(Usuario, Password);
+            return stockManger.LoginUsuario(requestLogin.usuario, requestLogin.password);
         }
 
         [HttpPost("CambioContrasena")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
+        public ResponseObject<LoginDTO> CambioContrasena(RequestLogin requestLogin)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CambioContrasena(Usuario, Password, PasswordNuevo);
+            return stockManger.CambioContrasena(requestLogin.usuario, requestLogin.password, requestLogin.passwordNuevo);
         }
 
         [HttpPost("UltimasCajas")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int IdEmpresa)
+        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int idEmpresa)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.UltimasCajas(IdEmpresa);
+            return stockManger.UltimasCajas(idEmpresa);
         }
 
         [HttpPost("CierreCaja")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<SaldoCajaDTO> CierreCaja(int IdCaja, decimal MontoCierre, string Observacion)
+        public ResponseObject<SaldoCajaDTO> CierreCaja(RequestCierreCaja requestCierreCaja)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CierreCaja(IdCaja, MontoCierre, Observacion);
+            return stockManger.CierreCaja(requestCierreCaja.idCaja, requestCierreCaja.montoCierre, requestCierreCaja.observacion);
         }
+
+        [HttpPost("ObtieneCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<SaldoCajaDTO> ObtieneCaja(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ObtieneCaja(requestGral.ParametroFecha1);
+        }
+
+        [HttpPost("AperturaCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<SaldoCajaDTO> AperturaCaja(RequestParametrosGral requestAperturaCaja)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.AperturaCaja(requestAperturaCaja.ParametroFecha1, requestAperturaCaja.ParametroEntero1);
+        }
+
+
     }
 
 
