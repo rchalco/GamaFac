@@ -67,15 +67,15 @@ namespace BackgroundAPIRest.Controllers
         public ResponseObject<SaldoCajaDTO> ObtieneCaja(RequestParametrosGral requestGral)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.ObtieneCaja(requestGral.ParametroFecha1);
+            return stockManger.ObtieneCaja(requestGral);
         }
 
         [HttpPost("AperturaCaja")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<SaldoCajaDTO> AperturaCaja(RequestParametrosGral requestAperturaCaja)
+        public ResponseObject<SaldoCajaDTO> AperturaCaja(SaldoCajaDTO requestAperturaCaja)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.AperturaCaja(requestAperturaCaja.ParametroFecha1, requestAperturaCaja.ParametroEntero1);
+            return stockManger.AperturaCaja(requestAperturaCaja);
         }
 
 

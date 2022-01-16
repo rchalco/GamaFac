@@ -74,7 +74,7 @@ namespace Business.Main.Microventas
                 ParamOut poLogRespuesta = new ParamOut("");
                 poLogRespuesta.Size = 100;
                 response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
-                
+
 
 
                 if (response.Object == null)
@@ -91,11 +91,11 @@ namespace Business.Main.Microventas
                     return response;
                 }
                 //response.Object = new LoginDTO { IdUsuario = 1, usuario_vc = Usuario, Log_respuesta = "Usuario o contraseña incorrectos" };
-                if (!string.IsNullOrEmpty(response.Object.Log_respuesta))
-                {
-                    response.Message = response.Object.Log_respuesta;
-                    response.State = ResponseType.Error;
-                }
+                //if (!string.IsNullOrEmpty(response.Object.Log_respuesta))
+                //{
+                //    response.Message = response.Object.Log_respuesta;
+                //    response.State = ResponseType.Error;
+                //}
 
 
             }
@@ -153,9 +153,9 @@ namespace Business.Main.Microventas
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
                 */
-                colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
-                colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
-                colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 3, FechaCierre = (DateTime.Now.Date.AddDays(-2)).ToShortDateString(), SaldoCierre = 400, SaldoUsuario = 390, Diferencia = 0, Observacion = "ssss", EsCajaActual = false });
+                colSaldoCajaDTO.Add(new SaldoCajaDTO { idCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
+                colSaldoCajaDTO.Add(new SaldoCajaDTO { idCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
+                colSaldoCajaDTO.Add(new SaldoCajaDTO { idCaja = 3, FechaCierre = (DateTime.Now.Date.AddDays(-2)).ToShortDateString(), SaldoCierre = 400, SaldoUsuario = 390, Diferencia = 0, Observacion = "ssss", EsCajaActual = false });
 
 
 
@@ -206,14 +206,19 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseObject<SaldoCajaDTO> ObtieneCaja(DateTime fechaSeleccionada)
+        public ResponseObject<SaldoCajaDTO> ObtieneCaja(RequestParametrosGral requestGral)
         {
 
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨Caja obtenida", State = ResponseType.Success };
             try
             {
 
-                response.Object = new SaldoCajaDTO { IdCaja = 1, FechaCierre = fechaSeleccionada.ToShortDateString(), SaldoCierre = 200, SaldoInicial = 10, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EstadoCaja = "APERTURADA" };
+                TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
+                ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date == requestGral.ParametroFecha1.Date && x.IdCaja == requestGral.ParametroLong1).FirstOrDefault();
+                if (ObjTOperacionDiariaCaja == null)
+                    response.Object = new SaldoCajaDTO { idCaja = requestGral.ParametroLong1, SaldoCierre = 0, SaldoInicial = 0, SaldoUsuario = 0, Diferencia = 0, Observacion = "", EstadoCaja = "PENDIENTE", FechaApertura = requestGral.ParametroFecha1.Date };
+                else
+                    response.Object = new SaldoCajaDTO { idOperacionDiariaCaja = ObjTOperacionDiariaCaja.IdOperacionDiariaCaja, idCaja = ObjTOperacionDiariaCaja.IdCaja.Value, FechaApertura = ObjTOperacionDiariaCaja.FechaApertura, SaldoCierre = ObjTOperacionDiariaCaja.MontoCierreSis == null ? 0 : ObjTOperacionDiariaCaja.MontoCierreSis.Value, SaldoInicial = ObjTOperacionDiariaCaja.MontoApertura, SaldoUsuario = ObjTOperacionDiariaCaja.MontoCierre == null ? 0 : ObjTOperacionDiariaCaja.MontoCierre.Value, Observacion = ObjTOperacionDiariaCaja.ObservacioApertura, EstadoCaja = ObjTOperacionDiariaCaja.FechaCierre == null ? "APERTURADA" : "CERRADA" };
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);
             }
             catch (Exception ex)
@@ -223,16 +228,16 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseObject<SaldoCajaDTO> AperturaCaja(DateTime fechaApertura, int idEmpresa)
+        public ResponseObject<SaldoCajaDTO> AperturaCaja(SaldoCajaDTO requestAperturaCajae)
         {
 
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se aperturo correctamente", State = ResponseType.Success };
             try
             {
-
-                ///VERIFICAR QUE NO EXISTAN CAJAS ABIERTAS DE OTRAS FECHAS
-                ///ABRIR CAJAS
-
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion, requestAperturaCajae.FechaApertura).FirstOrDefault();
+                response.Object.FechaApertura = requestAperturaCajae.FechaApertura;
+                response.Object.SaldoInicial = requestAperturaCajae.SaldoInicial;
+                response.Object.Observacion = requestAperturaCajae.Observacion;
 
             }
             catch (Exception ex)

@@ -8,7 +8,7 @@ namespace Domain.Main.MicroVentas.Cajas
 {
     public class SaldoCajaDTO
     {
-        public int IdCaja { get; set; }
+        public long idCaja { get; set; }
         public string FechaCierre { get; set; }
         public decimal SaldoInicial { get; set; }
         public decimal SaldoCierre { get; set; }
@@ -17,6 +17,10 @@ namespace Domain.Main.MicroVentas.Cajas
         public string Observacion { get; set; }
         public bool EsCajaActual { get; set; }
         public string EstadoCaja { get; set; }
+        public long idOperacionDiariaCaja { get; set; }
+        public long idSesion { get; set; }
+        public DateTime FechaApertura { get; set; }
+
 
     }
 }

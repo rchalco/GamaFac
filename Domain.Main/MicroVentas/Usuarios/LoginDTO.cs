@@ -17,6 +17,8 @@ namespace Domain.Main.MicroVentas.Usuarios
         public long IdOperacionDiariaCaja { get; set; }
         public bool respuesta { get; set; }
         public string rol_name { get; set; }
+        public long idCaja { get; set; }
+
 
     }
 }
