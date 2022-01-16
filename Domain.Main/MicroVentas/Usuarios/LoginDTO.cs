@@ -13,6 +13,10 @@ namespace Domain.Main.MicroVentas.Usuarios
         public string Password { get; set; }
         public string PasswordNuevo { get; set; }
         public string Log_respuesta { get; set; }
-        public int sesion { get; set; }
+        public long sesion { get; set; }
+        public long IdOperacionDiariaCaja { get; set; }
+        public bool respuesta { get; set; }
+        public string rol_name { get; set; }
+
     }
 }

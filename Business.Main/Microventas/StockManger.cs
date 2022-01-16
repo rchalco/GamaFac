@@ -1,5 +1,6 @@
 ﻿using Business.Main.Base;
 using Business.Main.DataMappingMicroVenta;
+using CoreAccesLayer.Implement.SQLServer;
 using CoreAccesLayer.Wraper;
 using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.SP;
@@ -69,11 +70,23 @@ namespace Business.Main.Microventas
             {
                 ///TODO:Encriptar el pass
                 ///
-                response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password).FirstOrDefault();
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                poLogRespuesta.Size = 100;
+                response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
+                
+
 
                 if (response.Object == null)
                 {
-                    response.Message = "Los datos ingresados no existen";
+                    response.Message = "Error al realizar la consulta";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
                     response.State = ResponseType.Error;
                     return response;
                 }
@@ -101,10 +114,10 @@ namespace Business.Main.Microventas
             {
 
                 ///TODO:Encriptar el pass
-                
+
                 TUsuario ObjTUsuario = new TUsuario();
                 ObjTUsuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.Usuario == Usuario).FirstOrDefault();
-                if (ObjTUsuario ==  null)
+                if (ObjTUsuario == null)
                 {
                     response.State = ResponseType.Error;
                     response.Message = "El Usuario no existe";
@@ -120,7 +133,7 @@ namespace Business.Main.Microventas
                 Entity<TUsuario> entity = new Entity<TUsuario> { EntityDB = ObjTUsuario, stateEntity = StateEntity.modify };
                 repositoryMicroventas.SaveObject<TUsuario>(entity);
                 repositoryMicroventas.Commit();
-                
+
             }
             catch (Exception ex)
             {
@@ -199,7 +212,7 @@ namespace Business.Main.Microventas
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨Caja obtenida", State = ResponseType.Success };
             try
             {
-               
+
                 response.Object = new SaldoCajaDTO { IdCaja = 1, FechaCierre = fechaSeleccionada.ToShortDateString(), SaldoCierre = 200, SaldoInicial = 10, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EstadoCaja = "APERTURADA" };
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);
             }
@@ -219,7 +232,7 @@ namespace Business.Main.Microventas
 
                 ///VERIFICAR QUE NO EXISTAN CAJAS ABIERTAS DE OTRAS FECHAS
                 ///ABRIR CAJAS
-               
+
 
             }
             catch (Exception ex)

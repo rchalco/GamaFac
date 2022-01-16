@@ -15,7 +15,7 @@ namespace Business.Main.Base
         /// <summary>
         /// se genera conla siguiente linea de codigo
         /// Install-Package Microsoft.EntityFrameworkCore.Tools
-        /// Scaffold-DbContext "Server=.;Database=GamaFac;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir DataMapping
+        /// dotnet ef dbcontext scaffold "Data Source=140.82.15.241;Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True" "Microsoft.EntityFrameworkCore.SqlServer" -o DataMappingMicroVenta -f 
         /// </summary>
         internal IRepository repositoryGamaFac { get; set; } = null;
         internal IRepository repositoryMicroventas { get; set; } = null;
@@ -23,7 +23,7 @@ namespace Business.Main.Base
         {
             //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
             //repositoryGamaFac = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
-            repositoryMicroventas = FactoryDataInterfaz.CreateRepository<MicroventasContext>("sqlserver");
+            repositoryMicroventas = FactoryDataInterfaz.CreateRepository<DataMappingMicroVenta.GamaFacContext>("sqlserver");
         }
 
         public string ProcessError(Exception ex)

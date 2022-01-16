@@ -5,19 +5,21 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Business.Main.DataMappingMicroVenta
 {
-    public partial class MicroventasContext : DbContext
+    public partial class GamaFacContext : DbContext
     {
-        public MicroventasContext()
+        public GamaFacContext()
         {
         }
 
-        public MicroventasContext(DbContextOptions<MicroventasContext> options)
+        public GamaFacContext(DbContextOptions<GamaFacContext> options)
             : base(options)
         {
         }
 
+        public virtual DbSet<TCaja> TCajas { get; set; }
         public virtual DbSet<TCategoria> TCategorias { get; set; }
         public virtual DbSet<TEmpresa> TEmpresas { get; set; }
+        public virtual DbSet<TOperacionDiariaCaja> TOperacionDiariaCajas { get; set; }
         public virtual DbSet<TParamPrecio> TParamPrecios { get; set; }
         public virtual DbSet<TProducto> TProductos { get; set; }
         public virtual DbSet<TRole> TRoles { get; set; }
@@ -36,6 +38,36 @@ namespace Business.Main.DataMappingMicroVenta
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TCaja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("tCajas");
+
+                entity.Property(e => e.Descripcion)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FechaRegistro)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fechaRegistro");
+
+                entity.Property(e => e.FechaVigenciaHasta)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fechaVigenciaHasta");
+
+                entity.Property(e => e.IdCaja)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("idCaja");
+
+                entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
+
+                entity.Property(e => e.IdTipoCaja).HasColumnName("idTipoCaja");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+            });
+
             modelBuilder.Entity<TCategoria>(entity =>
             {
                 entity.HasNoKey();
@@ -122,6 +154,57 @@ namespace Business.Main.DataMappingMicroVenta
                 entity.Property(e => e.Zona)
                     .HasMaxLength(500)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<TOperacionDiariaCaja>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("tOperacionDiariaCaja");
+
+                entity.Property(e => e.Diferencia)
+                    .HasColumnType("decimal(10, 2)")
+                    .HasColumnName("diferencia");
+
+                entity.Property(e => e.FechaApertura)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fechaApertura");
+
+                entity.Property(e => e.FechaCierre)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fechaCierre");
+
+                entity.Property(e => e.IdCaja).HasColumnName("idCaja");
+
+                entity.Property(e => e.IdOperacionDiariaCaja)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("idOperacionDiariaCaja");
+
+                entity.Property(e => e.IdSesion).HasColumnName("idSesion");
+
+                entity.Property(e => e.IdSesionCierre).HasColumnName("idSesionCierre");
+
+                entity.Property(e => e.MontoApertura)
+                    .HasColumnType("decimal(10, 2)")
+                    .HasColumnName("montoApertura");
+
+                entity.Property(e => e.MontoCierre)
+                    .HasColumnType("decimal(10, 2)")
+                    .HasColumnName("montoCierre");
+
+                entity.Property(e => e.MontoCierreSis)
+                    .HasColumnType("decimal(10, 2)")
+                    .HasColumnName("MontoCierreSIS");
+
+                entity.Property(e => e.ObservacioApertura)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("observacioApertura");
+
+                entity.Property(e => e.ObservacionCierre)
+                    .HasMaxLength(255)
+                    .IsUnicode(false)
+                    .HasColumnName("observacionCierre");
             });
 
             modelBuilder.Entity<TParamPrecio>(entity =>
@@ -269,7 +352,11 @@ namespace Business.Main.DataMappingMicroVenta
 
                 entity.Property(e => e.IdMovimiento).HasColumnName("idMovimiento");
 
+                entity.Property(e => e.IdOperacionDiariaCaja).HasColumnName("idOperacionDiariaCaja");
+
                 entity.Property(e => e.IdProducto).HasColumnName("idProducto");
+
+                entity.Property(e => e.IdSesion).HasColumnName("idSesion");
 
                 entity.Property(e => e.IdStock)
                     .ValueGeneratedOnAdd()
