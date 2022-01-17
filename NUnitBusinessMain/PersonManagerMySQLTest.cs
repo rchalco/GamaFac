@@ -48,7 +48,7 @@ namespace NUnitBusinessMain
             RequestRegistroVenta requestRegistroVenta = new RequestRegistroVenta
             {
                 idSesion = 1,
-                idVentanilla = 1,
+                idOperacionDiariaCaja = 1,
                 detalleVentas = new System.Collections.Generic.List<DetalleVenta>()
             };
 

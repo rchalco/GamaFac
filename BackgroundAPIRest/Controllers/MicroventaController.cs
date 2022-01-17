@@ -2,6 +2,7 @@
 using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
+using Domain.Main.MicroVentas.Ventas;
 using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -16,10 +17,10 @@ namespace BackgroundAPIRest.Controllers
     {
         [HttpPost("SearchProduct")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(int IdEmpresa)
+        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(RequestSearchProduct requestSearchProduct)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.SearchProduct(IdEmpresa);
+            return stockManger.SearchProduct(requestSearchProduct);
         }
 
         [HttpPost("RegistrarCompra")]
