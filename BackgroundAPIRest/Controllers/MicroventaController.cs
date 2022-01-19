@@ -48,10 +48,10 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("UltimasCajas")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<SaldoCajaDTO> UltimasCajas(int idEmpresa)
+        public ResponseQuery<SaldoCajaDTO> UltimasCajas(SaldoCajaDTO objSaldoCajaDTO)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.UltimasCajas(idEmpresa);
+            return stockManger.UltimasCajas(objSaldoCajaDTO);
         }
 
         [HttpPost("CierreCaja")]
