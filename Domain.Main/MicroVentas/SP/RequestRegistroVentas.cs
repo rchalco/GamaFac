@@ -11,7 +11,7 @@ namespace Domain.Main.MicroVentas.SP
     {
         public List<DetalleVenta> detalleVentas { get; set; }
         public long idSesion { get; set; }
-        public long idVentanilla { get; set; }
+        public long idOperacionDiariaCaja { get; set; }
     }
 
     public class DetalleVenta
