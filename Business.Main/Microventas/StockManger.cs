@@ -179,34 +179,24 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseObject<SaldoCajaDTO> CierreCaja(int IdCaja, decimal MontoCierre, string Observacion)
+        public ResponseObject<SaldoCajaDTO> CierreCaja(SaldoCajaDTO requestAperturaCaja)
         {
 
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se cerro correctamente", State = ResponseType.Success };
             try
             {
 
-                ///TODO:Encriptar el pass
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.SaldoUsuario, requestAperturaCaja.Observacion).FirstOrDefault();
+                if (response.Object == null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "Exisitio un error al cerrar la caja " + requestAperturaCaja.idOperacionDiariaCaja.ToString();
+                }
+                
                 /*
-                TUsuario ObjTUsuario = new TUsuario();
-                ObjTUsuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.Usuario == Usuario).FirstOrDefault();
-                if (ObjTUsuario ==  null)
-                {
-                    response.State = ResponseType.Error;
-                    response.Message = "El Usuario no existe";
-                    return response;
-                }
-                if (ObjTUsuario.Pass != Password)
-                {
-                    response.State = ResponseType.Error;
-                    response.Message = "La contraseña es incorrecta";
-                    return response;
-                }
-                ObjTUsuario.Pass = PasswordNuevo;
-                Entity<TUsuario> entity = new Entity<TUsuario> { EntityDB = ObjTUsuario, stateEntity = StateEntity.modify };
-                repositoryMicroventas.SaveObject<TUsuario>(entity);
-                repositoryMicroventas.Commit();
-                */
+                response.Object.FechaApertura = requestAperturaCaja.FechaApertura;
+                response.Object.SaldoInicial = requestAperturaCaja.SaldoInicial;
+                response.Object.Observacion = requestAperturaCaja.Observacion;*/
 
             }
             catch (Exception ex)
@@ -226,7 +216,7 @@ namespace Business.Main.Microventas
                 TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
                 ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date == requestGral.ParametroFecha1.Date && x.IdCaja == requestGral.ParametroLong1).FirstOrDefault();
                 if (ObjTOperacionDiariaCaja == null)
-                    response.Object = new SaldoCajaDTO { idCaja = requestGral.ParametroLong1, SaldoCierre = 0, SaldoInicial = 0, SaldoUsuario = 0, Diferencia = 0, Observacion = "", EstadoCaja = "PENDIENTE", FechaApertura = requestGral.ParametroFecha1.Date };
+                    response.Object = new SaldoCajaDTO { idCaja = requestGral.ParametroLong1, SaldoCierre = 0, SaldoInicial = 0, SaldoUsuario = 0, diferencia = 0, Observacion = "", EstadoCaja = "PENDIENTE", FechaApertura = requestGral.ParametroFecha1.Date };
                 else
                     response.Object = new SaldoCajaDTO { idOperacionDiariaCaja = ObjTOperacionDiariaCaja.IdOperacionDiariaCaja, idCaja = ObjTOperacionDiariaCaja.IdCaja.Value, FechaApertura = ObjTOperacionDiariaCaja.FechaApertura, SaldoCierre = ObjTOperacionDiariaCaja.MontoCierreSis == null ? 0 : ObjTOperacionDiariaCaja.MontoCierreSis.Value, SaldoInicial = ObjTOperacionDiariaCaja.MontoApertura, SaldoUsuario = ObjTOperacionDiariaCaja.MontoCierre == null ? 0 : ObjTOperacionDiariaCaja.MontoCierre.Value, Observacion = ObjTOperacionDiariaCaja.ObservacioApertura, EstadoCaja = ObjTOperacionDiariaCaja.FechaCierre == null ? "APERTURADA" : "CERRADA" };
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);

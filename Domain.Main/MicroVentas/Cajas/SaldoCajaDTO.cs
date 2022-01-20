@@ -14,7 +14,7 @@ namespace Domain.Main.MicroVentas.Cajas
         public decimal SaldoInicial { get; set; }
         public decimal SaldoCierre { get; set; }
         public decimal SaldoUsuario { get; set; }
-        public decimal Diferencia { get; set; }
+        public decimal diferencia { get; set; }
         public string Observacion { get; set; }
         public bool EsCajaActual { get; set; }
         public string EstadoCaja { get; set; }

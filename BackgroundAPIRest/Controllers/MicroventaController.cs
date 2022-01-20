@@ -57,10 +57,10 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("CierreCaja")]
         [EnableCors("MyPolicy")]
-        public ResponseObject<SaldoCajaDTO> CierreCaja(RequestCierreCaja requestCierreCaja)
+        public ResponseObject<SaldoCajaDTO> CierreCaja(SaldoCajaDTO requestCierreCaja)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.CierreCaja(requestCierreCaja.idCaja, requestCierreCaja.montoCierre, requestCierreCaja.observacion);
+            return stockManger.CierreCaja(requestCierreCaja);
         }
 
         [HttpPost("ObtieneCaja")]
