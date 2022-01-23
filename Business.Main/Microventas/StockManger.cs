@@ -48,38 +48,30 @@ namespace Business.Main.Microventas
                 if (requestRegistrarCompra.tipoUnidad == "CAJA")
                 {
                     requestRegistrarCompra.precioUnitario = requestRegistrarCompra.precioCaja / requestRegistrarCompra.unidadXCaja;
+                    requestRegistrarCompra.cantidad = requestRegistrarCompra.cantidad * requestRegistrarCompra.unidadXCaja;
                 }
                 else
                 {
                     requestRegistrarCompra.precioCaja = requestRegistrarCompra.precioUnitario;
                     requestRegistrarCompra.unidadXCaja = 1;
                 }
-                repositoryMicroventas.CallProcedure<Response>("spCompraVentanilla", requestRegistrarCompra.idSession, requestRegistrarCompra.idOperacionDiariaCaja, requestRegistrarCompra.idProducto, requestRegistrarCompra.cantidad, requestRegistrarCompra.precioUnitario, requestRegistrarCompra.unidadXCaja, requestRegistrarCompra.precioCaja);
+                ParamOut paramOutRespuesta = new ParamOut(true);
+                ParamOut paramOutLogRespuesta = new ParamOut("");
+                paramOutLogRespuesta.Size = 100;
+                repositoryMicroventas.CallProcedure<Response>("spCompraVentanilla", requestRegistrarCompra.idSession, requestRegistrarCompra.idOperacionDiariaCaja, requestRegistrarCompra.idProducto, requestRegistrarCompra.cantidad, requestRegistrarCompra.precioUnitario, requestRegistrarCompra.unidadXCaja, requestRegistrarCompra.precioCaja, paramOutRespuesta, paramOutLogRespuesta);
                 repositoryMicroventas.Commit();
+                if (Convert.ToBoolean(paramOutRespuesta.Valor))
+                {
+                    response.State = ResponseType.Warning;
+                    response.Message = Convert.ToString(paramOutLogRespuesta.Valor);
+                }
             }
             catch (Exception ex)
             {
                 ProcessError(ex, response);
             }
             return response;
-        }
-
-
-        public Response RegistrarVentas(RequestRegistroVenta requestRegistroVentas)
-        {
-            Response response = new Response { Message = "Venta registrada correctamente", State = ResponseType.Success };
-            try
-            {
-                repositoryMicroventas.CallProcedure<Response>("spVentaVentanilla", requestRegistroVentas.idSesion, requestRegistroVentas.idOperacionDiariaCaja, requestRegistroVentas.detalleVentas);
-                repositoryMicroventas.Commit();
-
-            }
-            catch (Exception ex)
-            {
-                ProcessError(ex, response);
-            }
-            return response;
-        }
+        }       
 
         public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
         {
@@ -95,7 +87,6 @@ namespace Business.Main.Microventas
                 response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
 
 
-
                 if (response.Object == null)
                 {
                     response.Message = "Error al realizar la consulta";
@@ -109,13 +100,6 @@ namespace Business.Main.Microventas
                     response.State = ResponseType.Error;
                     return response;
                 }
-                //response.Object = new LoginDTO { IdUsuario = 1, usuario_vc = Usuario, Log_respuesta = "Usuario o contraseña incorrectos" };
-                //if (!string.IsNullOrEmpty(response.Object.Log_respuesta))
-                //{
-                //    response.Message = response.Object.Log_respuesta;
-                //    response.State = ResponseType.Error;
-                //}
-
 
             }
             catch (Exception ex)
