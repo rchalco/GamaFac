@@ -39,7 +39,22 @@ namespace Business.Main.Microventas
             Response response = new Response { Message = "Compra registrada correctamente", State = ResponseType.Success };
             try
             {
-                repositoryMicroventas.CallProcedure<Response>("spCompraVentanilla", requestRegistrarCompra.idUsuario, requestRegistrarCompra.idVentanilla, requestRegistrarCompra.idProducto, requestRegistrarCompra.cantidad, requestRegistrarCompra.precioUnitario);
+                if (requestRegistrarCompra.tipoUnidad == "CAJA" && requestRegistrarCompra.unidadXCaja == 0)
+                {
+                    response.Message = "No se cuenta con las unidaddes por caja para calcular el precio unitario";
+                    response.State = ResponseType.Warning;
+                }
+
+                if (requestRegistrarCompra.tipoUnidad == "CAJA")
+                {
+                    requestRegistrarCompra.precioUnitario = requestRegistrarCompra.precioCaja / requestRegistrarCompra.unidadXCaja;
+                }
+                else
+                {
+                    requestRegistrarCompra.precioCaja = requestRegistrarCompra.precioUnitario;
+                    requestRegistrarCompra.unidadXCaja = 1;
+                }
+                repositoryMicroventas.CallProcedure<Response>("spCompraVentanilla", requestRegistrarCompra.idSession, requestRegistrarCompra.idOperacionDiariaCaja, requestRegistrarCompra.idProducto, requestRegistrarCompra.cantidad, requestRegistrarCompra.precioUnitario, requestRegistrarCompra.unidadXCaja, requestRegistrarCompra.precioCaja);
                 repositoryMicroventas.Commit();
             }
             catch (Exception ex)
@@ -192,7 +207,7 @@ namespace Business.Main.Microventas
                     response.State = ResponseType.Error;
                     response.Message = "Exisitio un error al cerrar la caja " + requestAperturaCaja.idOperacionDiariaCaja.ToString();
                 }
-                
+
                 /*
                 response.Object.FechaApertura = requestAperturaCaja.FechaApertura;
                 response.Object.SaldoInicial = requestAperturaCaja.SaldoInicial;

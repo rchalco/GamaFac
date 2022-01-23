@@ -8,10 +8,13 @@ namespace Domain.Main.MicroVentas.SP
 {
     public class RequestRegistrarCompra
     {
-        public int idUsuario { get; set; }
-        public int idVentanilla { get; set; }
+        public int idSession { get; set; }
+        public int idOperacionDiariaCaja { get; set; }
         public int idProducto { get; set; }
         public int cantidad { get; set; }
         public int precioUnitario { get; set; }
+        public int unidadXCaja { get; set; }
+        public int precioCaja { get; set; }
+        public string tipoUnidad { get; set; }
     }
 }
