@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Business.Main.Microventas
 {
-    internal class VentaManager : BaseManager
+    public class VentaManager : BaseManager
     {
         public Response RegistrarVentas(RequestRegistroVenta requestRegistroVentas)
         {
@@ -33,6 +33,20 @@ namespace Business.Main.Microventas
                     response.State = ResponseType.Warning;
                     response.Message = Convert.ToString(paramOutLogRespuesta.Valor);
                 }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestSearchProduct requestSearchProduct)
+        {
+            ResponseQuery<ResulProductoPrecioVenta> response = new ResponseQuery<ResulProductoPrecioVenta> { Message = "Venta registrada correctamente", State = ResponseType.Success };
+            try
+            {
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("spOptienePrecios", requestSearchProduct.IdEmpresa, "%");
             }
             catch (Exception ex)
             {

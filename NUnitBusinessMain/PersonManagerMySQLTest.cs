@@ -44,7 +44,7 @@ namespace NUnitBusinessMain
         [Test]
         public void RegistrarVentasTest()
         {
-            StockManger stockManger = new StockManger();
+            VentaManager stockManger = new VentaManager();
             RequestRegistroVenta requestRegistroVenta = new RequestRegistroVenta
             {
                 idSesion = 1,
