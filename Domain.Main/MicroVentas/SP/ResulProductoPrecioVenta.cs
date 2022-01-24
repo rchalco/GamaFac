@@ -17,5 +17,6 @@ namespace Domain.Main.MicroVentas.SP
         public string contenido { get; set; }
         public int EnStock { get; set; }
         public decimal precio { get; set; }
+        public int CantidadCaja { get; set; }
     }
 }

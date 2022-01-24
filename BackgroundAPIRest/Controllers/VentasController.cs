@@ -16,9 +16,16 @@ namespace BackgroundAPIRest.Controllers
         [EnableCors("MyPolicy")]
         public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestSearchProduct requestSearchProduct)
         {
-            VentaManager stockManger = new VentaManager();
-            return stockManger.ObtieneProductosVenta(requestSearchProduct);
+            VentaManager ventaManger = new VentaManager();
+            return ventaManger.ObtieneProductosVenta(requestSearchProduct);
         }
 
+        [HttpPost("RegistrarVentas")]
+        [EnableCors("MyPolicy")]
+        public Response RegistrarVentas(RequestRegistroVenta requestRegistroVentas)
+        {
+            VentaManager ventaManger = new VentaManager();
+            return ventaManger.RegistrarVentas(requestRegistroVentas);
+        }
     }
 }
