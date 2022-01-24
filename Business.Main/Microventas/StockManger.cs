@@ -168,7 +168,7 @@ namespace Business.Main.Microventas
                 */
 
 
-                response.ListEntities = colSaldoCajaDTO;
+                //response.ListEntities = colSaldoCajaDTO;
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);
             }
             catch (Exception ex)
@@ -185,7 +185,7 @@ namespace Business.Main.Microventas
             try
             {
 
-                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.SaldoUsuario, requestAperturaCaja.Observacion).FirstOrDefault();
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.SaldoUsuario, requestAperturaCaja.Observacion).FirstOrDefault();
                 if (response.Object == null)
                 {
                     response.State = ResponseType.Error;
