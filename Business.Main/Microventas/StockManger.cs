@@ -243,7 +243,7 @@ namespace Business.Main.Microventas
                     response.Message = "Existe una caja auna abierta en fecha " + ObjTOperacionDiariaCaja.FechaApertura.ToShortDateString() + ", debe cerrarla";
                 }
                 else
-                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion, requestAperturaCajae.FechaApertura).FirstOrDefault();
+                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion).FirstOrDefault();
                 response.Object.FechaApertura = requestAperturaCajae.FechaApertura;
                 response.Object.SaldoInicial = requestAperturaCajae.SaldoInicial;
                 response.Object.Observacion = requestAperturaCajae.Observacion;
