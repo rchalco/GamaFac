@@ -11,5 +11,6 @@ namespace Domain.Main.MicroVentas.SP
         public int IdProducto { get; set; }
         public string Producto { get; set; }
         public string Stock { get; set; }
+        public byte[] picProducto { get; set; }
     }
 }
