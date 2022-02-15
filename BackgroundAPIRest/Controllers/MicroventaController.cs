@@ -1,5 +1,6 @@
 ﻿using Business.Main.Microventas;
 using Domain.Main.MicroVentas.Cajas;
+using Domain.Main.MicroVentas.General;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.MicroVentas.Ventas;
@@ -77,6 +78,21 @@ namespace BackgroundAPIRest.Controllers
         {
             StockManger stockManger = new StockManger();
             return stockManger.AperturaCaja(requestAperturaCaja);
+        }
+
+        [HttpPost("LugarConsumo")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<LugarConsumoDTO> LugarConsumo(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.LugarConsumo(requestGral);
+        }
+        [HttpPost("ListaMeseros")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<PersonaResumenDTO> ListaMeseros(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ListaMeseros(requestGral);
         }
 
 

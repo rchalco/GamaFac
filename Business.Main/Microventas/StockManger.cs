@@ -3,6 +3,7 @@ using Business.Main.DataMappingMicroVenta;
 using CoreAccesLayer.Implement.SQLServer;
 using CoreAccesLayer.Wraper;
 using Domain.Main.MicroVentas.Cajas;
+using Domain.Main.MicroVentas.General;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.MicroVentas.Ventas;
@@ -247,6 +248,54 @@ namespace Business.Main.Microventas
                 response.Object.FechaApertura = requestAperturaCajae.FechaApertura;
                 response.Object.SaldoInicial = requestAperturaCajae.SaldoInicial;
                 response.Object.Observacion = requestAperturaCajae.Observacion;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<LugarConsumoDTO> LugarConsumo(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<LugarConsumoDTO> response = new ResponseQuery<LugarConsumoDTO> { Message = "¨Sala Obtenida", State = ResponseType.Success };
+            try
+            {
+                List<LugarConsumoDTO> colLugarConsumoDTO = new List<LugarConsumoDTO>();
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 1, Descripcion = "MESA 1", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 2, Descripcion = "MESA 2", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 3, Descripcion = "MESA 3", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 4, Descripcion = "MESA 4", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 5, Descripcion = "MESA 5", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 6, Descripcion = "MESA 6", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 7, Descripcion = "MESA 7", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 8, Descripcion = "MESA 8", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+
+                response.ListEntities = colLugarConsumoDTO;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+
+        public ResponseQuery<PersonaResumenDTO> ListaMeseros(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<PersonaResumenDTO> response = new ResponseQuery<PersonaResumenDTO> { Message = "¨Mesero Obtenido", State = ResponseType.Success };
+            try
+            {
+                List<PersonaResumenDTO> colPersonaResumenDTO = new List<PersonaResumenDTO>();
+                colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 1, NombreCompleto = "MESERO 1", IdEmpleado = 1 });
+                colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 2, NombreCompleto = "MESERO 2", IdEmpleado = 2 });
+                colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 3, NombreCompleto = "MESERO 3", IdEmpleado = 3 });
+
+                response.ListEntities = colPersonaResumenDTO;
 
             }
             catch (Exception ex)
