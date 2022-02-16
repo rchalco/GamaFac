@@ -23,8 +23,13 @@ namespace Domain.Main.MicroVentas.Cajas
             get { return Ocupado == true ? "OCUPADO" : "LIBRE"; }
             set { _EstadoLugar = value;} 
         }
+        /// <summary>
+        /// no implementar
+        /// </summary>
         public byte[] picMesa { get; set; }
-
+        /// <summary>
+        /// Transaccion con la que se hizo el pedido
+        /// </summary>
         public Nullable<int> IdTransaccion { get; set; }
         public Nullable<DateTime> FechaHora { get; set; }
     }

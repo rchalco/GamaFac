@@ -259,11 +259,22 @@ namespace Business.Main.Microventas
 
         public ResponseQuery<LugarConsumoDTO> LugarConsumo(RequestParametrosGral requestGral)
         {
+            ParamOut poRespuesta = new ParamOut(false);
+            ParamOut poLogRespuesta = new ParamOut("");
 
             ResponseQuery<LugarConsumoDTO> response = new ResponseQuery<LugarConsumoDTO> { Message = "¨Sala Obtenida", State = ResponseType.Success };
             try
             {
                 List<LugarConsumoDTO> colLugarConsumoDTO = new List<LugarConsumoDTO>();
+
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("spResLugarConsumoDTO", requestGral.ParametroLong1, requestGral.ParametroLong2, poRespuesta, poLogRespuesta);
+                if (response.ListEntities == null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "No existen mesas, sillas ";
+                }
+
+                /*
                 colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 1, Descripcion = "MESA 1", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
                 colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 2, Descripcion = "MESA 2", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
                 colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 3, Descripcion = "MESA 3", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
@@ -272,8 +283,9 @@ namespace Business.Main.Microventas
                 colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 6, Descripcion = "MESA 6", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
                 colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 7, Descripcion = "MESA 7", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
                 colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 8, Descripcion = "MESA 8", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-
+                
                 response.ListEntities = colLugarConsumoDTO;
+                */
 
             }
             catch (Exception ex)
