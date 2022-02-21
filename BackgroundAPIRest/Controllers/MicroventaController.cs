@@ -95,6 +95,22 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.ListaMeseros(requestGral);
         }
 
+        [HttpPost("GrabaPedido")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<TransaccionVentasDTO> GrabaPedido(TransaccionVentasDTO transaccionVentas)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.GrabaPedido(transaccionVentas);
+        }
+
+        [HttpPost("TransaccionesDetallePorID")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<TransaccionVentasDetalleDTO> TransaccionesDetallePorID(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.TransaccionesDetallePorID(requestGral);
+        }
+
 
     }
 

@@ -317,5 +317,64 @@ namespace Business.Main.Microventas
             return response;
         }
 
+        public ResponseObject<TransaccionVentasDTO> GrabaPedido(TransaccionVentasDTO transaccionVentas)
+        {
+
+            ResponseObject<TransaccionVentasDTO> response = new ResponseObject<TransaccionVentasDTO> { Message = "Pedido se grabo correctamente, a continuación se imprimira la Comanda", State = ResponseType.Success };
+            try
+            {
+                response.Object = new TransaccionVentasDTO();
+                //SP grabar pedido
+
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                poLogRespuesta.Size = 100;
+                //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+
+                if (response.Object == null)
+                {
+                    response.Message = "Error al grabar el pedido";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+                response.Object = transaccionVentas;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<TransaccionVentasDetalleDTO> TransaccionesDetallePorID(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<TransaccionVentasDetalleDTO> response = new ResponseQuery<TransaccionVentasDetalleDTO> { Message = "¨Pedido recuperado", State = ResponseType.Success };
+            try
+            {
+                List<TransaccionVentasDetalleDTO> colTransaccionVentasDetalleDTO = new List<TransaccionVentasDetalleDTO>();
+                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO { idTransaccion = 1, idTransaccionDetalle = 1, cantidad= 2, nombreProducto = "CERVEZA", nroPedido= 1, mesero = "mikyches", total = 50, precioVenta = 10 });
+
+                response.ListEntities = colTransaccionVentasDetalleDTO;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
     }
 }
