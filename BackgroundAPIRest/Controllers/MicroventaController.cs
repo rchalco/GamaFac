@@ -111,7 +111,21 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.TransaccionesDetallePorID(requestGral);
         }
 
+        [HttpPost("CambioDeMesa")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<RequestParametrosGral> CambioDeMesa(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.CambioDeMesa(requestGral);
+        }
 
+        [HttpPost("ClasificadorPorTipo")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<ClasificadorDTO> ClasificadorPorTipo(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ClasificadorPorTipo(requestGral);
+        }
     }
 
 

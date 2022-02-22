@@ -72,7 +72,7 @@ namespace Business.Main.Microventas
                 ProcessError(ex, response);
             }
             return response;
-        }       
+        }
 
         public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
         {
@@ -148,6 +148,8 @@ namespace Business.Main.Microventas
 
         public ResponseQuery<SaldoCajaDTO> UltimasCajas(SaldoCajaDTO objSaldoCajaDTO)
         {
+            ParamOut poRespuesta = new ParamOut(false);
+            ParamOut poLogRespuesta = new ParamOut("");
 
             ResponseQuery<SaldoCajaDTO> response = new ResponseQuery<SaldoCajaDTO> { Message = "¨Producto obtenidos correctamente", State = ResponseType.Success };
             try
@@ -158,10 +160,15 @@ namespace Business.Main.Microventas
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
                 */
                 if (objSaldoCajaDTO.EstadoCaja == "APERTURA")
-                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturasDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja);
+                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturasDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
                 else
-                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCieresDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja);
-
+                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCieresDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
                 /*
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { idCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { idCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
@@ -181,12 +188,13 @@ namespace Business.Main.Microventas
 
         public ResponseObject<SaldoCajaDTO> CierreCaja(SaldoCajaDTO requestAperturaCaja)
         {
-
+            ParamOut poRespuesta = new ParamOut(false);
+            ParamOut poLogRespuesta = new ParamOut("");
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se cerro correctamente", State = ResponseType.Success };
             try
             {
 
-                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.SaldoUsuario, requestAperturaCaja.Observacion).FirstOrDefault();
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.SaldoUsuario, requestAperturaCaja.Observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
                 if (response.Object == null)
                 {
                     response.State = ResponseType.Error;
@@ -230,7 +238,8 @@ namespace Business.Main.Microventas
 
         public ResponseObject<SaldoCajaDTO> AperturaCaja(SaldoCajaDTO requestAperturaCajae)
         {
-
+            ParamOut poRespuesta = new ParamOut(false);
+            ParamOut poLogRespuesta = new ParamOut("");
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se aperturo correctamente", State = ResponseType.Success };
             try
             {
@@ -244,7 +253,15 @@ namespace Business.Main.Microventas
                     response.Message = "Existe una caja auna abierta en fecha " + ObjTOperacionDiariaCaja.FechaApertura.ToShortDateString() + ", debe cerrarla";
                 }
                 else
-                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion).FirstOrDefault();
+                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
                 response.Object.FechaApertura = requestAperturaCajae.FechaApertura;
                 response.Object.SaldoInicial = requestAperturaCajae.SaldoInicial;
                 response.Object.Observacion = requestAperturaCajae.Observacion;
@@ -272,20 +289,30 @@ namespace Business.Main.Microventas
                 {
                     response.State = ResponseType.Error;
                     response.Message = "No existen mesas, sillas ";
+
+                }
+                if (response.ListEntities.Count <= 0)
+                {
+
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 1, Descripcion = "MESA 1", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 2, Descripcion = "MESA 2", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 3, Descripcion = "MESA 3", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 4, Descripcion = "MESA 4", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 5, Descripcion = "MESA 5", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 6, Descripcion = "MESA 6", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 7, Descripcion = "MESA 7", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+                    colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 8, Descripcion = "MESA 8", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
+
+                    response.ListEntities = colLugarConsumoDTO;
+
+                }
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
                 }
 
-                /*
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 1, Descripcion = "MESA 1", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 2, Descripcion = "MESA 2", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 3, Descripcion = "MESA 3", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 4, Descripcion = "MESA 4", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 5, Descripcion = "MESA 5", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = true });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 6, Descripcion = "MESA 6", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 7, Descripcion = "MESA 7", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-                colLugarConsumoDTO.Add(new LugarConsumoDTO { IdLugarFisico = 8, Descripcion = "MESA 8", CantidadPersonas = 4, ConsumoActual = 50, Ocupado = false });
-                
-                response.ListEntities = colLugarConsumoDTO;
-                */
 
             }
             catch (Exception ex)
@@ -298,16 +325,33 @@ namespace Business.Main.Microventas
 
         public ResponseQuery<PersonaResumenDTO> ListaMeseros(RequestParametrosGral requestGral)
         {
-
+            ParamOut poRespuesta = new ParamOut(false);
+            ParamOut poLogRespuesta = new ParamOut("");
             ResponseQuery<PersonaResumenDTO> response = new ResponseQuery<PersonaResumenDTO> { Message = "¨Mesero Obtenido", State = ResponseType.Success };
             try
             {
                 List<PersonaResumenDTO> colPersonaResumenDTO = new List<PersonaResumenDTO>();
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaResumenDTO>("spObtieneMeseros", requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+                if (response.ListEntities == null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "No existen meseros definido";
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+                /*
+
                 colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 1, NombreCompleto = "MESERO 1", IdEmpleado = 1 });
                 colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 2, NombreCompleto = "MESERO 2", IdEmpleado = 2 });
                 colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 3, NombreCompleto = "MESERO 3", IdEmpleado = 3 });
-
                 response.ListEntities = colPersonaResumenDTO;
+                 */
+
 
             }
             catch (Exception ex)
@@ -339,7 +383,7 @@ namespace Business.Main.Microventas
                     return response;
                 }
 
-                if ((bool)poRespuesta.Valor)
+                if (!(bool)poRespuesta.Valor)
                 {
                     response.Message = poLogRespuesta.Valor.ToString();
                     response.State = ResponseType.Error;
@@ -364,7 +408,7 @@ namespace Business.Main.Microventas
             try
             {
                 List<TransaccionVentasDetalleDTO> colTransaccionVentasDetalleDTO = new List<TransaccionVentasDetalleDTO>();
-                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO { idTransaccion = 1, idTransaccionDetalle = 1, cantidad= 2, nombreProducto = "CERVEZA", nroPedido= 1, mesero = "mikyches", total = 50, precioVenta = 10 });
+                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO { idTransaccion = 1, idTransaccionDetalle = 1, cantidad = 2, nombreProducto = "CERVEZA", nroPedido = 1, mesero = "mikyches", total = 50, precioVenta = 10 });
 
                 response.ListEntities = colTransaccionVentasDetalleDTO;
 
@@ -375,6 +419,70 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+        public ResponseObject<RequestParametrosGral> CambioDeMesa(RequestParametrosGral requestGral)
+        {
+
+            ResponseObject<RequestParametrosGral> response = new ResponseObject<RequestParametrosGral> { Message = "Se realizo el cambio de mesa", State = ResponseType.Success };
+            try
+            {
+                response.Object = new RequestParametrosGral();
+                //SP grabar pedido
+
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                poLogRespuesta.Size = 100;
+
+                //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", requestGral.ParametroLong1, requestGral.ParametroLong2).FirstOrDefault();
+
+
+                if (response.Object == null)
+                {
+                    response.Message = "Error al grabar el cambio de mesa";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+                response.Object = requestGral;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<ClasificadorDTO> ClasificadorPorTipo(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<ClasificadorDTO> response = new ResponseQuery<ClasificadorDTO> { Message = "¨Clasificador recuperado", State = ResponseType.Success };
+            try
+            {
+                List<ClasificadorDTO> colClasificadorDTO = new List<ClasificadorDTO>();
+                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 1, nombre = "EFECTIVO" });
+                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 2, nombre = "TARJETA" });
+                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 1, nombre = "TRANSFERENCIA" });
+
+
+                response.ListEntities = colClasificadorDTO;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
 
     }
 }
