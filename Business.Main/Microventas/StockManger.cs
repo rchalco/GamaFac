@@ -401,6 +401,52 @@ namespace Business.Main.Microventas
             return response;
         }
 
+        public ResponseObject<TransaccionVentasDTO> FinalizarPedido(TransaccionVentasDTO transaccionVentas)
+        {
+
+            ResponseObject<TransaccionVentasDTO> response = new ResponseObject<TransaccionVentasDTO> { Message = "Se grabo correctamente, el lugar de consumo fue descoupado", State = ResponseType.Success };
+            try
+            {
+
+                response.Object = new TransaccionVentasDTO();
+                //SP grabar pedido
+
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                poLogRespuesta.Size = 100;
+                // Solo llegara idtransaccion y los datos de forma de pago y factura el resto se debe obtener de la bd.
+                // Se debe confirmar el pedido recalculando el monto de la transaccion padre, actualizar forma de pago, actualizar idfactura, nombre, nit e email
+                // se debe generar la factura
+                // se debe liberar el lugar de consumo
+
+                //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+
+                if (response.Object == null)
+                {
+                    response.Message = "Error al grabar el pedido";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+                if (!(bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+                response.Object = transaccionVentas;
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
         public ResponseQuery<TransaccionVentasDetalleDTO> TransaccionesDetallePorID(RequestParametrosGral requestGral)
         {
 
@@ -470,7 +516,7 @@ namespace Business.Main.Microventas
                 List<ClasificadorDTO> colClasificadorDTO = new List<ClasificadorDTO>();
                 colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 1, nombre = "EFECTIVO" });
                 colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 2, nombre = "TARJETA" });
-                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 1, nombre = "TRANSFERENCIA" });
+                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 3, nombre = "TRANSFERENCIA" });
 
 
                 response.ListEntities = colClasificadorDTO;
@@ -482,6 +528,8 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+
 
 
     }
