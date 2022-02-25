@@ -17,13 +17,12 @@ namespace WindowsFormsApp1.Global
     {
         public static string pFormatoDate = "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff";
 
-
         /// <summary>
         /// dede aqui
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dest"></param>
-        public static void CopyTo(Stream src, Stream dest)
+        public void CopyTo(Stream src, Stream dest)
         {
             byte[] bytes = new byte[4096];
 
@@ -35,7 +34,7 @@ namespace WindowsFormsApp1.Global
             }
         }
 
-        public static byte[] Zip(string str)
+        public byte[] Zip(string str)
         {
             var bytes = Encoding.UTF8.GetBytes(str);
 
@@ -52,7 +51,7 @@ namespace WindowsFormsApp1.Global
             }
         }
 
-        public static string Unzip(byte[] bytes)
+        public string Unzip(byte[] bytes)
         {
             using (var msi = new MemoryStream(bytes))
             using (var mso = new MemoryStream())
@@ -68,7 +67,7 @@ namespace WindowsFormsApp1.Global
 
         }
 
-        public static string sha256_hash(string value)
+        public string sha256_hash(string value)
         {
             StringBuilder Sb = new StringBuilder();
 
@@ -89,7 +88,7 @@ namespace WindowsFormsApp1.Global
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string SerializarToXml(object obj)
+        public string SerializarToXml(object obj)
         {
             try
             {
@@ -107,7 +106,7 @@ namespace WindowsFormsApp1.Global
                 throw ex;
             }
         }
-        public static string calculaDigitoMod11(string cadena, int numDig, int limMult, bool x10)
+        public string calculaDigitoMod11(string cadena, int numDig, int limMult, bool x10)
         {
             int mult, suma, i, n, dig;
             if (!x10) numDig = 1;
@@ -151,18 +150,18 @@ namespace WindowsFormsApp1.Global
             return cadena.Substring(cadena.Length - numDig, numDig);
 
         }
-        public static string ConvertirBase16(string CodigoPrevio)
+        public string ConvertirBase16(string CodigoPrevio)
         {
             var bigNumber = System.Numerics.BigInteger.Parse(CodigoPrevio);
             string vR = bigNumber.ToString("X");
             return vR;
         }
-        public static string ObtieneNumCerosIzq(long Numero, int TamCampo)
+        public string ObtieneNumCerosIzq(long Numero, int TamCampo)
         {
             string vTamañoCampo = "D" + TamCampo.ToString();
             return Numero.ToString(vTamañoCampo);
         }
-        public static void CrearArchivoXML(string pXML, string path)
+        public void CrearArchivoXML(string pXML, string path)
         {
             using (FileStream fs = File.Create(path))
             {
@@ -171,7 +170,7 @@ namespace WindowsFormsApp1.Global
                 fs.Write(info, 0, info.Length);
             }
         }
-        public static byte[] ConvertirArchivoAByte(string path)
+        public byte[] ConvertirArchivoAByte(string path)
         {
             return System.IO.File.ReadAllBytes(path);
         }
@@ -181,7 +180,7 @@ namespace WindowsFormsApp1.Global
         /// </summary>
         /// <param name="tgzFilename"> ubicacion y nombre de archivo que se creara Ejemplo: C://FacturaSINTar//Paquete.tar.gz      </param>
         /// <param name="sourceDirectory"> ubicacion dela carpeta a comprimir  Ejemplo : C://FaturasSIN//Paquete1</param>
-        public static void CrearTarGZ(string tgzFilename, string sourceDirectory)
+        public void CrearTarGZ(string tgzFilename, string sourceDirectory)
         {
             Stream outStream = File.Create(tgzFilename);
             Stream gzoStream = new GZipOutputStream(outStream);
@@ -201,7 +200,7 @@ namespace WindowsFormsApp1.Global
 
         }
 
-        private static void AddDirectoryFilesToTar(TarArchive tarArchive, string sourceDirectory, bool recurse, bool isRoot)
+        private void AddDirectoryFilesToTar(TarArchive tarArchive, string sourceDirectory, bool recurse, bool isRoot)
         {
 
             // Optionally, write an entry for the directory itself.

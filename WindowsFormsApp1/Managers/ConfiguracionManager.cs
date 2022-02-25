@@ -181,7 +181,52 @@ namespace WindowsFormsApp1.Managers
             }
         }
 
+        //Factura
+        public string GetFactura(string CUIS)
+        {
+            FacturacionCompraVenta.ServicioFacturacionClient ObjrecepcionFactura = new FacturacionCompraVenta.ServicioFacturacionClient("ServicioFacturacionPort2");
+            try
+            {
+                OperationContextScope contextScope = new OperationContextScope(ObjrecepcionFactura.InnerChannel);
+                HttpRequestMessageProperty requestMessage = new HttpRequestMessageProperty();
+                requestMessage.Headers["Apikey"] = CustomSettings.TokenImpuestos;
+                OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
+                //FacturacionEntidadFinanciera.solicitudRecepcionFactura vobj = new FacturacionEntidadFinanciera.solicitudRecepcionFactura
+                //FacturacionElectronica.solicitudRecepcionFactura vobj = new FacturacionElectronica.solicitudRecepcionFactura
+                FacturacionCompraVenta.solicitudRecepcionFactura vobj = new FacturacionCompraVenta.solicitudRecepcionFactura
+                {
+                    nit = Int64.Parse(NIT),
+                    codigoAmbiente = int.Parse(CodigoAmbiente), // pruebas 2, produccion 1
+                    codigoModalidad = int.Parse(Modalidad),
+                    codigoSistema = CodigoSistema,
+                    codigoSucursal = int.Parse(CodigoSucursal),
+                    codigoPuntoVenta = int.Parse(PuntoDeVenta),
+                    codigoPuntoVentaSpecified = PuntoDeVentaEspecificado,
+                    cuis = CUIS,
+                    cufd = vCUFD.codigo,
+                    codigoDocumentoSector = int.Parse(txtSector.Text), //15- factura Entidad Financiera //1- factura compra venta//9
+                    codigoEmision = pTipoEmision, // 1 - online 2 - feura de linea
+                    tipoFacturaDocumento = int.Parse(txtTipoFactura.Text), //1 = Factura Compra Venta 2 = Recibo de Alquiler de Bienes Inmuebles //24 = Nota Crédito - Débito
+                    archivo = bXML,
+                    fechaEnvio = vTimestamp,
+                    hashArchivo = XMLSHA256,
 
-        /**/
+                };
+                var resp = ObjrecepcionFactura.recepcionFactura(vobj);
+
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                //clienteCodigos.InnerChannel.Close();
+            }
+            return "";
+        }
+
+            /**/
     }
 }

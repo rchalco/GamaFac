@@ -127,6 +127,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Global\CustomSettings.cs" />
+    <Compile Include="Global\SerializerHelper.cs" />
     <Compile Include="LogMasivo.cs">
       <DependentUpon>SINDB.tt</DependentUpon>
     </Compile>
