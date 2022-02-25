@@ -1,5 +1,7 @@
 
+using Business.Main.Microventas;
 using Business.Main.ModuloSample;
+using Domain.Main.MicroVentas.SP;
 using Domain.Main.Wraper;
 using NUnit.Framework;
 
@@ -13,7 +15,7 @@ namespace NUnitBusinessMain
         }
 
         [Test]
-        public void PersonRegisterTest()        
+        public void PersonRegisterTest()
         {
             //PersonManager personManager = new PersonManager();
             //Person person = new Person { Idperson = 0, Name = "Dario", Lastname = "Chalco" };
@@ -38,6 +40,29 @@ namespace NUnitBusinessMain
             //Assert.AreEqual(resul.State, ResponseType.Success);
         }
 
-        
+
+        [Test]
+        public void RegistrarVentasTest()
+        {
+            VentaManager stockManger = new VentaManager();
+            RequestRegistroVenta requestRegistroVenta = new RequestRegistroVenta
+            {
+                idSesion = 1,
+                idOperacionDiariaCaja = 1,
+                detalleVentas = new System.Collections.Generic.List<DetalleVenta>()
+            };
+
+            requestRegistroVenta.detalleVentas.Add(new DetalleVenta
+            {
+                cantidad = 2,
+                idProducto = 1,
+                precioCaja = 55,
+                PrecioUnitario = 5,
+                UnidadePorCaja = 11
+            });
+            var resul = stockManger.RegistrarVentas(requestRegistroVenta);
+
+        }
+
     }
 }

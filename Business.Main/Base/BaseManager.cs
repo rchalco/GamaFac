@@ -1,4 +1,5 @@
-﻿using CoreAccesLayer.Interface;
+﻿using Business.Main.DataMappingMicroVenta;
+using CoreAccesLayer.Interface;
 using Domain.Main.Wraper;
 using PlumbingProps.Exceptions;
 using System;
@@ -11,10 +12,18 @@ namespace Business.Main.Base
 {
     public abstract class BaseManager
     {
-        internal IRepository repositoryMySql { get; set; } = null;
+        /// <summary>
+        /// se genera conla siguiente linea de codigo
+        /// Install-Package Microsoft.EntityFrameworkCore.Tools
+        /// dotnet ef dbcontext scaffold "Data Source=140.82.15.241;Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True" "Microsoft.EntityFrameworkCore.SqlServer" -o DataMappingMicroVenta -f 
+        /// </summary>
+        internal IRepository repositoryGamaFac { get; set; } = null;
+        internal IRepository repositoryMicroventas { get; set; } = null;
         public BaseManager()
         {
             //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
+            //repositoryGamaFac = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
+            repositoryMicroventas = FactoryDataInterfaz.CreateRepository<DataMappingMicroVenta.GamaFacContext>("sqlserver");
         }
 
         public string ProcessError(Exception ex)
@@ -28,7 +37,8 @@ namespace Business.Main.Base
             ManagerException managerException = new ManagerException();
             response.State = ResponseType.Error;
             response.Message = managerException.ProcessException(ex);
-            repositoryMySql.Rollback();
+            repositoryGamaFac?.Rollback();
+            repositoryMicroventas?.Rollback();
             return managerException.ProcessException(ex);
         }
     }
