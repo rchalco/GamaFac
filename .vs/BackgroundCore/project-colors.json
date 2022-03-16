@@ -1,19 +1,19 @@
 {
   "Version": 1,
   "ProjectMap": {
-    "76775ec8-238e-4efe-92ba-c24144f3e82c": {
-      "ProjectGuid": "76775ec8-238e-4efe-92ba-c24144f3e82c",
-      "DisplayName": "PlumbingProps",
-      "ColorIndex": 0
-    },
-    "2cb79909-bf30-4181-82aa-c20b67de51a6": {
-      "ProjectGuid": "2cb79909-bf30-4181-82aa-c20b67de51a6",
-      "DisplayName": "NUnitBusinessMain",
-      "ColorIndex": 1
-    },
     "e20d938a-5141-471f-8ef6-c81151dfe150": {
       "ProjectGuid": "e20d938a-5141-471f-8ef6-c81151dfe150",
       "DisplayName": "Domain.Main",
+      "ColorIndex": 0
+    },
+    "a9f27771-9a0b-49db-8120-5e7e78049102": {
+      "ProjectGuid": "a9f27771-9a0b-49db-8120-5e7e78049102",
+      "DisplayName": "CoreAccesLayer",
+      "ColorIndex": 1
+    },
+    "49672011-d669-454d-a6c3-6d73723dbe84": {
+      "ProjectGuid": "49672011-d669-454d-a6c3-6d73723dbe84",
+      "DisplayName": "BackgroundAPIRest",
       "ColorIndex": 2
     },
     "0b878a17-f29a-45fa-99d2-198431e90484": {
@@ -21,14 +21,14 @@
       "DisplayName": "Business.Main",
       "ColorIndex": 3
     },
-    "49672011-d669-454d-a6c3-6d73723dbe84": {
-      "ProjectGuid": "49672011-d669-454d-a6c3-6d73723dbe84",
-      "DisplayName": "BackgroundAPIRest",
+    "76775ec8-238e-4efe-92ba-c24144f3e82c": {
+      "ProjectGuid": "76775ec8-238e-4efe-92ba-c24144f3e82c",
+      "DisplayName": "PlumbingProps",
       "ColorIndex": 4
     },
-    "a9f27771-9a0b-49db-8120-5e7e78049102": {
-      "ProjectGuid": "a9f27771-9a0b-49db-8120-5e7e78049102",
-      "DisplayName": "CoreAccesLayer",
+    "2cb79909-bf30-4181-82aa-c20b67de51a6": {
+      "ProjectGuid": "2cb79909-bf30-4181-82aa-c20b67de51a6",
+      "DisplayName": "NUnitBusinessMain",
       "ColorIndex": 5
     }
   },

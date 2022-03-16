@@ -74,7 +74,7 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseObject<LoginDTO> LoginUsuario(string Usuario, string Password)
+        public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
         {
 
             ResponseObject<LoginDTO> response = new ResponseObject<LoginDTO> { Message = "¨Inicio de Sesión Correcto", State = ResponseType.Success };
@@ -85,7 +85,7 @@ namespace Business.Main.Microventas
                 ParamOut poRespuesta = new ParamOut(false);
                 ParamOut poLogRespuesta = new ParamOut("");
                 poLogRespuesta.Size = 100;
-                response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
+                response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", requestLogin.idEmpresa, requestLogin.usuario, requestLogin.password, poRespuesta, poLogRespuesta).FirstOrDefault();
 
 
                 if (response.Object == null)
@@ -200,7 +200,12 @@ namespace Business.Main.Microventas
                     response.State = ResponseType.Error;
                     response.Message = "Exisitio un error al cerrar la caja " + requestAperturaCaja.idOperacionDiariaCaja.ToString();
                 }
-
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
                 /*
                 response.Object.FechaApertura = requestAperturaCaja.FechaApertura;
                 response.Object.SaldoInicial = requestAperturaCaja.SaldoInicial;
@@ -331,7 +336,7 @@ namespace Business.Main.Microventas
             try
             {
                 List<PersonaResumenDTO> colPersonaResumenDTO = new List<PersonaResumenDTO>();
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaResumenDTO>("spObtieneMeseros", requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaResumenDTO>("spObtieneMeseros", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
                 if (response.ListEntities == null)
                 {
                     response.State = ResponseType.Error;
@@ -454,7 +459,8 @@ namespace Business.Main.Microventas
             try
             {
                 List<TransaccionVentasDetalleDTO> colTransaccionVentasDetalleDTO = new List<TransaccionVentasDetalleDTO>();
-                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO { idTransaccion = 1, idTransaccionDetalle = 1, cantidad = 2, nombreProducto = "CERVEZA", nroPedido = 1, mesero = "mikyches", total = 50, precioVenta = 10 });
+                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO { idTransaccion = 1, idTransaccionDetalle = 1, 
+                    cantidad = 2, nombreProducto = "CERVEZA", nroPedido = 1, mesero = "mikyches", total = 50, precioVenta = 10 });
 
                 response.ListEntities = colTransaccionVentasDetalleDTO;
 

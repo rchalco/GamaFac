@@ -37,7 +37,7 @@ namespace BackgroundAPIRest.Controllers
         public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
         {
             StockManger stockManger = new StockManger();
-            return stockManger.LoginUsuario(requestLogin.usuario, requestLogin.password);
+            return stockManger.LoginUsuario(requestLogin);
         }
 
         [HttpPost("CambioContrasena")]
