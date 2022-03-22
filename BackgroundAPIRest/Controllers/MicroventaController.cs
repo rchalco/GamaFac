@@ -135,6 +135,15 @@ namespace BackgroundAPIRest.Controllers
             StockManger stockManger = new StockManger();
             return stockManger.ClasificadorPorTipo(requestGral);
         }
+
+        [HttpPost("GraficoVentaPorProducto")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<DetalleGananciasDTO> GraficoVentaPorProducto(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.GraficoVentaPorProducto(requestGral);
+        }
+
     }
 
 

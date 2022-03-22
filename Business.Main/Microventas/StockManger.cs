@@ -222,7 +222,7 @@ namespace Business.Main.Microventas
         public ResponseObject<SaldoCajaDTO> ObtieneCaja(RequestParametrosGral requestGral)
         {
 
-            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨Caja obtenida", State = ResponseType.Success };
+            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "Caja obtenida", State = ResponseType.Success };
             try
             {
 
@@ -245,7 +245,7 @@ namespace Business.Main.Microventas
         {
             ParamOut poRespuesta = new ParamOut(false);
             ParamOut poLogRespuesta = new ParamOut("");
-            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "¨La caja se aperturo correctamente", State = ResponseType.Success };
+            ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "La caja se aperturo correctamente", State = ResponseType.Success };
             try
             {
                 response.Object = new SaldoCajaDTO();
@@ -332,7 +332,7 @@ namespace Business.Main.Microventas
         {
             ParamOut poRespuesta = new ParamOut(false);
             ParamOut poLogRespuesta = new ParamOut("");
-            ResponseQuery<PersonaResumenDTO> response = new ResponseQuery<PersonaResumenDTO> { Message = "¨Mesero Obtenido", State = ResponseType.Success };
+            ResponseQuery<PersonaResumenDTO> response = new ResponseQuery<PersonaResumenDTO> { Message = "Mesero Obtenido", State = ResponseType.Success };
             try
             {
                 List<PersonaResumenDTO> colPersonaResumenDTO = new List<PersonaResumenDTO>();
@@ -455,7 +455,7 @@ namespace Business.Main.Microventas
         public ResponseQuery<TransaccionVentasDetalleDTO> TransaccionesDetallePorID(RequestParametrosGral requestGral)
         {
 
-            ResponseQuery<TransaccionVentasDetalleDTO> response = new ResponseQuery<TransaccionVentasDetalleDTO> { Message = "¨Pedido recuperado", State = ResponseType.Success };
+            ResponseQuery<TransaccionVentasDetalleDTO> response = new ResponseQuery<TransaccionVentasDetalleDTO> { Message = "Pedido recuperado", State = ResponseType.Success };
             try
             {
                 List<TransaccionVentasDetalleDTO> colTransaccionVentasDetalleDTO = new List<TransaccionVentasDetalleDTO>();
@@ -516,7 +516,7 @@ namespace Business.Main.Microventas
         public ResponseQuery<ClasificadorDTO> ClasificadorPorTipo(RequestParametrosGral requestGral)
         {
 
-            ResponseQuery<ClasificadorDTO> response = new ResponseQuery<ClasificadorDTO> { Message = "¨Clasificador recuperado", State = ResponseType.Success };
+            ResponseQuery<ClasificadorDTO> response = new ResponseQuery<ClasificadorDTO> { Message = "Clasificador recuperado", State = ResponseType.Success };
             try
             {
                 List<ClasificadorDTO> colClasificadorDTO = new List<ClasificadorDTO>();
@@ -536,6 +536,46 @@ namespace Business.Main.Microventas
         }
 
 
+        public ResponseQuery<DetalleGananciasDTO> GraficoVentaPorProducto(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<DetalleGananciasDTO> response = new ResponseQuery<DetalleGananciasDTO> { Message = "Datos para gráfico", State = ResponseType.Success };
+            try
+            {
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                poLogRespuesta.Size = 100;
+
+                List<DetalleGananciasDTO> colDetalleGananciasDTO = new List<DetalleGananciasDTO>();
+                //response.ListEntities = repositoryMicroventas.GetDataByProcedure<DetalleGananciasDTO>("spObtieneMeseros", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+
+                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "WISKHY", Producto = "JHONNY WALKER ETIQUETA ROJA", TotalVenta = 640, Cantidad = 2 });
+                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "IMPORTADAS", Producto = "HUARI", TotalVenta = 60, Cantidad = 3 });
+                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "SINGANI", Producto = "MAJUELO", TotalVenta = 1500, Cantidad = 5 });
+                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "TABLAS", Producto = "QUESOS", TotalVenta = 750, Cantidad = 5 });
+                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "CAFE", Producto = "CAPUCCINO", TotalVenta = 150, Cantidad = 10 });
+                response.ListEntities = colDetalleGananciasDTO;
+
+                if (response.ListEntities == null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "No existen meseros definido";
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
 
 
     }
