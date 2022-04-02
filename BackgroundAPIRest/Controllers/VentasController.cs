@@ -30,6 +30,14 @@ namespace BackgroundAPIRest.Controllers
             return ventaManger.RegistrarVentas(requestRegistroVentas);
         }
 
+        [HttpPost("RegistrarPedidoTintoreria")]
+        [EnableCors("MyPolicy")]
+        public Response RegistrarPedidoTintoreria(RequestRegistroPedido requestRegistroPedido)
+        {
+            TintoreriaManager tintoreriaManager = new TintoreriaManager();
+            return tintoreriaManager.RegistrarVentas(requestRegistroPedido);
+        }
+
         [HttpPost("GenerarDocumento")]
         [EnableCors("MyPolicy")]
         public IActionResult GenerarDocumento(DataDocumento dataDocumento)
