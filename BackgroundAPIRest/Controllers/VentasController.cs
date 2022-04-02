@@ -16,7 +16,7 @@ namespace BackgroundAPIRest.Controllers
     {
         [HttpPost("ObtieneProductosVenta")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestParametrosGral requestSearchProduct)
+        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestSearchProduct requestSearchProduct)
         {
             VentaManager ventaManger = new VentaManager();
             return ventaManger.ObtieneProductosVenta(requestSearchProduct);
