@@ -42,6 +42,19 @@ namespace NUnitBusinessMain
 
 
         [Test]
+        public void Login()
+        {
+            StockManger stockManger = new StockManger();
+            var rsul = stockManger.LoginUsuario(new Domain.Main.MicroVentas.Usuarios.RequestLogin
+            {
+                idEmpresa = 1,
+                password = "123",
+                usuario = "rchalco"
+            });
+        }
+
+
+        [Test]
         public void RegistrarVentasTest()
         {
             VentaManager stockManger = new VentaManager();
