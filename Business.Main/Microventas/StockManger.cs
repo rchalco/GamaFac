@@ -19,13 +19,15 @@ namespace Business.Main.Microventas
     public class StockManger : BaseManager
     {
 
-        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(RequestSearchProduct requestSearchProduct)
+        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(RequestParametrosGral requestSearchProduct)
         {
 
             ResponseQuery<ResulSPProductosCantidad> response = new ResponseQuery<ResulSPProductosCantidad> { Message = "¨Producto obtenidos correctamente", State = ResponseType.Success };
             try
             {
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", requestSearchProduct.IdEmpresa, "%");
+                //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", requestSearchProduct.IdEmpresa, "%");
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spObtienePrecios", requestSearchProduct.ParametroLong1, requestSearchProduct.ParametroLong2, "%");
+
             }
             catch (Exception ex)
             {
@@ -289,7 +291,9 @@ namespace Business.Main.Microventas
             {
                 List<LugarConsumoDTO> colLugarConsumoDTO = new List<LugarConsumoDTO>();
 
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("spResLugarConsumoDTO", requestGral.ParametroLong1, requestGral.ParametroLong2, poRespuesta, poLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("spResLugarConsumoDTO", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+                //response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("spResLugarConsumoDTO", 52, "0", poRespuesta, poLogRespuesta);
+
                 if (response.ListEntities == null)
                 {
                     response.State = ResponseType.Error;

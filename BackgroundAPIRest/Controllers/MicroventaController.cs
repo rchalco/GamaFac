@@ -18,7 +18,7 @@ namespace BackgroundAPIRest.Controllers
     {
         [HttpPost("SearchProduct")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(RequestSearchProduct requestSearchProduct)
+        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(RequestParametrosGral requestSearchProduct)
         {
             StockManger stockManger = new StockManger();
             return stockManger.SearchProduct(requestSearchProduct);
