@@ -50,7 +50,7 @@ namespace Business.Main.Microventas
             ResponseQuery<ResulProductoPrecioVenta> response = new ResponseQuery<ResulProductoPrecioVenta> { Message = "Venta registrada correctamente", State = ResponseType.Success };
             try
             {
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("spObtienePrecios", requestSearchProduct.ParametroLong1, requestSearchProduct.ParametroLong2, "%", poRespuesta, poLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("spObtienePrecios", requestSearchProduct.ParametroLong2, requestSearchProduct.ParametroLong1, "%", poRespuesta, poLogRespuesta);
                 if ((bool)poRespuesta.Valor)
                 {
                     response.Message = poLogRespuesta.Valor.ToString();
