@@ -16,7 +16,7 @@ namespace BackgroundAPIRest.Controllers
     {
         [HttpPost("ObtieneProductosVenta")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestParametrosGral requestSearchProduct)
+        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestSearchProduct requestSearchProduct)
         {
             VentaManager ventaManger = new VentaManager();
             return ventaManger.ObtieneProductosVenta(requestSearchProduct);
@@ -28,6 +28,14 @@ namespace BackgroundAPIRest.Controllers
         {
             VentaManager ventaManger = new VentaManager();
             return ventaManger.RegistrarVentas(requestRegistroVentas);
+        }
+
+        [HttpPost("RegistrarPedidoTintoreria")]
+        [EnableCors("MyPolicy")]
+        public Response RegistrarPedidoTintoreria(RequestRegistroPedido requestRegistroPedido)
+        {
+            TintoreriaManager tintoreriaManager = new TintoreriaManager();
+            return tintoreriaManager.RegistrarVentas(requestRegistroPedido);
         }
 
         [HttpPost("GenerarDocumento")]

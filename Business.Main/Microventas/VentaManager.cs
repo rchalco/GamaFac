@@ -41,23 +41,15 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestParametrosGral requestSearchProduct)
+        public ResponseQuery<ResulProductoPrecioVenta> ObtieneProductosVenta(RequestSearchProduct requestSearchProduct)
         {
-            ParamOut poRespuesta = new ParamOut(false);
-            ParamOut poLogRespuesta = new ParamOut("");
-
-
             ResponseQuery<ResulProductoPrecioVenta> response = new ResponseQuery<ResulProductoPrecioVenta> { Message = "Venta registrada correctamente", State = ResponseType.Success };
             try
             {
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("spObtienePrecios", requestSearchProduct.ParametroLong2, requestSearchProduct.ParametroLong1, "%", poRespuesta, poLogRespuesta);
-                if ((bool)poRespuesta.Valor)
-                {
-                    response.Message = poLogRespuesta.Valor.ToString();
-                    response.State = ResponseType.Error;
-                    return response;
-                }
-
+                ParamOut paramOutRespuesta = new ParamOut(true);
+                ParamOut paramOutLogRespuesta = new ParamOut("");
+                paramOutLogRespuesta.Size = 100;
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("spObtienePrecios", requestSearchProduct.idSession, requestSearchProduct.IdEmpresa, "%", paramOutRespuesta, paramOutLogRespuesta);
             }
             catch (Exception ex)
             {
