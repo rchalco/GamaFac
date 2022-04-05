@@ -387,7 +387,7 @@ namespace CoreAccesLayer.Implement.SQLServer
                 sqlCommand.CommandText = "exec " + nameProcedure + " ";
                 string nomParametro = "parametro";
                 int a = 0;
-                Dictionary<int, SqlParameter> parametroSalida = new Dictionary<int, SqlParameter>();
+                    Dictionary<int, SqlParameter> parametroSalida = new Dictionary<int, SqlParameter>();
 
                 foreach (object item in param)
                 {
@@ -404,6 +404,7 @@ namespace CoreAccesLayer.Implement.SQLServer
                         };
                         a++;
                         sqlCommand.Parameters.Add(parametro);
+                        sqlCommand.CommandText += ",";
                         continue;
                     }
 
