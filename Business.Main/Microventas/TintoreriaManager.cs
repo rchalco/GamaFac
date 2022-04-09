@@ -6,13 +6,14 @@ using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.MicroVentas.Ventas;
+using tintoreria = Domain.Main.Tintoreria;
 using Domain.Main.Wraper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Domain.Main.Clientes;
 
 namespace Business.Main.Microventas
 {
@@ -30,10 +31,11 @@ namespace Business.Main.Microventas
                 requestRegistroVentas.idPedMaster = 0;
                 requestRegistroVentas.Observaciones = "";
 
-                repositoryMicroventas.CallProcedure<Response>("spAddPediddo",
+                repositoryMicroventas.CallProcedure<Response>("shBusiness.spAddPediddo",
                     requestRegistroVentas.idSesion,
                     requestRegistroVentas.idEmpresa,
                     requestRegistroVentas.idOperacionDiariaCaja,
+                    requestRegistroVentas.idFacCliente,
                     requestRegistroVentas.idAmbiente,
                     requestRegistroVentas.idPedMaster,
                     requestRegistroVentas.detallePedido,
@@ -46,6 +48,53 @@ namespace Business.Main.Microventas
                     response.State = ResponseType.Warning;
                     response.Message = Convert.ToString(paramOutLogRespuesta.Valor);
                 }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<ResulSPProductosCantidad> SearchProduct(tintoreria.RequestSearchProduct requestSearchProduct)
+        {
+
+            ResponseQuery<ResulSPProductosCantidad> response = new ResponseQuery<ResulSPProductosCantidad> { Message = "¨Producto obtenidos correctamente", State = ResponseType.Success };
+            try
+            {
+                ParamOut codRespuesta = new ParamOut(true);
+                ParamOut logRespuesta = new ParamOut("");
+                logRespuesta.Size = 100;
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("shBusiness.spObtienePrecios",
+                    requestSearchProduct.idSesion,
+                    requestSearchProduct.idEmpresa,
+                    "%",
+                    codRespuesta,
+                    logRespuesta);
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<ResponseObtienePedidosPorEntregar> ObtienePedidosPorEntregar(tintoreria.RequestObtienePedidosPorEntregar requestObtienePedidosPorEntregar)
+        {
+
+            ResponseQuery<ResponseObtienePedidosPorEntregar> response = new ResponseQuery<ResponseObtienePedidosPorEntregar> { Message = "¨Pedidos obtenidos correctamente", State = ResponseType.Success };
+            try
+            {
+                ParamOut codRespuesta = new ParamOut(true);
+                ParamOut logRespuesta = new ParamOut("");
+                logRespuesta.Size = 100;
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResponseObtienePedidosPorEntregar>("shfactura.spObtienePedidosPorEntregar",
+                    requestObtienePedidosPorEntregar.idSession,
+                    requestObtienePedidosPorEntregar.idEmpresa,
+                    codRespuesta,
+                    logRespuesta);
+
             }
             catch (Exception ex)
             {

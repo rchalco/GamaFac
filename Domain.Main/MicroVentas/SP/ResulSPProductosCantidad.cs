@@ -8,9 +8,15 @@ namespace Domain.Main.MicroVentas.SP
 {
     public class ResulSPProductosCantidad
     {
-        public int IdProducto { get; set; }
-        public string Producto { get; set; }
-        public string Stock { get; set; }
+        public int idProducto { get; set; }
+        public int idPrecio { get; set; }
+        public string categoria { get; set; }
+        public string nombreProducto { get; set; }
+        public string embase { get; set; }
+        public string marca { get; set; }
+        public string contenido { get; set; }
+        public decimal precio { get; set; }
+        public decimal precioUnitario { get; set; }
         public byte[] picProducto { get; set; }
     }
 }
