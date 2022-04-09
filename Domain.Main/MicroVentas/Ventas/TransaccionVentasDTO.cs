@@ -10,17 +10,17 @@ namespace Domain.Main.MicroVentas.Ventas
     {
         public TransaccionVentasDTO()
         {
-            this.TransaccionDetalle = new HashSet<TransaccionVentasDetalleDTO>();
+            this.transaccionDetalle = new List<TransaccionVentasDetalleDTO>();
         }
-        public int idTransaccion { get; set; }
+        public long idPedMaster { get; set; }
 
-        public int idCaja { get; set; }
+        public long idCajaOperacionDiariaCaja { get; set; }
         /// <summary>
         /// A quien es asignada la venta
         /// </summary>
-        public Nullable<int> idcRelacion { get; set; }
+        public Nullable<long> idcRelacion { get; set; }
 
-        public Nullable<int> idcTipoTransaccion { get; set; }
+        public Nullable<long> idcTipoTransaccion { get; set; }
 
         public string nombreRelacion { get; set; }
         public string nombre { get; set; }
@@ -29,19 +29,25 @@ namespace Domain.Main.MicroVentas.Ventas
         public Nullable<decimal> montoEntrada { get; set; }
         public Nullable<decimal> montoSalida { get; set; }
         public Nullable<decimal> descuento { get; set; }
-        public Nullable<int> idcEstado { get; set; }
+        public Nullable<long> idcEstado { get; set; }
         public string estado { get; set; }
         public Nullable<System.DateTime> fechaCambioEstado { get; set; }
-        public Nullable<int> idRelacionOperacion { get; set; }
+        public Nullable<long> idAmbiente { get; set; }
 
         public string observaciones { get; set; }
 
         public bool? esEfectivo { get; set; }
         public Nullable<decimal> comision { get; set; }
         public string bancoDestinoComision { get; set; }
-        public Nullable<int> idcFormaPagoComision { get; set; }
-        public Nullable<int> idcFormaPago { get; set; }
-        public virtual ICollection<TransaccionVentasDetalleDTO> TransaccionDetalle { get; set; }
+        public Nullable<long> idcFormaPagoComision { get; set; }
+        public Nullable<long> idcFormaPago { get; set; }
+        
+
+        public List<TransaccionVentasDetalleDTO> transaccionDetalle { get; set; }
+
+        ///OTROS DATOS
+        public long idSesion { get; set; }
+        public long idEmpresa { get; set; }
 
     }
 }

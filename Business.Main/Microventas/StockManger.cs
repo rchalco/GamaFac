@@ -379,11 +379,25 @@ namespace Business.Main.Microventas
                 response.Object = new TransaccionVentasDTO();
                 //SP grabar pedido
 
+                List<typeDetailPedido> coltypeDetailPedido = new List<typeDetailPedido>();
+                transaccionVentas.transaccionDetalle.ForEach(x =>
+                {
+                    coltypeDetailPedido.Add(new typeDetailPedido { idProducto = x.idProducto, cantidad = x.cantidad, PrecioUnitario = x.precioUnitario });
+                });
+
                 ParamOut poRespuesta = new ParamOut(false);
                 ParamOut poLogRespuesta = new ParamOut("");
                 poLogRespuesta.Size = 100;
-                //response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("spLogin", 1, Usuario, Password, poRespuesta, poLogRespuesta).FirstOrDefault();
-
+                repositoryMicroventas.CallProcedure<TransaccionVentasDTO>("spAddPediddo",
+                    transaccionVentas.idSesion,
+                    transaccionVentas.idEmpresa,
+                    transaccionVentas.idCajaOperacionDiariaCaja,
+                    transaccionVentas.idAmbiente,
+                    transaccionVentas.idPedMaster,
+                    coltypeDetailPedido,
+                    transaccionVentas.observaciones == null ? "" : transaccionVentas.observaciones,
+                    poRespuesta, poLogRespuesta);
+                repositoryMicroventas.Commit();
 
                 if (response.Object == null)
                 {
@@ -463,8 +477,17 @@ namespace Business.Main.Microventas
             try
             {
                 List<TransaccionVentasDetalleDTO> colTransaccionVentasDetalleDTO = new List<TransaccionVentasDetalleDTO>();
-                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO { idTransaccion = 1, idTransaccionDetalle = 1, 
-                    cantidad = 2, nombreProducto = "CERVEZA", nroPedido = 1, mesero = "mikyches", total = 50, precioVenta = 10 });
+                colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO
+                {
+                    idPedMaster = 1,
+                    idTransaccionDetalle = 1,
+                    cantidad = 2,
+                    nombreProducto = "CERVEZA",
+                    nroPedido = 1,
+                    mesero = "mikyches",
+                    total = 50,
+                    precioVenta = 10
+                });
 
                 response.ListEntities = colTransaccionVentasDetalleDTO;
 
@@ -584,3 +607,12 @@ namespace Business.Main.Microventas
 
     }
 }
+
+public class typeDetailPedido
+{
+    public int idProducto { get; set; }
+    public Nullable<int> cantidad { get; set; }
+    public Nullable<decimal> PrecioUnitario { get; set; }
+
+}
+

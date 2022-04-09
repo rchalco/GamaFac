@@ -13,7 +13,7 @@ namespace Domain.Main.MicroVentas.Ventas
             descuento = 0;
         }
         public int idTransaccionDetalle { get; set; }
-        public int idTransaccion { get; set; }
+        public int idPedMaster { get; set; }
         public int idProducto { get; set; }
         public string nombreProducto { get; set; }
         public Nullable<int> cantidad { get; set; }
@@ -26,6 +26,6 @@ namespace Domain.Main.MicroVentas.Ventas
         public string mesero { get; set; }
         public Nullable<decimal> total { get; set; }
 
-        public virtual TransaccionVentasDTO Transaccion { get; set; }
+       
     }
 }
