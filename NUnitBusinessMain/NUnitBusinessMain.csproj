@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BackgroundAPIRest\BackgroundAPIRest.csproj" />
     <ProjectReference Include="..\Business.Main\Business.Main.csproj" />
   </ItemGroup>
 

@@ -10,5 +10,12 @@ namespace Domain.Main.Tintoreria
     {
         public long idSession { get; set; }
         public long idEmpresa { get; set; }
+        /// <summary>
+        /// 0 all, 1 pedidos pendientes, 2 entregados, 3 facturados
+        /// </summary>
+        public int idEstado { get; set; }
+        public DateTime FechaDesde { get; set; }
+        public DateTime FechaHasta { get; set; }
+
     }
 }

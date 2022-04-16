@@ -168,5 +168,56 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+        public ResponseQuery<MDPedidosPorEntregar> ObtienePedidosReporte(tintoreria.RequestObtienePedidosPorEntregar requestObtienePedidosPorEntregar)
+        {
+           
+            ResponseQuery<MDPedidosPorEntregar> response = new ResponseQuery<MDPedidosPorEntregar> { Message = "¨Pedidos obtenidos correctamente", State = ResponseType.Success };
+            try
+            {
+                ParamOut codRespuesta = new ParamOut(true);
+                ParamOut logRespuesta = new ParamOut("");
+                logRespuesta.Size = 100;
+                List<ResponseObtienePedidosPorEntregar> listSP = repositoryMicroventas.GetDataByProcedure<ResponseObtienePedidosPorEntregar>("shBusiness.spObtienePedidosEstado",
+                    requestObtienePedidosPorEntregar.idSession,
+                    requestObtienePedidosPorEntregar.idEmpresa,
+                    requestObtienePedidosPorEntregar.idEstado,
+                    requestObtienePedidosPorEntregar.FechaDesde,//new DateTime(2022, 1, 1),
+                    requestObtienePedidosPorEntregar.FechaHasta,//new DateTime(2025, 1, 1),
+                    codRespuesta,
+                    logRespuesta);
+
+                ///Convertimos a estructura de maestro detalle
+                response.ListEntities = new List<MDPedidosPorEntregar>();
+                listSP.ForEach(resp =>
+                {
+                    MDPedidosPorEntregar mDPedidosPorEntregar = response.ListEntities.FirstOrDefault(x => resp.idPedMaster == x.idPedMaster);
+                    if (mDPedidosPorEntregar == null)
+                    {
+                        mDPedidosPorEntregar = new MDPedidosPorEntregar
+                        {
+                            documento = resp.documento,
+                            fechaRegistro = resp.fechaRegistro,
+                            idPedMaster = resp.idPedMaster,
+                            NombreCliente = resp.NombreCliente,
+                            detallePedidosEntregar = new List<DetallePedidosEntregar>()
+                        };
+                        response.ListEntities.Add(mDPedidosPorEntregar);
+                    }
+                    mDPedidosPorEntregar.detallePedidosEntregar.Add(new DetallePedidosEntregar
+                    {
+                        Cantidad = resp.Cantidad,
+                        Precio = resp.Precio,
+                        producto = resp.producto,
+                    });
+
+                });
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
     }
 }
