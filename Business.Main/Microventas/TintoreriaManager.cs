@@ -200,6 +200,7 @@ namespace Business.Main.Microventas
                             fechaRegistro = resp.fechaRegistro,
                             idPedMaster = resp.idPedMaster,
                             NombreCliente = resp.NombreCliente,
+                            Estado = resp.Estado,
                             detallePedidosEntregar = new List<DetallePedidosEntregar>()
                         };
                         response.ListEntities.Add(mDPedidosPorEntregar);

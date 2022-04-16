@@ -68,7 +68,7 @@ namespace BackgroundAPIRest.Controllers
         }
         [HttpPost("ObtienePedidosReporte")]
         [EnableCors("MyPolicy")]
-        public Response ObtienePedidosReporte(RequestObtienePedidosPorEntregar requestEntregarPedido)
+        public ResponseQuery<MDPedidosPorEntregar> ObtienePedidosReporte(RequestObtienePedidosPorEntregar requestEntregarPedido)
         {
             TintoreriaManager tintoreriaManager = new TintoreriaManager();
             return tintoreriaManager.ObtienePedidosReporte(requestEntregarPedido);

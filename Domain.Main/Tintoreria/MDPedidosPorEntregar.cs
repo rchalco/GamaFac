@@ -11,6 +11,7 @@ namespace Domain.Main.Tintoreria
         public long idPedMaster { get; set; }
         public string documento { get; set; }
         public string NombreCliente { get; set; }
+        public string Estado { get; set; }
         public DateTime fechaRegistro { get; set; }
         public List<DetallePedidosEntregar> detallePedidosEntregar { get; set; }
     }
