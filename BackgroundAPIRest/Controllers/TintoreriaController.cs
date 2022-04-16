@@ -66,5 +66,12 @@ namespace BackgroundAPIRest.Controllers
             TintoreriaManager tintoreriaManager = new TintoreriaManager();
             return tintoreriaManager.EntregarPedido(requestEntregarPedido);
         }
+        [HttpPost("ObtienePedidosReporte")]
+        [EnableCors("MyPolicy")]
+        public Response ObtienePedidosReporte(RequestObtienePedidosPorEntregar requestEntregarPedido)
+        {
+            TintoreriaManager tintoreriaManager = new TintoreriaManager();
+            return tintoreriaManager.ObtienePedidosReporte(requestEntregarPedido);
+        }
     }
 }
