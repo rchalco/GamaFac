@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using Domain.Main.Clientes;
+using Domain.Main.Tintoreria;
 
 namespace BackgroundAPIRest.Controllers
 {
@@ -52,10 +53,18 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("ObtienePedidosPorEntregar")]
         [EnableCors("MyPolicy")]
-        public ResponseQuery<ResponseObtienePedidosPorEntregar> ObtienePedidosPorEntregar(tintoreria.RequestObtienePedidosPorEntregar requestObtienePedidosPorEntregar)
+        public ResponseQuery<MDPedidosPorEntregar> ObtienePedidosPorEntregar(tintoreria.RequestObtienePedidosPorEntregar requestObtienePedidosPorEntregar)
         {
             TintoreriaManager tintoreriaManager = new TintoreriaManager();
             return tintoreriaManager.ObtienePedidosPorEntregar(requestObtienePedidosPorEntregar);
+        }
+
+        [HttpPost("EntregarPedido")]
+        [EnableCors("MyPolicy")]
+        public Response EntregarPedido(RequestEntregarPedido requestEntregarPedido)
+        {
+            TintoreriaManager tintoreriaManager = new TintoreriaManager();
+            return tintoreriaManager.EntregarPedido(requestEntregarPedido);
         }
     }
 }

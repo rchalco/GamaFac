@@ -35,8 +35,9 @@ namespace Business.Main.Managers
                 table.SetMargins(0, 0, 0, 0);
                 table.SetBorder(Border.NO_BORDER);
 
+                string pathLogo = string.IsNullOrEmpty(dataDocumento.pathLogo) ? @"c:\fonts\Logo.jpg" : dataDocumento.pathLogo;
                 Image img = new Image(ImageDataFactory
-               .Create(@"c:\fonts\Logo.jpg"))
+               .Create(pathLogo))
                .SetHeight(60)
                .SetWidth(150)
                .SetTextAlignment(TextAlignment.CENTER);

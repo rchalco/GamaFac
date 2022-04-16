@@ -15,5 +15,6 @@ namespace Domain.Main.Clientes
         public string documento { get; set; }
         public string NombreCliente { get; set; }
         public string producto { get; set; }
+        public string Estado { get; set; }
     }
 }

@@ -33,6 +33,8 @@ namespace Domain.Main.Wraper
 
         [DataMember]
         public string Message { get; set; }
+        [DataMember]
+        public string Code { get; set; }
     }
 
     [DataContract]

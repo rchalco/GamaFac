@@ -11,5 +11,6 @@ namespace Domain.Main.MicroVentas.Impresion
         public string titulo { get; set; }
         public List<string> contenido { get; set; }
         public string pie { get; set; }
+        public string pathLogo { get; set; }
     }
 }
