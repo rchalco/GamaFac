@@ -25,8 +25,11 @@ namespace Business.Main.Microventas
             ResponseQuery<ResulSPProductosCantidad> response = new ResponseQuery<ResulSPProductosCantidad> { Message = "¨Producto obtenidos correctamente", State = ResponseType.Success };
             try
             {
+                ParamOut paramOutRespuesta = new ParamOut(true);
+                ParamOut paramOutLogRespuesta = new ParamOut("");
+                paramOutLogRespuesta.Size = 100;
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", requestSearchProduct.IdEmpresa, "%");
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spObtienePrecios", requestSearchProduct.ParametroLong1, requestSearchProduct.ParametroLong2, "%");
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spObtienePrecios", requestSearchProduct.ParametroLong1, requestSearchProduct.ParametroLong2, "%", paramOutRespuesta, paramOutLogRespuesta);
 
             }
             catch (Exception ex)
@@ -382,7 +385,7 @@ namespace Business.Main.Microventas
                 List<typeDetailPedido> coltypeDetailPedido = new List<typeDetailPedido>();
                 transaccionVentas.transaccionDetalle.ForEach(x =>
                 {
-                    coltypeDetailPedido.Add(new typeDetailPedido { idProducto = x.idProducto, cantidad = x.cantidad, PrecioUnitario = x.precioUnitario });
+                    coltypeDetailPedido.Add(new typeDetailPedido { idProducto = x.idProducto, cantidad = x.cantidad, PrecioUnitario = x.precioVenta });
                 });
 
                 ParamOut poRespuesta = new ParamOut(false);
@@ -406,7 +409,7 @@ namespace Business.Main.Microventas
                     return response;
                 }
 
-                if (!(bool)poRespuesta.Valor)
+                if ((bool)poRespuesta.Valor)
                 {
                     response.Message = poLogRespuesta.Valor.ToString();
                     response.State = ResponseType.Error;

@@ -103,6 +103,15 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.GrabaPedido(transaccionVentas);
         }
 
+        [HttpPost("GrabaPedido1")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<TransaccionVentasDTO> GrabaPedido1(RequestParametrosGral transaccionVentas)
+        {
+            StockManger stockManger = new StockManger();
+            return null;
+        }
+
+
         [HttpPost("FinalizarPedido")]
         [EnableCors("MyPolicy")]
         public ResponseObject<TransaccionVentasDTO> FinalizarPedido(TransaccionVentasDTO transaccionVentas)
