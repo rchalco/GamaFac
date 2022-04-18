@@ -10,6 +10,7 @@ namespace Domain.Main.MicroVentas.SP
     {
         public List<typeDetailPedido> detallePedido { get; set; }
         public long idSesion { get; set; }
+        public string idFacCliente { get; set; }
         public long idEmpresa { get; set; }
         public long idOperacionDiariaCaja { get; set; }
         public long idAmbiente { get; set; }
@@ -20,8 +21,8 @@ namespace Domain.Main.MicroVentas.SP
 
     public class typeDetailPedido
     {
-        public long idProducto { get; set; }
-        public long cantidad { get; set; }
-        public decimal PrecioUnitario { get; set; }
+        public long? idProducto { get; set; }
+        public long? cantidad { get; set; }
+        public decimal? PrecioFinal { get; set; }
     }
 }

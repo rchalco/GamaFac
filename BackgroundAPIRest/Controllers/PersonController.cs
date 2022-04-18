@@ -1,5 +1,7 @@
 ﻿//using Business.Main.IbnorcaContext;
+using Business.Main.Microventas;
 using Business.Main.ModuloSample;
+using Domain.Main.Clientes;
 using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -16,33 +18,27 @@ namespace BackgroundAPIRest.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("index")]
         public string index(string name)
         {
             return "API para la gestion de personas";
         }
 
-        //[HttpGet("GetPersonsTest")]
-        //[EnableCors("MyPolicy")]
-        //public ResponseQuery<PersonReport> GetPersonsTest(string name)
-        //{
-        //    Binnacle.ProcessEvent(new Event { category = Event.Category.Information, description = $"Metodo GetPersonsTest llamdo con parametro {name}" });
-        //    PersonManager personManager = new PersonManager();
-        //    return personManager.GetPersons(name);
-        //}
+        [HttpPost("ObtenerClientes")]
+        [EnableCors("MyPolicy")]
+        public Response ObtenerClientes(RequestObtenerClientes requestObtenerClientes)
+        {
+            PersonaManager personaManager = new PersonaManager();
+            return personaManager.ObtenerClientes(requestObtenerClientes);
+        }
 
-        //[HttpPost("PersonRegisterTest")]
-        //public ResponseObject<Person> PersonRegisterTest(Person person)
-        //{
-        //    PersonManager personManager = new PersonManager();
-        //    return personManager.RegisterPerson(person);
-        //}
 
-        //[HttpPost("DeletePerson")]
-        //public ResponseObject<Person> DeletePerson(Person person)
-        //{
-        //    PersonManager personManager = new PersonManager();
-        //    return personManager.DeletePerson(person);
-        //}
+        [HttpPost("RegistrarClientreFactura")]
+        [EnableCors("MyPolicy")]
+        public Response RegistrarClientreFactura(RequestRegistrarClientreFactura requestRegistrarClientreFactura)
+        {
+            PersonaManager personaManager = new PersonaManager();
+            return personaManager.RegistrarClientreFactura(requestRegistrarClientreFactura);
+        }
     }
 }
