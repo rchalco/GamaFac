@@ -115,41 +115,41 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
-        {
+        //public ResponseObject<LoginDTO> CambioContrasena(string Usuario, string Password, string PasswordNuevo)
+        //{
 
-            ResponseObject<LoginDTO> response = new ResponseObject<LoginDTO> { Message = "¨Se realizo el cambio de contraseña", State = ResponseType.Success };
-            try
-            {
+        //    ResponseObject<LoginDTO> response = new ResponseObject<LoginDTO> { Message = "¨Se realizo el cambio de contraseña", State = ResponseType.Success };
+        //    try
+        //    {
 
-                ///TODO:Encriptar el pass
+        //        ///TODO:Encriptar el pass
 
-                TUsuario ObjTUsuario = new TUsuario();
-                ObjTUsuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.Usuario == Usuario).FirstOrDefault();
-                if (ObjTUsuario == null)
-                {
-                    response.State = ResponseType.Error;
-                    response.Message = "El Usuario no existe";
-                    return response;
-                }
-                if (ObjTUsuario.Pass != Password)
-                {
-                    response.State = ResponseType.Error;
-                    response.Message = "La contraseña es incorrecta";
-                    return response;
-                }
-                ObjTUsuario.Pass = PasswordNuevo;
-                Entity<TUsuario> entity = new Entity<TUsuario> { EntityDB = ObjTUsuario, stateEntity = StateEntity.modify };
-                repositoryMicroventas.SaveObject<TUsuario>(entity);
-                repositoryMicroventas.Commit();
+        //        TUsuario ObjTUsuario = new TUsuario();
+        //        ObjTUsuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.Usuario == Usuario).FirstOrDefault();
+        //        if (ObjTUsuario == null)
+        //        {
+        //            response.State = ResponseType.Error;
+        //            response.Message = "El Usuario no existe";
+        //            return response;
+        //        }
+        //        if (ObjTUsuario.Pass != Password)
+        //        {
+        //            response.State = ResponseType.Error;
+        //            response.Message = "La contraseña es incorrecta";
+        //            return response;
+        //        }
+        //        ObjTUsuario.Pass = PasswordNuevo;
+        //        Entity<TUsuario> entity = new Entity<TUsuario> { EntityDB = ObjTUsuario, stateEntity = StateEntity.modify };
+        //        repositoryMicroventas.SaveObject<TUsuario>(entity);
+        //        repositoryMicroventas.Commit();
 
-            }
-            catch (Exception ex)
-            {
-                ProcessError(ex, response);
-            }
-            return response;
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ProcessError(ex, response);
+        //    }
+        //    return response;
+        //}
 
         public ResponseQuery<SaldoCajaDTO> UltimasCajas(SaldoCajaDTO objSaldoCajaDTO)
         {

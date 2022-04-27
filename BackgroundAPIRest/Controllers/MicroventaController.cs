@@ -32,21 +32,21 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.RegistrarCompra(requestRegistrarCompra);
         }
 
-        [HttpPost("LoginUsuario")]
-        [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
-        {
-            StockManger stockManger = new StockManger();
-            return stockManger.LoginUsuario(requestLogin);
-        }
+        //[HttpPost("LoginUsuario")]
+        //[EnableCors("MyPolicy")]
+        //public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
+        //{
+        //    StockManger stockManger = new StockManger();
+        //    return stockManger.LoginUsuario(requestLogin);
+        //}
 
-        [HttpPost("CambioContrasena")]
-        [EnableCors("MyPolicy")]
-        public ResponseObject<LoginDTO> CambioContrasena(RequestLogin requestLogin)
-        {
-            StockManger stockManger = new StockManger();
-            return stockManger.CambioContrasena(requestLogin.usuario, requestLogin.password, requestLogin.passwordNuevo);
-        }
+        //[HttpPost("CambioContrasena")]
+        //[EnableCors("MyPolicy")]
+        //public ResponseObject<LoginDTO> CambioContrasena(RequestLogin requestLogin)
+        //{
+        //    StockManger stockManger = new StockManger();
+        //    return stockManger.CambioContrasena(requestLogin.usuario, requestLogin.password, requestLogin.passwordNuevo);
+        //}
 
         [HttpPost("UltimasCajas")]
         [EnableCors("MyPolicy")]

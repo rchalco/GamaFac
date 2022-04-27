@@ -19,5 +19,14 @@ namespace BackgroundAPIRest.Controllers
             SeguridadManager seguridadManager  = new SeguridadManager();
             return seguridadManager.LoginUsuario(requestLogin);
         }
+
+        [HttpPost("CambioContrasena")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<LoginDTO> CambioContrasena(RequestLogin requestLogin)
+        {
+            SeguridadManager seguridadManager = new SeguridadManager();
+            return seguridadManager.CambioContrasena(requestLogin.usuario, requestLogin.password, requestLogin.passwordNuevo);
+        }
+
     }
 }
