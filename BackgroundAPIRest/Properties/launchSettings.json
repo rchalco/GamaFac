@@ -20,7 +20,7 @@
     "BackgroundAPIRest": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/person",
+      "launchUrl": "api/person/index",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
