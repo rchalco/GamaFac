@@ -165,7 +165,7 @@ namespace Business.Main.Microventas
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
                 */
                 if (objSaldoCajaDTO.EstadoCaja == "APERTURA")
-                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturasDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
+                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturasDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
                 else
                     response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCieresDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
                 if ((bool)poRespuesta.Valor)
@@ -263,7 +263,7 @@ namespace Business.Main.Microventas
                     response.Message = "Existe una caja auna abierta en fecha " + ObjTOperacionDiariaCaja.FechaApertura.ToShortDateString() + ", debe cerrarla";
                 }
                 else
-                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
 
                 if ((bool)poRespuesta.Valor)
                 {

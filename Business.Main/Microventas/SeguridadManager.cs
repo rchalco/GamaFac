@@ -88,5 +88,43 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+        public ResponseQuery<MenuGeneralDTO> ObtieneMenuPorUsuario(RequestParametrosGral requestGral)
+        {
+            ParamOut poRespuesta = new ParamOut(false);
+            ParamOut poLogRespuesta = new ParamOut("");
+            ResponseQuery<MenuGeneralDTO> response = new ResponseQuery<MenuGeneralDTO> { Message = "Menu Obtenido", State = ResponseType.Success };
+            try
+            {
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<MenuGeneralDTO>("shCommon.spObtieneMenuPorRol", requestGral.ParametroLong1, requestGral.ParametroLong2, requestGral.ParametroLong3, poRespuesta, poLogRespuesta);
+                if (response.ListEntities == null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "No exiten roles";
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+                /*
+
+                colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 1, NombreCompleto = "MESERO 1", IdEmpleado = 1 });
+                colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 2, NombreCompleto = "MESERO 2", IdEmpleado = 2 });
+                colPersonaResumenDTO.Add(new PersonaResumenDTO { IdPersona = 3, NombreCompleto = "MESERO 3", IdEmpleado = 3 });
+                response.ListEntities = colPersonaResumenDTO;
+                 */
+
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
     }
 }

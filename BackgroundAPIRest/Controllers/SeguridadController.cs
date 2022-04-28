@@ -1,4 +1,5 @@
 ﻿using Business.Main.Microventas;
+using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.Wraper;
 using Microsoft.AspNetCore.Cors;
@@ -26,6 +27,14 @@ namespace BackgroundAPIRest.Controllers
         {
             SeguridadManager seguridadManager = new SeguridadManager();
             return seguridadManager.CambioContrasena(requestLogin.usuario, requestLogin.password, requestLogin.passwordNuevo);
+        }
+
+        [HttpPost("ObtieneMenuPorUsuario")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<MenuGeneralDTO> ObtieneMenuPorUsuario(RequestParametrosGral requestParametros)
+        {
+            SeguridadManager seguridadManager = new SeguridadManager();
+            return seguridadManager.ObtieneMenuPorUsuario(requestParametros);
         }
 
     }
