@@ -6,6 +6,7 @@ namespace Business.Main.DataMappingMicroVenta
     public partial class TCaja
     {
         public long IdCaja { get; set; }
+        public long? IdSesion { get; set; }
         public long IdEmpresa { get; set; }
         public long IdUsuario { get; set; }
         public int? IdTipoCaja { get; set; }

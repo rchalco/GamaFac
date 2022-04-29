@@ -73,5 +73,20 @@ namespace BackgroundAPIRest.Controllers
             TintoreriaManager tintoreriaManager = new TintoreriaManager();
             return tintoreriaManager.ObtienePedidosReporte(requestEntregarPedido);
         }
+        [HttpPost("ObtieneArqueoCaja")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<MDPedidosPorEntregar> ObtieneArqueoCaja(RequestObtieneArqueoCaja requestObtieneArqueoCaja)
+        {
+            TintoreriaManager tintoreriaManager = new TintoreriaManager();
+            return tintoreriaManager.ObtieneArqueoCaja(requestObtieneArqueoCaja);
+        }
+
+        [HttpPost("ObtieneCajaUsuario")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<ResponseObtieneCajaUsuario> ObtieneCajaUsuario(tintoreria.RequestObtieneCajaUsuario requestObtieneCajaUsuario)
+        {
+            TintoreriaManager tintoreriaManager = new TintoreriaManager();
+            return tintoreriaManager.ObtieneCajaUsuario(requestObtieneCajaUsuario);
+        }
     }
 }

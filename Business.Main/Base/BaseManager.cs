@@ -23,7 +23,7 @@ namespace Business.Main.Base
         {
             //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
             //repositoryGamaFac = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
-            repositoryMicroventas = FactoryDataInterfaz.CreateRepository<DataMappingMicroVenta.GamaFacContext>("sqlserver");
+            repositoryMicroventas = FactoryDataInterfaz.CreateRepository<DataMappingMicroVenta.DBTintoreriaGamaFacContext>("sqlserver");
         }
 
         public string ProcessError(Exception ex)

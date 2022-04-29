@@ -167,7 +167,7 @@ namespace Business.Main.Microventas
                 if (objSaldoCajaDTO.EstadoCaja == "APERTURA")
                     response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturasDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
                 else
-                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCieresDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
+                    response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spCierresDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
                 if ((bool)poRespuesta.Valor)
                 {
                     response.Message = poLogRespuesta.Valor.ToString();

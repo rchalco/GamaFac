@@ -14,6 +14,9 @@ namespace Domain.Main.Tintoreria
         public string Estado { get; set; }
         public DateTime fechaRegistro { get; set; }
         public List<DetallePedidosEntregar> detallePedidosEntregar { get; set; }
+        public decimal Total { get; set; }
+        public decimal montoApertura { get; set; }
+        public decimal montoCierre { get; set; }
     }
 
     public class DetallePedidosEntregar

@@ -171,7 +171,7 @@ namespace Business.Main.Microventas
 
         public ResponseQuery<MDPedidosPorEntregar> ObtienePedidosReporte(tintoreria.RequestObtienePedidosPorEntregar requestObtienePedidosPorEntregar)
         {
-           
+
             ResponseQuery<MDPedidosPorEntregar> response = new ResponseQuery<MDPedidosPorEntregar> { Message = "¨Pedidos obtenidos correctamente", State = ResponseType.Success };
             try
             {
@@ -213,6 +213,98 @@ namespace Business.Main.Microventas
                     });
 
                 });
+                //Sumarizamos los totales
+                response.ListEntities.ForEach(x =>
+                {
+                    x.Total = x.detallePedidosEntregar.Sum(y => y.Cantidad * y.Precio);
+                });
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<MDPedidosPorEntregar> ObtieneArqueoCaja(tintoreria.RequestObtieneArqueoCaja requestObtieneArqueoCaja)
+        {
+
+            ResponseQuery<MDPedidosPorEntregar> response = new ResponseQuery<MDPedidosPorEntregar> { Message = "¨Pedidos obtenidos correctamente", State = ResponseType.Success };
+            try
+            {
+                ParamOut codRespuesta = new ParamOut(true);
+                ParamOut logRespuesta = new ParamOut("");
+                logRespuesta.Size = 100;
+                requestObtieneArqueoCaja.FechaDesde =
+                   requestObtieneArqueoCaja.FechaDesde != null ? requestObtieneArqueoCaja.FechaDesde.Value.Date : DateTime.Now.Date;
+                requestObtieneArqueoCaja.FechaHasta = requestObtieneArqueoCaja.FechaDesde.Value.AddDays(1);
+                List<ResponseObtienePedidosPorEntregar> listSP = repositoryMicroventas.GetDataByProcedure<ResponseObtienePedidosPorEntregar>("shBusiness.spArqueoCajas",
+                    requestObtieneArqueoCaja.idSession,
+                    requestObtieneArqueoCaja.idEmpresa,
+                    requestObtieneArqueoCaja.idCaja,
+                    requestObtieneArqueoCaja.FechaDesde,//new DateTime(2022, 1, 1),
+                    requestObtieneArqueoCaja.FechaHasta,//new DateTime(2025, 1, 1),
+                    codRespuesta,
+                    logRespuesta);
+
+                ///Convertimos a estructura de maestro detalle
+                response.ListEntities = new List<MDPedidosPorEntregar>();
+                listSP.ForEach(resp =>
+                {
+                    MDPedidosPorEntregar mDPedidosPorEntregar = response.ListEntities.FirstOrDefault(x => resp.idPedMaster == x.idPedMaster);
+                    if (mDPedidosPorEntregar == null)
+                    {
+                        mDPedidosPorEntregar = new MDPedidosPorEntregar
+                        {
+                            documento = resp.documento,
+                            fechaRegistro = resp.fechaRegistro,
+                            idPedMaster = resp.idPedMaster,
+                            NombreCliente = resp.NombreCliente,
+                            Estado = resp.Estado,
+                            montoApertura = resp.montoApertura,
+                            montoCierre = resp.montoCierre,
+                            detallePedidosEntregar = new List<DetallePedidosEntregar>()
+                        };
+                        response.ListEntities.Add(mDPedidosPorEntregar);
+
+                    }
+                    mDPedidosPorEntregar.detallePedidosEntregar.Add(new DetallePedidosEntregar
+                    {
+                        Cantidad = resp.Cantidad,
+                        Precio = resp.Precio,
+                        producto = resp.producto,
+                    });
+
+                });
+
+                //Sumarizamos los totales
+                response.ListEntities.ForEach(x =>
+                {
+                    x.Total = x.detallePedidosEntregar.Sum(y => y.Cantidad * y.Precio);
+                });
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<ResponseObtieneCajaUsuario> ObtieneCajaUsuario(tintoreria.RequestObtieneCajaUsuario requestObtieneCajaUsuario)
+        {
+
+            ResponseQuery<ResponseObtieneCajaUsuario> response = new ResponseQuery<ResponseObtieneCajaUsuario> { Message = "¨Pedidos obtenidos correctamente", State = ResponseType.Success };
+            try
+            {
+                ParamOut codRespuesta = new ParamOut(true);
+                ParamOut logRespuesta = new ParamOut("");
+                logRespuesta.Size = 100;
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResponseObtieneCajaUsuario>("shBusiness.spCajasUsuario",
+                    requestObtieneCajaUsuario.idSession,
+                    requestObtieneCajaUsuario.idEmpresa,
+                    codRespuesta,
+                    logRespuesta);
             }
             catch (Exception ex)
             {

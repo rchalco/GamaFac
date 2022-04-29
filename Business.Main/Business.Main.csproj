@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataMapping\" />
     <Folder Include="DataMappingMicroVenta\" />
   </ItemGroup>
 

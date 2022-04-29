@@ -16,5 +16,7 @@ namespace Domain.Main.Clientes
         public string NombreCliente { get; set; }
         public string producto { get; set; }
         public string Estado { get; set; }
+        public decimal montoApertura { get; set; }
+        public decimal montoCierre { get; set; }
     }
 }
