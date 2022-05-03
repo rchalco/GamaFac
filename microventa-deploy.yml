@@ -20,6 +20,9 @@ spec:
     spec:
       containers:
         - name: microventa-app
-          image: rchalco/backgroundapirest:latest
+          image: rchalco/backgroundapirest:v2#{Build.BuildId}#
           ports:
             - containerPort: 80
+          env:
+            - name: conexionString
+              value: Server=mssql-service;Database=DBTintoreriaGamaFac;User=sa;Password=admin.123
