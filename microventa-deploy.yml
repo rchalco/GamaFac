@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microventa-deploy
+  labels:
+    name: microventa-deploy
+    app: microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+       app: microventa
+       type: microservice
+  template:
+    metadata:
+      name: microventa-pod
+      labels:
+        app: microventa
+        type: microservice
+    spec:
+      containers:
+        - name: microventa-app
+          image: rchalco/backgroundapirest:latest
+          ports:
+            - containerPort: 80
