@@ -19,11 +19,13 @@ namespace Business.Main.Base
         /// </summary>
         internal IRepository repositoryGamaFac { get; set; } = null;
         internal IRepository repositoryMicroventas { get; set; } = null;
+        internal IRepository repositoryFacturacion { get; set; } = null;
         public BaseManager()
         {
             //repositoryMySql = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
             //repositoryGamaFac = FactoryDataInterfaz.CreateRepository<sigadContext>("mysql");
             repositoryMicroventas = FactoryDataInterfaz.CreateRepository<DataMappingMicroVenta.DBTintoreriaGamaFacContext>("sqlserver");
+            repositoryFacturacion = FactoryDataInterfaz.CreateRepository<DataMappingFacturacion.FacturacionBDContext>("sqlserver");
         }
 
         public string ProcessError(Exception ex)
