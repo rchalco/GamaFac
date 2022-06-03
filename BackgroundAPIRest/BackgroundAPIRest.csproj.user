@@ -5,7 +5,7 @@
     <Controller_SelectedScaffolderCategoryPath>root/Common/Api</Controller_SelectedScaffolderCategoryPath>
     <ShowAllFiles>false</ShowAllFiles>
     <NameOfLastUsedPublishProfile>D:\BckDell  15 5500\e\PROYECTOS\GamatekFac\Github\BackgroundAPIRest\Properties\PublishProfiles\registry.hub.docker.com_rchalco.pubxml</NameOfLastUsedPublishProfile>
-    <ActiveDebugProfile>Docker</ActiveDebugProfile>
+    <ActiveDebugProfile>BackgroundAPIRest</ActiveDebugProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

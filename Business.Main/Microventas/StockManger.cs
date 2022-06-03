@@ -650,6 +650,44 @@ namespace Business.Main.Microventas
         }
 
 
+        public ResponseQuery<ResulProductoPrecioVenta> AperturaInventario(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<ResulProductoPrecioVenta> response = new ResponseQuery<ResulProductoPrecioVenta> { Message = "Se aperturo el Inventario del dia", State = ResponseType.Success };
+            try
+            {
+                long id = 0;
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poFecha = new ParamOut(new DateTime());
+                ParamOut poIdFecha = new ParamOut(id);
+
+                poLogRespuesta.Size = 100;
+
+
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("shFabula.spAperturaInventarioFechaProceso", requestGral.ParametroLong1, poIdFecha, poFecha, poRespuesta, poLogRespuesta);
+                if (response.ListEntities == null)
+                {
+                    response.State = ResponseType.Error;
+                    response.Message = "No se realizo la apertur del Inventario";
+                }
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
     }
 }
 

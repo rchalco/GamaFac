@@ -153,6 +153,17 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.GraficoVentaPorProducto(requestGral);
         }
 
+
+        [HttpPost("AperturaInventario")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<ResulProductoPrecioVenta> AperturaInventario(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.AperturaInventario(requestGral);
+        }
+
+
+
     }
 
 
