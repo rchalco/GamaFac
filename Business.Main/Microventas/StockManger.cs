@@ -164,7 +164,7 @@ namespace Business.Main.Microventas
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 1, FechaCierre = DateTime.Now.Date.ToShortDateString(), SaldoCierre = 200, SaldoUsuario = 190, Diferencia = 10, Observacion = "error cambio", EsCajaActual = true });
                 colSaldoCajaDTO.Add(new SaldoCajaDTO { IdCaja = 2, FechaCierre = (DateTime.Now.Date.AddDays(-1)).ToShortDateString(), SaldoCierre = 300, SaldoUsuario = 300, Diferencia = 0, Observacion = "", EsCajaActual = false });
                 */
-                if (objSaldoCajaDTO.EstadoCaja == "APERTURA")
+                if (objSaldoCajaDTO.estadoCaja == "APERTURA")
                     response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturasDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
                 else
                     response.ListEntities = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spCierresDeCaja", objSaldoCajaDTO.idSesion, objSaldoCajaDTO.idCaja, poRespuesta, poLogRespuesta);
@@ -199,7 +199,7 @@ namespace Business.Main.Microventas
             try
             {
 
-                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.SaldoUsuario, requestAperturaCaja.Observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.saldoUsuario, requestAperturaCaja.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
                 if (response.Object == null)
                 {
                     response.State = ResponseType.Error;
@@ -230,13 +230,31 @@ namespace Business.Main.Microventas
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "Caja obtenida", State = ResponseType.Success };
             try
             {
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
 
-                TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
-                ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date == requestGral.ParametroFecha1.Date && x.IdCaja == requestGral.ParametroLong1).FirstOrDefault();
-                if (ObjTOperacionDiariaCaja == null)
-                    response.Object = new SaldoCajaDTO { idCaja = requestGral.ParametroLong1, SaldoCierre = 0, SaldoInicial = 0, SaldoUsuario = 0, diferencia = 0, Observacion = "", EstadoCaja = "PENDIENTE", FechaApertura = requestGral.ParametroFecha1.Date };
+                //TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
+                //ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date == requestGral.ParametroFecha1.Date && x.IdCaja == requestGral.ParametroLong1).FirstOrDefault();
+
+                
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spObtieneIdOperacionCaja", requestGral.ParametroLong2, requestGral.ParametroLong3, requestGral.ParametroLong1, 
+                    requestGral.ParametroFecha1, requestGral.ParametroFecha1, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+                if (response.Object == null)
+                    response.Object = new SaldoCajaDTO { idCaja = requestGral.ParametroLong1, saldoCierre = 0, saldoInicial = 0, saldoUsuario = 0, diferencia = 0, observacion = "", estadoCaja = "PENDIENTE", fechaApertura = requestGral.ParametroFecha1.Date };
                 else
-                    response.Object = new SaldoCajaDTO { idOperacionDiariaCaja = ObjTOperacionDiariaCaja.IdOperacionDiariaCaja, idCaja = ObjTOperacionDiariaCaja.IdCaja.Value, FechaApertura = ObjTOperacionDiariaCaja.FechaApertura, SaldoCierre = ObjTOperacionDiariaCaja.MontoCierreSis == null ? 0 : ObjTOperacionDiariaCaja.MontoCierreSis.Value, SaldoInicial = ObjTOperacionDiariaCaja.MontoApertura, SaldoUsuario = ObjTOperacionDiariaCaja.MontoCierre == null ? 0 : ObjTOperacionDiariaCaja.MontoCierre.Value, Observacion = ObjTOperacionDiariaCaja.ObservacioApertura, EstadoCaja = ObjTOperacionDiariaCaja.FechaCierre == null ? "APERTURADA" : "CERRADA" };
+                {
+                    response.Object.saldoUsuario = response.Object.saldoCierre;
+                    response.Object.estadoCaja = response.Object.fechaCierre == null ? "APERTURADA" : "CERRADA";
+                }
+                //response.Object = new SaldoCajaDTO { idOperacionDiariaCaja = ObjTOperacionDiariaCaja.IdOperacionDiariaCaja, idCaja = ObjTOperacionDiariaCaja.IdCaja.Value, fechaApertura = ObjTOperacionDiariaCaja.FechaApertura, saldoCierre = ObjTOperacionDiariaCaja.MontoCierreSis == null ? 0 : ObjTOperacionDiariaCaja.MontoCierreSis.Value, saldoInicial = ObjTOperacionDiariaCaja.MontoApertura, saldoUsuario = ObjTOperacionDiariaCaja.MontoCierre == null ? 0 : ObjTOperacionDiariaCaja.MontoCierre.Value, observacion = ObjTOperacionDiariaCaja.ObservacioApertura, estadoCaja = ObjTOperacionDiariaCaja.FechaCierre == null ? "APERTURADA" : "CERRADA" };
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulSPProductosCantidad>("spProductosCantidad", IdEmpresa);
             }
             catch (Exception ex)
@@ -255,15 +273,33 @@ namespace Business.Main.Microventas
             {
                 response.Object = new SaldoCajaDTO();
                 //validamos que no exita una caja abierta en otra fecha 
-                TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
-                ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date != requestAperturaCajae.FechaApertura.Date && x.IdCaja == requestAperturaCajae.idCaja && x.FechaCierre == null).FirstOrDefault();
-                if (ObjTOperacionDiariaCaja != null)
+                //TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
+                //ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date != requestAperturaCajae.fechaApertura.Date && x.IdCaja == requestAperturaCajae.idCaja && x.FechaCierre == null).FirstOrDefault();
+                /*
+                SaldoCajaDTO ObjSaldoCajaDTO = new SaldoCajaDTO();
+                ObjSaldoCajaDTO = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spObtieneIdOperacionCaja", requestAperturaCajae.idEmpresa, requestAperturaCajae.idSesion, requestAperturaCajae.idCaja,
+                   requestAperturaCajae.fechaApertura, requestAperturaCajae.fechaApertura, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+                
+
+                if (ObjSaldoCajaDTO != null)
                 {
                     response.State = ResponseType.Error;
-                    response.Message = "Existe una caja auna abierta en fecha " + ObjTOperacionDiariaCaja.FechaApertura.ToShortDateString() + ", debe cerrarla";
+                    response.Message = "Existe una caja auna abierta en fecha " + ObjSaldoCajaDTO.fechaApertura.ToShortDateString() + ", debe cerrarla";
                 }
                 else
-                    response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.SaldoInicial, requestAperturaCajae.Observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+                */
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.saldoInicial, requestAperturaCajae.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+
+               
+
 
                 if ((bool)poRespuesta.Valor)
                 {
@@ -272,9 +308,9 @@ namespace Business.Main.Microventas
                     return response;
                 }
 
-                response.Object.FechaApertura = requestAperturaCajae.FechaApertura;
-                response.Object.SaldoInicial = requestAperturaCajae.SaldoInicial;
-                response.Object.Observacion = requestAperturaCajae.Observacion;
+                response.Object.fechaApertura = requestAperturaCajae.fechaApertura;
+                response.Object.saldoInicial = requestAperturaCajae.saldoInicial;
+                response.Object.observacion = requestAperturaCajae.observacion;
 
             }
             catch (Exception ex)
@@ -294,7 +330,7 @@ namespace Business.Main.Microventas
             {
                 List<LugarConsumoDTO> colLugarConsumoDTO = new List<LugarConsumoDTO>();
 
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("spResLugarConsumoDTO", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("shCommon.spResLugarConsumoDTO", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<LugarConsumoDTO>("spResLugarConsumoDTO", 52, "0", poRespuesta, poLogRespuesta);
 
                 if (response.ListEntities == null)
@@ -303,6 +339,7 @@ namespace Business.Main.Microventas
                     response.Message = "No existen mesas, sillas ";
 
                 }
+                /*
                 if (response.ListEntities.Count <= 0)
                 {
 
@@ -318,6 +355,7 @@ namespace Business.Main.Microventas
                     response.ListEntities = colLugarConsumoDTO;
 
                 }
+                */
                 if ((bool)poRespuesta.Valor)
                 {
                     response.Message = poLogRespuesta.Valor.ToString();
@@ -343,7 +381,7 @@ namespace Business.Main.Microventas
             try
             {
                 List<PersonaResumenDTO> colPersonaResumenDTO = new List<PersonaResumenDTO>();
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaResumenDTO>("spObtieneMeseros", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaResumenDTO>("shCommon.spObtieneMeseros", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
                 if (response.ListEntities == null)
                 {
                     response.State = ResponseType.Error;
@@ -385,21 +423,25 @@ namespace Business.Main.Microventas
                 List<typeDetailPedido> coltypeDetailPedido = new List<typeDetailPedido>();
                 transaccionVentas.transaccionDetalle.ForEach(x =>
                 {
-                    coltypeDetailPedido.Add(new typeDetailPedido { idProducto = x.idProducto, cantidad = x.cantidad, PrecioUnitario = x.precioVenta });
+                    coltypeDetailPedido.Add(new typeDetailPedido { idProducto = x.idProducto, cantidad = x.cantidad, PrecioUnitario = x.precioVenta, observacion = x.observacion });
                 });
 
                 ParamOut poRespuesta = new ParamOut(false);
                 ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poidPedidoMaestro = new ParamOut(0);
                 poLogRespuesta.Size = 100;
-                repositoryMicroventas.CallProcedure<TransaccionVentasDTO>("spAddPediddo",
-                    transaccionVentas.idSesion,
-                    transaccionVentas.idEmpresa,
-                    transaccionVentas.idCajaOperacionDiariaCaja,
-                    transaccionVentas.idAmbiente,
-                    transaccionVentas.idPedMaster,
+                repositoryMicroventas.CallProcedure<TransaccionVentasDTO>("shBusiness.spAddPediddo",
+                    transaccionVentas.idSesion,//@idSesion
+                    transaccionVentas.idEmpresa,//@idEmpresa
+                    transaccionVentas.idCajaOperacionDiariaCaja,//@idOperacionDiariaCaja
+                    0,// @idFacCliente
+                    transaccionVentas.idAmbiente,//@idAmbiente
+                    transaccionVentas.idPedMaster,//@idPedMaster
                     coltypeDetailPedido,
                     transaccionVentas.observaciones == null ? "" : transaccionVentas.observaciones,
-                    poRespuesta, poLogRespuesta);
+                    poidPedidoMaestro,
+                    poRespuesta, 
+                    poLogRespuesta);
                 repositoryMicroventas.Commit();
 
                 if (response.Object == null)
@@ -613,9 +655,11 @@ namespace Business.Main.Microventas
 
 public class typeDetailPedido
 {
-    public int idProducto { get; set; }
-    public Nullable<int> cantidad { get; set; }
+    public Nullable<long> idProducto { get; set; }
+    public Nullable<long> cantidad { get; set; }
     public Nullable<decimal> PrecioUnitario { get; set; }
+    public string observacion { get; set; }
+
 
 }
 

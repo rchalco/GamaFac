@@ -10,17 +10,20 @@ namespace Domain.Main.MicroVentas.Cajas
     {
         public long idCaja { get; set; }
         public string nombreCaja { get; set; }
-        public string FechaCierre { get; set; }
-        public decimal SaldoInicial { get; set; }
-        public decimal SaldoCierre { get; set; }
-        public decimal SaldoUsuario { get; set; }
+        public string fechaCierre { get; set; }
+        public decimal saldoInicial { get; set; }
+        public decimal saldoCierre { get; set; }
+        public decimal saldoUsuario { get; set; }
         public decimal diferencia { get; set; }
-        public string Observacion { get; set; }
-        public bool EsCajaActual { get; set; }
-        public string EstadoCaja { get; set; }
+        public string observacion { get; set; }
+        public bool esCajaActual { get; set; }
+        public string estadoCaja { get; set; }
         public long idOperacionDiariaCaja { get; set; }
         public long idSesion { get; set; }
-        public DateTime FechaApertura { get; set; }
+        public long idEmpresa { get; set; }
+        public DateTime fechaApertura { get; set; }
+        public string observacioApertura { get; set; }
+        public string observacionCierre { get; set; }
 
 
     }

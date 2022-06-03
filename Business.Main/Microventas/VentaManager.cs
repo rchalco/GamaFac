@@ -49,7 +49,15 @@ namespace Business.Main.Microventas
                 ParamOut paramOutRespuesta = new ParamOut(true);
                 ParamOut paramOutLogRespuesta = new ParamOut("");
                 paramOutLogRespuesta.Size = 100;
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("spObtienePrecios", requestSearchProduct.idSession, requestSearchProduct.IdEmpresa, "%", paramOutRespuesta, paramOutLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<ResulProductoPrecioVenta>("shBusiness.spObtienePrecios", requestSearchProduct.idSession, requestSearchProduct.IdEmpresa, "%", paramOutRespuesta, paramOutLogRespuesta);
+
+                if ((bool)paramOutRespuesta.Valor)
+                {
+                    response.Message = paramOutLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
             }
             catch (Exception ex)
             {
