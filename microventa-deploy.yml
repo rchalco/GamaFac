@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microventa-deploy
+  labels:
+    name: microventa-deploy
+    app: microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+       app: microventa
+       type: microservice
+  template:
+    metadata:
+      name: microventa-pod
+      labels:
+        app: microventa
+        type: microservice
+    spec:
+      containers:
+        - name: microventa-app
+          #image: rchalco/backgroundapirest:v2#{Build.BuildId}#
+          image: rchalco/backgroundapirest:latest
+          ports:
+            - containerPort: 80
+          #env:
+          #  - name: conexionString
+          #    value: Server=mssql-service;Database=DBTintoreriaGamaFac;User=sa;Password=admin.123
