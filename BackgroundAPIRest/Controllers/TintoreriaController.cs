@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using Domain.Main.Clientes;
 using Domain.Main.Tintoreria;
+using Domain.Main.MicroVentas.Facturacion;
 
 namespace BackgroundAPIRest.Controllers
 {
@@ -20,7 +21,7 @@ namespace BackgroundAPIRest.Controllers
 
         [HttpPost("RegistrarPedidoTintoreria")]
         [EnableCors("MyPolicy")]
-        public Response RegistrarPedidoTintoreria(RequestRegistroPedido requestRegistroPedido)
+        public ResponseObject<FacturaDTO> RegistrarPedidoTintoreria(RequestRegistroPedido requestRegistroPedido)
         {
             TintoreriaManager tintoreriaManager = new TintoreriaManager();
             return tintoreriaManager.RegistrarVentas(requestRegistroPedido);

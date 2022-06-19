@@ -17,14 +17,15 @@ using Domain.Main.Clientes;
 using Business.Main.Managers;
 using Domain.Main.MicroVentas.Impresion;
 using Domain.Main.Tintoreria;
+using Domain.Main.MicroVentas.Facturacion;
 
 namespace Business.Main.Microventas
 {
     public class TintoreriaManager : BaseManager
     {
-        public Response RegistrarVentas(RequestRegistroPedido requestRegistroVentas)
+        public ResponseObject<FacturaDTO> RegistrarVentas(RequestRegistroPedido requestRegistroVentas)
         {
-            Response response = new Response { Message = "Venta registrada correctamente", State = ResponseType.Success };
+            ResponseObject<FacturaDTO> response = new ResponseObject<FacturaDTO> { Message = "Venta registrada correctamente", State = ResponseType.Success };
             try
             {
                 ParamOut paramOutRespuesta = new ParamOut(true);
@@ -35,11 +36,40 @@ namespace Business.Main.Microventas
                 requestRegistroVentas.idPedMaster = 0;
                 requestRegistroVentas.Observaciones = "";
 
+                ///convierte datos para facturas
+                FacturacionManager facturacionManager = new FacturacionManager();
+                ResponseObject<FacturaDTO> responseFactura = new ResponseObject<FacturaDTO>();
+                FacturaDTO facturaDTO = new FacturaDTO();
+                facturaDTO.Descuento = requestRegistroVentas.Descuento;
+                facturaDTO.MontoFactura = requestRegistroVentas.MontoFactura;
+                facturaDTO.NITCliente = requestRegistroVentas.NITCliente;
+                facturaDTO.NombreFactura = requestRegistroVentas.NombreFactura;
+                FacturasDetalleDTO facturasDetalleDTO;
+                List<FacturasDetalleDTO> colFacturasDetalleDTO =  new List<FacturasDetalleDTO>();
+                requestRegistroVentas.detallePedido.ForEach(x => {
+                    facturasDetalleDTO = new FacturasDetalleDTO();
+                    facturasDetalleDTO.Cantidad = (int)x.cantidad.Value;
+                    facturasDetalleDTO.Monto = x.PrecioFinal;
+                    facturasDetalleDTO.IdItem = (int)x.idProducto.Value;
+                    facturasDetalleDTO.Descuento = x.Descuento;
+                    facturasDetalleDTO.Concepto = x.NombreProducto;
+                    colFacturasDetalleDTO.Add(facturasDetalleDTO);
+                });
+                facturaDTO.FacturasDetalle = colFacturasDetalleDTO;
+
+                responseFactura = facturacionManager.GeneraFactura(facturaDTO);
+                if (responseFactura.State != ResponseType.Success)
+                {
+                    response.State = responseFactura.State;
+                    response.Message = responseFactura.Message;
+                    return response;
+                }
+
                 repositoryMicroventas.CallProcedure<Response>("shBusiness.spAddPediddo",
                     requestRegistroVentas.idSesion,
                     requestRegistroVentas.idEmpresa,
                     requestRegistroVentas.idOperacionDiariaCaja,
-                    Convert.ToInt64(requestRegistroVentas.idFacCliente),
+                    Convert.ToInt64(responseFactura.Object.IdFactura),
                     requestRegistroVentas.idAmbiente,
                     requestRegistroVentas.idPedMaster,
                     requestRegistroVentas.detallePedido,

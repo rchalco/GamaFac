@@ -18,6 +18,7 @@ namespace Business.Main.DataMappingMicroVenta
         public int? IdFacTipoPago { get; set; }
         public int? IdEstado { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaEntrega { get; set; }
         public string Observaciones { get; set; }
     }
 }

@@ -16,6 +16,10 @@ namespace Business.Main.DataMappingMicroVenta
         {
         }
 
+        public virtual DbSet<Dosificacion> Dosificacions { get; set; }
+        public virtual DbSet<Factura> Facturas { get; set; }
+        public virtual DbSet<FacturasDetalle> FacturasDetalles { get; set; }
+        public virtual DbSet<Imagene> Imagenes { get; set; }
         public virtual DbSet<TCaja> TCajas { get; set; }
         public virtual DbSet<TClasificador> TClasificadors { get; set; }
         public virtual DbSet<TClasificadorTipo> TClasificadorTipos { get; set; }
@@ -39,14 +43,112 @@ namespace Business.Main.DataMappingMicroVenta
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Data Source=181.188.169.10; Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=admin.123;TrustServerCertificate=True");
-                optionsBuilder.UseSqlServer("Data Source=.; Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
-                //optionsBuilder.UseSqlServer("Data Source=140.82.15.241; Initial Catalog=DBTintoreriaGamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Data Source=140.82.15.241;Initial Catalog=DBTintoreriaGamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Dosificacion>(entity =>
+            {
+                entity.HasKey(e => e.IdDosificacion);
+
+                entity.ToTable("Dosificacion", "shFinance");
+
+                entity.Property(e => e.FechaFin).HasColumnType("datetime");
+
+                entity.Property(e => e.LlaveDosificacion)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NroAutorizacion)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NroFacturaActual).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.NumFacturaFin).HasColumnType("numeric(18, 0)");
+
+                entity.Property(e => e.NumFacturaInicial).HasColumnType("numeric(18, 0)");
+            });
+
+            modelBuilder.Entity<Factura>(entity =>
+            {
+                entity.HasKey(e => e.IdFactura);
+
+                entity.ToTable("Factura", "shFinance");
+
+                entity.Property(e => e.CodControl)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CompraVenta)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Descuento)
+                    .HasColumnType("decimal(10, 2)")
+                    .HasColumnName("descuento");
+
+                entity.Property(e => e.FechaAnulacion).HasColumnType("datetime");
+
+                entity.Property(e => e.FechaEmision).HasColumnType("datetime");
+
+                entity.Property(e => e.FechaUltModificacion).HasColumnType("datetime");
+
+                entity.Property(e => e.Nitcliente).HasColumnName("NITCliente");
+
+                entity.Property(e => e.NombreFactura)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NumFactura).HasColumnType("numeric(18, 0)");
+            });
+
+            modelBuilder.Entity<FacturasDetalle>(entity =>
+            {
+                entity.HasKey(e => e.IdFacturaDetalle)
+                    .HasName("PK_FacturaDetalle");
+
+                entity.ToTable("FacturasDetalle", "shFinance");
+
+                entity.Property(e => e.Concepto)
+                    .HasMaxLength(150)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Descuento).HasColumnType("money");
+
+                entity.Property(e => e.Excento).HasColumnType("money");
+
+                entity.Property(e => e.Ice)
+                    .HasColumnType("money")
+                    .HasColumnName("ICE");
+
+                entity.Property(e => e.Monto).HasColumnType("money");
+
+                entity.HasOne(d => d.IdFacturaNavigation)
+                    .WithMany(p => p.FacturasDetalles)
+                    .HasForeignKey(d => d.IdFactura)
+                    .HasConstraintName("FK_FacturaDetalle_Factura");
+            });
+
+            modelBuilder.Entity<Imagene>(entity =>
+            {
+                entity.ToTable("imagenes");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Img)
+                    .HasColumnType("image")
+                    .HasColumnName("img");
+
+                entity.Property(e => e.Nombre)
+                    .HasMaxLength(100)
+                    .IsUnicode(false)
+                    .HasColumnName("nombre");
+            });
+
             modelBuilder.Entity<TCaja>(entity =>
             {
                 entity.HasNoKey();
@@ -367,6 +469,10 @@ namespace Business.Main.DataMappingMicroVenta
 
                 entity.ToTable("tPedidoMaster", "shBusiness");
 
+                entity.Property(e => e.FechaEntrega)
+                    .HasColumnType("datetime")
+                    .HasColumnName("fechaEntrega");
+
                 entity.Property(e => e.FechaRegistro)
                     .HasColumnType("datetime")
                     .HasColumnName("fechaRegistro");
@@ -404,9 +510,11 @@ namespace Business.Main.DataMappingMicroVenta
 
             modelBuilder.Entity<TPersona>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdPersona);
 
                 entity.ToTable("tPersonas", "shSecurity");
+
+                entity.Property(e => e.IdPersona).HasColumnName("idPersona");
 
                 entity.Property(e => e.ApellidoMaterno)
                     .IsRequired()
@@ -437,10 +545,6 @@ namespace Business.Main.DataMappingMicroVenta
                     .HasColumnType("datetime")
                     .HasColumnName("fechaVigenciaHasta");
 
-                entity.Property(e => e.IdPersona)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idPersona");
-
                 entity.Property(e => e.IdSesion).HasColumnName("idSesion");
 
                 entity.Property(e => e.Nombres)
@@ -451,9 +555,11 @@ namespace Business.Main.DataMappingMicroVenta
 
             modelBuilder.Entity<TProducto>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdProducto);
 
                 entity.ToTable("tProductos", "shBusiness");
+
+                entity.Property(e => e.IdProducto).HasColumnName("idProducto");
 
                 entity.Property(e => e.CodigoProducto)
                     .HasMaxLength(50)
@@ -476,10 +582,6 @@ namespace Business.Main.DataMappingMicroVenta
                 entity.Property(e => e.IdClasificador).HasColumnName("idClasificador");
 
                 entity.Property(e => e.IdEmpresa).HasColumnName("idEmpresa");
-
-                entity.Property(e => e.IdProducto)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idProducto");
 
                 entity.Property(e => e.Idsesion).HasColumnName("idsesion");
 
@@ -576,9 +678,11 @@ namespace Business.Main.DataMappingMicroVenta
 
             modelBuilder.Entity<TUsuario>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdUsuario);
 
                 entity.ToTable("tUsuarios", "shSecurity");
+
+                entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
 
                 entity.Property(e => e.FechaRegistro)
                     .HasColumnType("datetime")
@@ -595,10 +699,6 @@ namespace Business.Main.DataMappingMicroVenta
                 entity.Property(e => e.IdRol).HasColumnName("idRol");
 
                 entity.Property(e => e.IdSesion).HasColumnName("idSesion");
-
-                entity.Property(e => e.IdUsuario)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idUsuario");
 
                 entity.Property(e => e.Pass)
                     .IsRequired()

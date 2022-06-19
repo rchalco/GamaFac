@@ -1,5 +1,6 @@
 ﻿using Business.Main.Microventas;
 using Domain.Main.MicroVentas.Cajas;
+using Domain.Main.MicroVentas.Facturacion;
 using Domain.Main.MicroVentas.General;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
@@ -162,7 +163,13 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.AperturaInventario(requestGral);
         }
 
-
+        [HttpPost("GeneraFactura")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<FacturaDTO> GeneraFactura(FacturaDTO requestGral)
+        {
+            FacturacionManager facturacionManager = new FacturacionManager();
+            return facturacionManager.GeneraFactura(requestGral);
+        }
 
     }
 
