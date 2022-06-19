@@ -44,6 +44,19 @@ namespace Business.Main.Microventas
                     return Resultado;
                 }
 
+                ///obtiene cliente factura
+                TClienteFac clienteFac = new TClienteFac();
+                clienteFac = repositoryMicroventas.SimpleSelect<TClienteFac>(x => x.IdclienteFac == objTransaccionVentasDTO.IdclienteFac).FirstOrDefault();
+                if (clienteFac == null)
+                {
+                    Resultado.State = ResponseType.Error;
+                    Resultado.Object = null;
+                    Resultado.Message = "No existe IdclienteFac " + objTransaccionVentasDTO.IdclienteFac.ToString() + " activa verifique.";
+                    return Resultado;
+                }
+
+                
+
                 long NumFactura = 0;
                 NumFactura = Convert.ToInt64((ObjDosificacion.NroFacturaActual.Value + 1));
                 ObjDosificacion.NroFacturaActual = NumFactura;
@@ -58,8 +71,8 @@ namespace Business.Main.Microventas
                 ObjFactura.CompraVenta = "VENTA";
                 ObjFactura.FechaEmision = DateTime.Now.Date;
                 ObjFactura.Impresiones = 1;
-                ObjFactura.NombreFactura = objTransaccionVentasDTO.NombreFactura;
-                ObjFactura.Nitcliente = objTransaccionVentasDTO.NITCliente;
+                ObjFactura.NombreFactura = clienteFac.NombreCliente;
+                ObjFactura.Nitcliente = Convert.ToInt64(clienteFac.Documento);
                 ObjFactura.IdDosificacion = ObjDosificacion.IdDosificacion;
                 ObjFactura.Descuento = objTransaccionVentasDTO.Descuento;
 
@@ -67,7 +80,7 @@ namespace Business.Main.Microventas
                 CodigoControImpuestos ObjCodigoControImpuestos = new CodigoControImpuestos();
 
                 ObjCodigoControImpuestos.NumeroAutorizacion = Convert.ToInt64(ObjDosificacion.NroAutorizacion);
-                ObjCodigoControImpuestos.Nit = Convert.ToInt64(objTransaccionVentasDTO.NITCliente);
+                ObjCodigoControImpuestos.Nit = Convert.ToInt64(clienteFac.Documento);
                 ObjCodigoControImpuestos.NroFactura = NumFactura;
                 ObjCodigoControImpuestos.LlaveDosificacion = ObjDosificacion.LlaveDosificacion;
                 string FechaFactura = (DateTime.Now.Date).ToString("yyyyMMdd");
@@ -102,7 +115,7 @@ namespace Business.Main.Microventas
                         //ObjFacturasDetalle.fa = null;
                         //CurrentRepository.SaveChanges<FacturasDetalle>(ObjFacturasDetalle, Operation.Add);
                         entity3 = new Entity<FacturasDetalle> { EntityDB = ObjFacturasDetalle, stateEntity = StateEntity.add };
-                        repositoryMicroventas.SaveObject<Factura>(entity1);
+                        repositoryMicroventas.SaveObject<FacturasDetalle>(entity3);
                         ColFacturasDetalle.Add(ObjFacturasDetalle);
                     }
                 }

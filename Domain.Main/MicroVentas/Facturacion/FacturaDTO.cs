@@ -30,6 +30,7 @@ namespace Domain.Main.MicroVentas.Facturacion
         public decimal Efectivo { get; set; }
         public decimal Cambio { get; set; }
         public decimal Descuento { get; set; }
+        public long IdclienteFac { get; set; }
         public virtual DosificacionDTO Dosificacion { get; set; }
         public virtual ICollection<FacturasDetalleDTO> FacturasDetalle { get; set; }
     }

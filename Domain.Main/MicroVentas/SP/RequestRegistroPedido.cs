@@ -19,8 +19,6 @@ namespace Domain.Main.MicroVentas.SP
         /// <summary>
         /// nuevossssss
         /// </summary>
-        public string NombreFactura { get; set; }
-        public long NITCliente { get; set; }
         public decimal Descuento { get; set; }
         public decimal MontoFactura { get; set; }
 
