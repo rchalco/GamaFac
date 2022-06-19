@@ -2,6 +2,7 @@
 using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.Facturacion;
 using Domain.Main.MicroVentas.General;
+using Domain.Main.MicroVentas.Persona;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.MicroVentas.Ventas;
@@ -169,6 +170,22 @@ namespace BackgroundAPIRest.Controllers
         {
             FacturacionManager facturacionManager = new FacturacionManager();
             return facturacionManager.GeneraFactura(requestGral);
+        }
+        [HttpPost("ObtenerPersonas")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<PersonaDTO> ObtenerPersonas(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ObtenerPersonas(requestGral);
+        }
+
+
+        [HttpPost("GrabarPersona")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<PersonaDTO> GrabarPersona(PersonaDTO personaDTO)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.GrabarPersona(personaDTO);
         }
 
     }

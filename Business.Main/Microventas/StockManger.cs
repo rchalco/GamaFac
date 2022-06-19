@@ -4,6 +4,7 @@ using CoreAccesLayer.Implement.SQLServer;
 using CoreAccesLayer.Wraper;
 using Domain.Main.MicroVentas.Cajas;
 using Domain.Main.MicroVentas.General;
+using Domain.Main.MicroVentas.Persona;
 using Domain.Main.MicroVentas.SP;
 using Domain.Main.MicroVentas.Usuarios;
 using Domain.Main.MicroVentas.Ventas;
@@ -687,6 +688,89 @@ namespace Business.Main.Microventas
             }
             return response;
         }
+
+        public ResponseQuery<PersonaDTO> ObtenerPersonas(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<PersonaDTO> response = new ResponseQuery<PersonaDTO> { Message = "Datos Obtenidos", State = ResponseType.Success };
+            try
+            {
+                long id = 0;
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poFecha = new ParamOut(new DateTime());
+                ParamOut poIdFecha = new ParamOut(id);
+
+                poLogRespuesta.Size = 100;
+
+
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaDTO>("shSecurity.spobtPersona", requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+                
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseObject<PersonaDTO> GrabarPersona(PersonaDTO personaDTO)
+        {
+
+            ResponseObject<PersonaDTO> response = new ResponseObject<PersonaDTO> { Message = "Persona Grabada", State = ResponseType.Success };
+            try
+            {
+                long id = 0;
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poFecha = new ParamOut(new DateTime());
+                ParamOut poIdFecha = new ParamOut(id);
+
+                poLogRespuesta.Size = 100;
+
+                
+                TPersona persona = new TPersona();
+
+                if (personaDTO.idPersona > 0)
+                    persona = repositoryMicroventas.SimpleSelect<TPersona>(x => x.IdPersona == personaDTO.idPersona).FirstOrDefault();
+                   
+               
+                persona.ApellidoMaterno = personaDTO.ApellidoMaterno;
+                persona.ApellidoPaterno = personaDTO.ApellidoPaterno;
+                persona.Nombres = personaDTO.Nombres;
+                persona.DocumentoDeIdentidad = personaDTO.DocumentoDeIdentidad;
+                persona.Celular = personaDTO.celular;
+                persona.FechaRegistro = DateTime.Now;
+
+                Entity<TPersona> entity;
+
+                if (personaDTO.idPersona > 0)
+                    entity = new Entity<TPersona> { EntityDB = persona, stateEntity = StateEntity.modify };
+                else
+                    entity = new Entity<TPersona> { EntityDB = persona, stateEntity = StateEntity.add };
+                repositoryMicroventas.SaveObject<TPersona>(entity);
+                repositoryMicroventas.Commit();
+
+            }
+            catch (Exception ex)
+            {
+                response.State = ResponseType.Error;
+                response.Message = ex.Message;
+                repositoryMicroventas.Rollback();
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
 
     }
 }
