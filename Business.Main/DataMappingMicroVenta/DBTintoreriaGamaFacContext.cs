@@ -242,19 +242,26 @@ namespace Business.Main.DataMappingMicroVenta
 
             modelBuilder.Entity<TClienteFac>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdclienteFac);
 
                 entity.ToTable("tClienteFac", "shfactura");
+
+                entity.Property(e => e.IdclienteFac).HasColumnName("idclienteFac");
+
+                entity.Property(e => e.Complemento)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CorreoElectronico)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .HasColumnName("correoElectronico");
 
-                entity.Property(e => e.Documento)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("documento");
+                entity.Property(e => e.Documento).HasColumnName("documento");
+
+                entity.Property(e => e.Extension)
+                    .HasMaxLength(5)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FechaRegistro).HasColumnType("datetime");
 
@@ -267,10 +274,6 @@ namespace Business.Main.DataMappingMicroVenta
                 entity.Property(e => e.IdSesion).HasColumnName("idSesion");
 
                 entity.Property(e => e.IdTipoDocumento).HasColumnName("idTipoDocumento");
-
-                entity.Property(e => e.IdclienteFac)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("idclienteFac");
 
                 entity.Property(e => e.NombreCliente)
                     .HasMaxLength(100)

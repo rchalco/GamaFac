@@ -63,7 +63,9 @@ namespace Business.Main.Microventas
                     requestRegistrarClientreFactura.idSesion,
                     requestRegistrarClientreFactura.idEmpresa,
                     requestRegistrarClientreFactura.idTipoDocumento,
-                    requestRegistrarClientreFactura.documento,
+                    Convert.ToInt64(requestRegistrarClientreFactura.documento),
+                    "", //complemento
+                    "", //extension
                     requestRegistrarClientreFactura.NombreCliente,
                     requestRegistrarClientreFactura.correoElectronico,
                     requestRegistrarClientreFactura.numCelular,

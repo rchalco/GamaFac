@@ -16,9 +16,6 @@ namespace Domain.Main.MicroVentas.SP
         public long idAmbiente { get; set; }
         public long idPedMaster { get; set; }
         public string Observaciones { get; set; }
-        /// <summary>
-        /// nuevossssss
-        /// </summary>
         public decimal Descuento { get; set; }
         public decimal MontoFactura { get; set; }
 
@@ -29,9 +26,6 @@ namespace Domain.Main.MicroVentas.SP
         public long? idProducto { get; set; }
         public long? cantidad { get; set; }
         public decimal? PrecioFinal { get; set; }
-        /// <summary>
-        /// nuevossssss
-        /// </summary>
         public string NombreProducto { get; set; }
         public decimal Descuento { get; set; }
     }

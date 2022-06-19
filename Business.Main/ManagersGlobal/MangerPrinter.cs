@@ -1,4 +1,5 @@
 ﻿using Business.Main.Base;
+using Business.Main.Properties;
 using Domain.Main.MicroVentas.Impresion;
 using Domain.Main.Wraper;
 using iText.IO.Font;
@@ -24,7 +25,7 @@ namespace Business.Main.Managers
 {
     public class MangerPrinter : BaseManager
     {
-        public Response GenerarDocumento(DataDocumento dataDocumento)
+        public Response GenerarDocumento(DataDocumento dataDocumento)   
         {
             Response response = new Response();
             try
@@ -120,6 +121,18 @@ namespace Business.Main.Managers
                     i++;
                 });
 
+                if (dataDocumento.fakeQR)
+                {
+                    Image imgQr = new Image(ImageDataFactory
+                        .Create(Resources.qr))
+                        .SetHeight(100)
+                        .SetWidth(100)
+                        .SetTextAlignment(TextAlignment.CENTER);
+                    Cell cellContentQr = new Cell(1, 1);
+                    cellContent.Add(imgQr);
+                    cellContent.SetBorder(Border.NO_BORDER);
+                    table.AddCell(cellContentQr);
+                }
                 Paragraph leyenda = new Paragraph(dataDocumento.pie)
                    .SetTextAlignment(TextAlignment.LEFT)
                    .SetFontSize(8);
@@ -144,7 +157,7 @@ namespace Business.Main.Managers
 
                 PageSize pageSize = new PageSize(300f, tableHeightTotal);
                 Document document = new Document(pdf, pageSize);
-                document.SetMargins(0, 0, 0, 0);
+                document.SetMargins(0, 0, 0, 10);
                 document.Add(table);
                 document.Close();
                 documentAux.Close();

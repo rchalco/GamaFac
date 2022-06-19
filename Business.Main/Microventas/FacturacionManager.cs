@@ -130,7 +130,8 @@ namespace Business.Main.Microventas
                 Resultado.State = ResponseType.Success;
                 Resultado.Object = new FacturaDTO();
                 Resultado.Object = ObjFacturaDTO;
-
+                objTransaccionVentasDTO.IdFactura = ObjFactura.IdFactura;
+                objTransaccionVentasDTO.NumFactura = ObjFactura.NumFactura;
                 repositoryMicroventas.Commit();
 
                 Resultado.State = ResponseType.Success;

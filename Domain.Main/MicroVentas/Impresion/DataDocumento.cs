@@ -12,5 +12,6 @@ namespace Domain.Main.MicroVentas.Impresion
         public List<string> contenido { get; set; }
         public string pie { get; set; }
         public string pathLogo { get; set; }
+        public bool fakeQR { get; set; }
     }
 }
