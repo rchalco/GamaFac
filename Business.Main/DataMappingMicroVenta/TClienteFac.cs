@@ -9,7 +9,9 @@ namespace Business.Main.DataMappingMicroVenta
         public long? IdSesion { get; set; }
         public long? IdEmpresa { get; set; }
         public int? IdTipoDocumento { get; set; }
-        public string Documento { get; set; }
+        public long Documento { get; set; }
+        public string Complemento { get; set; }
+        public string Extension { get; set; }
         public string NombreCliente { get; set; }
         public string CorreoElectronico { get; set; }
         public string NumCelular { get; set; }

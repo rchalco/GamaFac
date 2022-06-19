@@ -85,6 +85,7 @@ namespace Business.Main.Microventas
                     response.Message = Convert.ToString(paramOutLogRespuesta.Valor);
                 }
                 response.Code = Convert.ToString(paramOutIdPedidoMaestro.Valor);
+                response.Object = facturaDTO;
             }
             catch (Exception ex)
             {
