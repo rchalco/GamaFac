@@ -771,6 +771,122 @@ namespace Business.Main.Microventas
             return response;
         }
 
+        public ResponseQuery<LoginDTO> ObtenerUsuarios(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<LoginDTO> response = new ResponseQuery<LoginDTO> { Message = "Datos Obtenidos", State = ResponseType.Success };
+            try
+            {
+                long id = 0;
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poFecha = new ParamOut(new DateTime());
+                ParamOut poIdFecha = new ParamOut(id);
+
+                poLogRespuesta.Size = 100;
+
+
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<LoginDTO>("shSecurity.spObtUsuarios", requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseQuery<RolDTO> ObtenerRol(RequestParametrosGral requestGral)
+        {
+
+            ResponseQuery<RolDTO> response = new ResponseQuery<RolDTO> { Message = "Datos Obtenidos", State = ResponseType.Success };
+            try
+            {
+                long id = 0;
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poFecha = new ParamOut(new DateTime());
+                ParamOut poIdFecha = new ParamOut(id);
+
+                poLogRespuesta.Size = 100;
+
+
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<RolDTO>("shSecurity.spObtRoles", requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
+
+
+                if ((bool)poRespuesta.Valor)
+                {
+                    response.Message = poLogRespuesta.Valor.ToString();
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
+        public ResponseObject<LoginDTO> GrabarUsuario(LoginDTO usuarioDTO)
+        {
+
+            ResponseObject<LoginDTO> response = new ResponseObject<LoginDTO> { Message = "Usuario Grabado", State = ResponseType.Success };
+            try
+            {
+                long id = 0;
+                ParamOut poRespuesta = new ParamOut(false);
+                ParamOut poLogRespuesta = new ParamOut("");
+                ParamOut poFecha = new ParamOut(new DateTime());
+                ParamOut poIdFecha = new ParamOut(id);
+
+                poLogRespuesta.Size = 100;
+
+
+                TUsuario usuario = new TUsuario();
+
+                if (usuarioDTO.idUsuario > 0)
+                    usuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.IdUsuario == usuarioDTO.idUsuario).FirstOrDefault();
+
+
+                usuario.IdRol = usuarioDTO.idRol;
+                usuario.IdPersona = usuarioDTO.idPersona;
+                usuario.Usuario = usuarioDTO.usuario_vc;
+                //usuario.FechaVigenciaHasta = usuarioDTO.fechaVigenciaHasta;
+                usuario.Pass = usuarioDTO.Password;
+                usuario.FechaRegistro = DateTime.Now;
+
+                Entity<TUsuario> entity;
+
+                if (usuarioDTO.idUsuario > 0)
+                    entity = new Entity<TUsuario> { EntityDB = usuario, stateEntity = StateEntity.modify };
+                else
+                    entity = new Entity<TUsuario> { EntityDB = usuario, stateEntity = StateEntity.add };
+                repositoryMicroventas.SaveObject<TUsuario>(entity);
+                repositoryMicroventas.Commit();
+
+            }
+            catch (Exception ex)
+            {
+                response.State = ResponseType.Error;
+                response.Message = ex.Message;
+                repositoryMicroventas.Rollback();
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
 
     }
 }

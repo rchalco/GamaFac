@@ -188,6 +188,29 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.GrabarPersona(personaDTO);
         }
 
+        [HttpPost("ObtenerUsuarios")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<LoginDTO> ObtenerUsuarios(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ObtenerUsuarios(requestGral);
+        }
+
+        [HttpPost("ObtenerRol")]
+        [EnableCors("MyPolicy")]
+        public ResponseQuery<RolDTO> ObtenerRol(RequestParametrosGral requestGral)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.ObtenerRol(requestGral);
+        }
+
+        [HttpPost("GrabarUsuario")]
+        [EnableCors("MyPolicy")]
+        public ResponseObject<LoginDTO> GrabarUsuario(LoginDTO personaDTO)
+        {
+            StockManger stockManger = new StockManger();
+            return stockManger.GrabarUsuario(personaDTO);
+        }
     }
 
 

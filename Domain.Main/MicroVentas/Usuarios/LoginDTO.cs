@@ -20,6 +20,9 @@ namespace Domain.Main.MicroVentas.Usuarios
         public string rol_name { get; set; }
         public long idCaja { get; set; }
 
+        public DateTime fechaVigenciaHasta { get; set; }
+        public long idPersona { get; set; }
+
 
     }
 }
