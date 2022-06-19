@@ -42,8 +42,9 @@ namespace Business.Main.Microventas
                 FacturaDTO facturaDTO = new FacturaDTO();
                 facturaDTO.Descuento = requestRegistroVentas.Descuento;
                 facturaDTO.MontoFactura = requestRegistroVentas.MontoFactura;
-                facturaDTO.NITCliente = requestRegistroVentas.NITCliente;
-                facturaDTO.NombreFactura = requestRegistroVentas.NombreFactura;
+                facturaDTO.IdclienteFac = requestRegistroVentas.idFacCliente;
+                //facturaDTO.NITCliente = requestRegistroVentas.NITCliente;
+                //facturaDTO.NombreFactura = requestRegistroVentas.NombreFactura;
                 FacturasDetalleDTO facturasDetalleDTO;
                 List<FacturasDetalleDTO> colFacturasDetalleDTO =  new List<FacturasDetalleDTO>();
                 requestRegistroVentas.detallePedido.ForEach(x => {

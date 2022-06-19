@@ -10,7 +10,7 @@ namespace Domain.Main.MicroVentas.SP
     {
         public List<typeDetailPedido> detallePedido { get; set; }
         public long idSesion { get; set; }
-        public string idFacCliente { get; set; }
+        public long idFacCliente { get; set; }
         public long idEmpresa { get; set; }
         public long idOperacionDiariaCaja { get; set; }
         public long idAmbiente { get; set; }
