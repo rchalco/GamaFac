@@ -14,6 +14,6 @@ namespace Domain.Main.MicroVentas.Persona
         public string ApellidoMaterno { get; set; }
         public string Nombres { get; set; }
         public string celular { get; set; }
-
+        public string nombreCompleto { get; set; }
     }
 }

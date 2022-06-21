@@ -866,6 +866,7 @@ namespace Business.Main.Microventas
                 //usuario.FechaVigenciaHasta = usuarioDTO.fechaVigenciaHasta;
                 usuario.Pass = usuarioDTO.Password;
                 usuario.FechaRegistro = DateTime.Now;
+                usuario.IdEmpresa = 1;
 
                 Entity<TUsuario> entity;
 
