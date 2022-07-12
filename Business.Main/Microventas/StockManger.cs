@@ -237,8 +237,8 @@ namespace Business.Main.Microventas
                 //TOperacionDiariaCaja ObjTOperacionDiariaCaja = new TOperacionDiariaCaja();
                 //ObjTOperacionDiariaCaja = repositoryMicroventas.SimpleSelect<TOperacionDiariaCaja>(x => x.FechaApertura.Date == requestGral.ParametroFecha1.Date && x.IdCaja == requestGral.ParametroLong1).FirstOrDefault();
 
-                
-                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spObtieneIdOperacionCaja", requestGral.ParametroLong2, requestGral.ParametroLong3, requestGral.ParametroLong1, 
+
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spObtieneIdOperacionCaja", requestGral.ParametroLong2, requestGral.ParametroLong3, requestGral.ParametroLong1,
                     requestGral.ParametroFecha1, requestGral.ParametroFecha1, poRespuesta, poLogRespuesta).FirstOrDefault();
 
                 if ((bool)poRespuesta.Valor)
@@ -299,7 +299,7 @@ namespace Business.Main.Microventas
                 response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.saldoInicial, requestAperturaCajae.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
 
 
-               
+
 
 
                 if ((bool)poRespuesta.Valor)
@@ -441,7 +441,7 @@ namespace Business.Main.Microventas
                     coltypeDetailPedido,
                     transaccionVentas.observaciones == null ? "" : transaccionVentas.observaciones,
                     poidPedidoMaestro,
-                    poRespuesta, 
+                    poRespuesta,
                     poLogRespuesta);
                 repositoryMicroventas.Commit();
 
@@ -705,7 +705,7 @@ namespace Business.Main.Microventas
 
 
                 response.ListEntities = repositoryMicroventas.GetDataByProcedure<PersonaDTO>("shSecurity.spobtPersona", requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
-                
+
 
                 if ((bool)poRespuesta.Valor)
                 {
@@ -737,13 +737,13 @@ namespace Business.Main.Microventas
 
                 poLogRespuesta.Size = 100;
 
-                
+
                 TPersona persona = new TPersona();
 
                 if (personaDTO.idPersona > 0)
                     persona = repositoryMicroventas.SimpleSelect<TPersona>(x => x.IdPersona == personaDTO.idPersona).FirstOrDefault();
-                   
-               
+
+
                 persona.ApellidoMaterno = personaDTO.ApellidoMaterno;
                 persona.ApellidoPaterno = personaDTO.ApellidoPaterno;
                 persona.Nombres = personaDTO.Nombres;
@@ -853,28 +853,29 @@ namespace Business.Main.Microventas
 
                 poLogRespuesta.Size = 100;
 
-
                 TUsuario usuario = new TUsuario();
 
                 if (usuarioDTO.idUsuario > 0)
                     usuario = repositoryMicroventas.SimpleSelect<TUsuario>(x => x.IdUsuario == usuarioDTO.idUsuario).FirstOrDefault();
 
-
                 usuario.IdRol = usuarioDTO.idRol;
                 usuario.IdPersona = usuarioDTO.idPersona;
                 usuario.Usuario = usuarioDTO.usuario_vc;
-                //usuario.FechaVigenciaHasta = usuarioDTO.fechaVigenciaHasta;
                 usuario.Pass = usuarioDTO.Password;
                 usuario.FechaRegistro = DateTime.Now;
                 usuario.IdEmpresa = 1;
 
-                Entity<TUsuario> entity;
-
-                if (usuarioDTO.idUsuario > 0)
-                    entity = new Entity<TUsuario> { EntityDB = usuario, stateEntity = StateEntity.modify };
-                else
-                    entity = new Entity<TUsuario> { EntityDB = usuario, stateEntity = StateEntity.add };
-                repositoryMicroventas.SaveObject<TUsuario>(entity);
+                repositoryMicroventas.CallProcedure<Response>("[shSecurity].[spAddUsuario]",
+                    usuarioDTO.idSesion,
+                    usuarioDTO.idUsuario,
+                    usuarioDTO.idPersona,
+                    1, // @idEmpresa
+                    usuarioDTO.idRol,
+                    usuarioDTO.usuario_vc,
+                    usuarioDTO.Password,
+                    poRespuesta,
+                    poLogRespuesta
+                    );
                 repositoryMicroventas.Commit();
 
             }
