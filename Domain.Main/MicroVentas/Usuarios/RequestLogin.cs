@@ -12,5 +12,9 @@ namespace Domain.Main.MicroVentas.Usuarios
         public string password { get; set; }
         public string passwordNuevo { get; set; }
         public long idEmpresa { get; set; }
+        /// <summary>
+        /// 0 = fabula, 1 = parqueo
+        /// </summary>
+        public int aplicacion { get; set; }
     }
 }

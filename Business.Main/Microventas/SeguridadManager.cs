@@ -28,7 +28,19 @@ namespace Business.Main.Microventas
                 ParamOut poRespuesta = new ParamOut(false);
                 ParamOut poLogRespuesta = new ParamOut("");
                 poLogRespuesta.Size = 100;
-                response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("shSecurity.spLogin", requestLogin.idEmpresa, requestLogin.usuario, requestLogin.password, poRespuesta, poLogRespuesta).FirstOrDefault();
+
+                switch (requestLogin.aplicacion)
+                {
+                    case 0:
+                        response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("shSecurity.spLogin", requestLogin.idEmpresa, requestLogin.usuario, requestLogin.password, poRespuesta, poLogRespuesta).FirstOrDefault();
+                        break;
+                    case 1:
+                        response.Object = repositoryMicroventas.GetDataByProcedure<LoginDTO>("shParqueos.spLogin", requestLogin.idEmpresa, requestLogin.usuario, requestLogin.password, poRespuesta, poLogRespuesta).FirstOrDefault();
+                        break;
+                    default:
+                        break;
+                }
+                
 
 
                 if (response.Object == null)
