@@ -200,7 +200,7 @@ namespace Business.Main.Microventas
             try
             {
 
-                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.saldoUsuario, requestAperturaCaja.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.saldoUsuario, requestAperturaCaja.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
                 if (response.Object == null)
                 {
                     response.State = ResponseType.Error;
@@ -269,6 +269,7 @@ namespace Business.Main.Microventas
         {
             ParamOut poRespuesta = new ParamOut(false);
             ParamOut poLogRespuesta = new ParamOut("");
+            poLogRespuesta.Size = 250;
             ResponseObject<SaldoCajaDTO> response = new ResponseObject<SaldoCajaDTO> { Message = "La caja se aperturo correctamente", State = ResponseType.Success };
             try
             {
@@ -298,7 +299,8 @@ namespace Business.Main.Microventas
                 */
                 response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.saldoInicial, requestAperturaCajae.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
 
-
+                //repositoryMicroventas.CallProcedure<SaldoCajaDTO>("shFinance.spAperturaCaja", requestAperturaCajae.idSesion, requestAperturaCajae.idCaja, requestAperturaCajae.saldoInicial, requestAperturaCajae.observacion, poRespuesta, poLogRespuesta);
+            
 
 
 
@@ -415,30 +417,53 @@ namespace Business.Main.Microventas
         public ResponseObject<TransaccionVentasDTO> GrabaPedido(TransaccionVentasDTO transaccionVentas)
         {
 
-            ResponseObject<TransaccionVentasDTO> response = new ResponseObject<TransaccionVentasDTO> { Message = "Pedido se grabo correctamente, a continuación se imprimira la Comanda", State = ResponseType.Success };
+            ResponseObject<TransaccionVentasDTO> response = new ResponseObject<TransaccionVentasDTO> { Message = "Pedido se grabo correctamente, el pedido esta en la bandeja", State = ResponseType.Success };
             try
             {
+                if (transaccionVentas.idCajaOperacionDiariaCaja == 0)
+                {
+                    response.Message = "No tiene Caja asignada";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+                if (transaccionVentas.montoPedido == 0)
+                {
+                    response.Message = "El monto del Pedido no puede ser cero";
+                    response.State = ResponseType.Error;
+                    return response;
+                }
+
+
                 response.Object = new TransaccionVentasDTO();
                 //SP grabar pedido
 
                 List<typeDetailPedido> coltypeDetailPedido = new List<typeDetailPedido>();
                 transaccionVentas.transaccionDetalle.ForEach(x =>
                 {
-                    coltypeDetailPedido.Add(new typeDetailPedido { idProducto = x.idProducto, cantidad = x.cantidad, PrecioUnitario = x.precioVenta, observacion = x.observacion });
+                    coltypeDetailPedido.Add(new typeDetailPedido { idParamPrecio = x.idParamPrecio, idProducto = 0, cantidad = x.cantidad, PrecioFinal = x.precioVenta});
                 });
+
+                List<typeFormaDePagoPedido> coltypeFormaDePagoPedido = new List<typeFormaDePagoPedido>();
+                coltypeFormaDePagoPedido.Add(new typeFormaDePagoPedido { idFormaPago = 1, idPedidoMaestro = 0, MontoCubierto = transaccionVentas.montoPedido });
+
 
                 ParamOut poRespuesta = new ParamOut(false);
                 ParamOut poLogRespuesta = new ParamOut("");
+                poLogRespuesta.Size = 150;
                 ParamOut poidPedidoMaestro = new ParamOut(0);
                 poLogRespuesta.Size = 100;
-                repositoryMicroventas.CallProcedure<TransaccionVentasDTO>("shBusiness.spAddPediddo",
+                repositoryMicroventas.CallProcedure<TransaccionVentasDTO>("shBusiness.spAddPedido",
                     transaccionVentas.idSesion,//@idSesion
-                    transaccionVentas.idEmpresa,//@idEmpresa
+                    transaccionVentas.idFechaProceso,
+                    transaccionVentas.idMesero,//IdMesero
+                    transaccionVentas.idAlmacen,//Idalmacen
                     transaccionVentas.idCajaOperacionDiariaCaja,//@idOperacionDiariaCaja
-                    0,// @idFacCliente
-                    transaccionVentas.idAmbiente,//@idAmbiente
-                    transaccionVentas.idPedMaster,//@idPedMaster
+                    transaccionVentas.idAmbiente,
+                    transaccionVentas.montoPedido,
                     coltypeDetailPedido,
+                    coltypeFormaDePagoPedido, 
+                    1, ///estado del pedido completado pero pendiente de atencion
                     transaccionVentas.observaciones == null ? "" : transaccionVentas.observaciones,
                     poidPedidoMaestro,
                     poRespuesta,
@@ -526,7 +551,7 @@ namespace Business.Main.Microventas
                 colTransaccionVentasDetalleDTO.Add(new TransaccionVentasDetalleDTO
                 {
                     idPedMaster = 1,
-                    idTransaccionDetalle = 1,
+                    idParamPrecio = 1,
                     cantidad = 2,
                     nombreProducto = "CERVEZA",
                     nroPedido = 1,
@@ -586,27 +611,7 @@ namespace Business.Main.Microventas
             return response;
         }
 
-        public ResponseQuery<ClasificadorDTO> ClasificadorPorTipo(RequestParametrosGral requestGral)
-        {
-
-            ResponseQuery<ClasificadorDTO> response = new ResponseQuery<ClasificadorDTO> { Message = "Clasificador recuperado", State = ResponseType.Success };
-            try
-            {
-                List<ClasificadorDTO> colClasificadorDTO = new List<ClasificadorDTO>();
-                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 1, nombre = "EFECTIVO" });
-                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 2, nombre = "TARJETA" });
-                colClasificadorDTO.Add(new ClasificadorDTO { idClasificador = 3, nombre = "TRANSFERENCIA" });
-
-
-                response.ListEntities = colClasificadorDTO;
-
-            }
-            catch (Exception ex)
-            {
-                ProcessError(ex, response);
-            }
-            return response;
-        }
+       
 
 
         public ResponseQuery<DetalleGananciasDTO> GraficoVentaPorProducto(RequestParametrosGral requestGral)
@@ -895,11 +900,22 @@ namespace Business.Main.Microventas
 
 public class typeDetailPedido
 {
+    public Nullable<long> idParamPrecio { get; set; }
     public Nullable<long> idProducto { get; set; }
     public Nullable<long> cantidad { get; set; }
-    public Nullable<decimal> PrecioUnitario { get; set; }
-    public string observacion { get; set; }
+    public Nullable<decimal> PrecioFinal { get; set; }
+    //public string observacion { get; set; }
 
 
 }
+
+public class typeFormaDePagoPedido
+{
+    public Nullable<long> idPedidoMaestro { get; set; }
+    public Nullable<long> idFormaPago { get; set; }
+    public Nullable<decimal> MontoCubierto { get; set; }
+
+
+}
+
 

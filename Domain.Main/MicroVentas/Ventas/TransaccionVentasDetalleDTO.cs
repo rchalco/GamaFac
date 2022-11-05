@@ -12,7 +12,7 @@ namespace Domain.Main.MicroVentas.Ventas
         {
             descuento = 0;
         }
-        public int idTransaccionDetalle { get; set; }
+        public int idParamPrecio { get; set; }
         public int idPedMaster { get; set; }
         public int idProducto { get; set; }
         public string nombreProducto { get; set; }

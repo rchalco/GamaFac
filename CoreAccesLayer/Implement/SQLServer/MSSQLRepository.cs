@@ -325,7 +325,10 @@ namespace CoreAccesLayer.Implement.SQLServer
                                 parametro.SqlDbType = SqlDbType.DateTime;
                                 parametro.Value = item.GetType() == typeof(ParamOut) ? (item as ParamOut).Valor : item;
                                 break;
-
+                            case "Byte[]":
+                                parametro.SqlDbType = SqlDbType.VarBinary;
+                                parametro.Value = item.GetType() == typeof(ParamOut) ? (item as ParamOut).Valor : item;
+                                break;
                             default:
                                 break;
                         }
@@ -387,7 +390,7 @@ namespace CoreAccesLayer.Implement.SQLServer
                 sqlCommand.CommandText = "exec " + nameProcedure + " ";
                 string nomParametro = "parametro";
                 int a = 0;
-                    Dictionary<int, SqlParameter> parametroSalida = new Dictionary<int, SqlParameter>();
+                Dictionary<int, SqlParameter> parametroSalida = new Dictionary<int, SqlParameter>();
 
                 foreach (object item in param)
                 {
@@ -467,7 +470,10 @@ namespace CoreAccesLayer.Implement.SQLServer
                             parametro.SqlDbType = SqlDbType.Date;
                             parametro.Value = item.GetType() == typeof(ParamOut) ? (item as ParamOut).Valor : item;
                             break;
-
+                        case "Byte[]":
+                            parametro.SqlDbType = SqlDbType.VarBinary;
+                            parametro.Value = item.GetType() == typeof(ParamOut) ? (item as ParamOut).Valor : item;
+                            break;
                         default:
                             break;
                     }
