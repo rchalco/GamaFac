@@ -43,14 +43,9 @@ namespace Business.Main.DataMappingMicroVenta
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                //optionsBuilder.UseSqlServer("Data Source=140.82.15.241;Initial Catalog=DBTintoreriaGamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
-<<<<<<< HEAD
-                optionsBuilder.UseSqlServer("Data Source=140.82.15.241;Initial Catalog=DBMapParqueos;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
+                optionsBuilder.UseSqlServer("Data Source=140.82.15.241;Initial Catalog=DBPerfectoExpress;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
                 //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=DBMapParqueos;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
-=======
-                //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=DBMapParqueos;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
-                optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
->>>>>>> 701199aece45e7e5b2cfd1fa20436b140e38d98e
+                //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=GamaFac;Persist Security Info=True;User ID=sa;Password=mikyches*123;TrustServerCertificate=True");
             }
         }
 
