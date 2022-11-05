@@ -139,13 +139,7 @@ namespace BackgroundAPIRest.Controllers
             return stockManger.CambioDeMesa(requestGral);
         }
 
-        [HttpPost("ClasificadorPorTipo")]
-        [EnableCors("MyPolicy")]
-        public ResponseQuery<ClasificadorDTO> ClasificadorPorTipo(RequestParametrosGral requestGral)
-        {
-            StockManger stockManger = new StockManger();
-            return stockManger.ClasificadorPorTipo(requestGral);
-        }
+       
 
         [HttpPost("GraficoVentaPorProducto")]
         [EnableCors("MyPolicy")]
@@ -211,6 +205,9 @@ namespace BackgroundAPIRest.Controllers
             StockManger stockManger = new StockManger();
             return stockManger.GrabarUsuario(personaDTO);
         }
+
+        
+
     }
 
 

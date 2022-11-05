@@ -14,6 +14,11 @@ namespace Domain.Main.MicroVentas.General
         public string descripcion { get; set; }
         public Nullable<bool> Activo { get; set; }
 
-       
+        public string observaciones { get; set; }
+        public byte[] picCategoria { get; set; }
+        public string picCategoriaB64 { get; set; }
+        
+        
+
     }
 }

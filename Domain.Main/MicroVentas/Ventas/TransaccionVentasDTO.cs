@@ -15,6 +15,9 @@ namespace Domain.Main.MicroVentas.Ventas
         public long idPedMaster { get; set; }
 
         public long idCajaOperacionDiariaCaja { get; set; }
+        public long idCaja { get; set; }
+        public long idMesero { get; set; }
+        public long idAlmacen { get; set; }
         /// <summary>
         /// A quien es asignada la venta
         /// </summary>
@@ -26,7 +29,7 @@ namespace Domain.Main.MicroVentas.Ventas
         //public string nombre { get; set; }
         //public string di { get; set; }
         public Nullable<System.DateTime> fechaHora { get; set; }
-        //public Nullable<decimal> montoEntrada { get; set; }
+        public decimal montoPedido { get; set; }
         //public Nullable<decimal> montoSalida { get; set; }
         //public Nullable<decimal> descuento { get; set; }
         //public Nullable<long> idcEstado { get; set; }
@@ -48,6 +51,8 @@ namespace Domain.Main.MicroVentas.Ventas
         ///OTROS DATOS
         public long idSesion { get; set; }
         public long idEmpresa { get; set; }
+
+        public long idFechaProceso { get; set; }
 
     }
 }

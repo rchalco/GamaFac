@@ -108,7 +108,7 @@ namespace Business.Main.Microventas
             ResponseQuery<MenuGeneralDTO> response = new ResponseQuery<MenuGeneralDTO> { Message = "Menu Obtenido", State = ResponseType.Success };
             try
             {
-                response.ListEntities = repositoryMicroventas.GetDataByProcedure<MenuGeneralDTO>("shCommon.spObtieneMenuPorRol", requestGral.ParametroLong2, requestGral.ParametroLong3, poRespuesta, poLogRespuesta);
+                response.ListEntities = repositoryMicroventas.GetDataByProcedure<MenuGeneralDTO>("shCommon.spObtieneMenuPorRol", requestGral.ParametroLong1, requestGral.ParametroLong2, requestGral.ParametroLong3, poRespuesta, poLogRespuesta);
                 if (response.ListEntities == null)
                 {
                     response.State = ResponseType.Error;
