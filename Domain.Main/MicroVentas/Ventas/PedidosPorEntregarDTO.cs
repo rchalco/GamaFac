@@ -12,5 +12,6 @@ namespace Domain.Main.MicroVentas.Ventas
         public string fecha { get; set; }
         public string nombreCliente { get; set; }
         public string pedido { get; set; }
+        public decimal montoPedido { get; set; }
     }
 }
