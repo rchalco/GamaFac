@@ -248,7 +248,7 @@ namespace Business.Main.Microventas
                 //Sumarizamos los totales
                 response.ListEntities.ForEach(x =>
                 {
-                    x.Total = x.detallePedidosEntregar.Sum(y => y.Cantidad * y.Precio);
+                    x.Total = x.detallePedidosEntregar.Sum(y => y.Precio);
                 });
             }
             catch (Exception ex)
