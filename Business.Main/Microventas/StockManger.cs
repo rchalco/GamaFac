@@ -627,11 +627,20 @@ namespace Business.Main.Microventas
                 List<DetalleGananciasDTO> colDetalleGananciasDTO = new List<DetalleGananciasDTO>();
                 //response.ListEntities = repositoryMicroventas.GetDataByProcedure<DetalleGananciasDTO>("spObtieneMeseros", requestGral.ParametroLong2, requestGral.ParametroLong1, poRespuesta, poLogRespuesta);
 
-                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "WISKHY", Producto = "JHONNY WALKER ETIQUETA ROJA", TotalVenta = 640, Cantidad = 2 });
-                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "IMPORTADAS", Producto = "HUARI", TotalVenta = 60, Cantidad = 3 });
-                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "SINGANI", Producto = "MAJUELO", TotalVenta = 1500, Cantidad = 5 });
-                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "TABLAS", Producto = "QUESOS", TotalVenta = 750, Cantidad = 5 });
-                colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "CAFE", Producto = "CAPUCCINO", TotalVenta = 150, Cantidad = 10 });
+
+                List<DetalleGananciasDTO> listSP = repositoryMicroventas.GetDataByProcedure<DetalleGananciasDTO>("[shBusiness].[spObtieneDatosTablero]",
+                    requestGral.ParametroLong1,
+                    requestGral.ParametroFecha1,//new DateTime(2022, 1, 1),
+                    requestGral.ParametroFecha2,//new DateTime(2025, 1, 1),
+                    poRespuesta,
+                    poLogRespuesta);
+
+
+                //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "WISKHY", Producto = "JHONNY WALKER ETIQUETA ROJA", TotalVenta = 640, Cantidad = 2 });
+                //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "IMPORTADAS", Producto = "HUARI", TotalVenta = 60, Cantidad = 3 });
+                //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "SINGANI", Producto = "MAJUELO", TotalVenta = 1500, Cantidad = 5 });
+                //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "TABLAS", Producto = "QUESOS", TotalVenta = 750, Cantidad = 5 });
+                //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "CAFE", Producto = "CAPUCCINO", TotalVenta = 150, Cantidad = 10 });
                 response.ListEntities = colDetalleGananciasDTO;
 
                 if (response.ListEntities == null)
