@@ -641,7 +641,7 @@ namespace Business.Main.Microventas
                 //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "SINGANI", Producto = "MAJUELO", TotalVenta = 1500, Cantidad = 5 });
                 //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "TABLAS", Producto = "QUESOS", TotalVenta = 750, Cantidad = 5 });
                 //colDetalleGananciasDTO.Add(new DetalleGananciasDTO { TipoProducto = "CAFE", Producto = "CAPUCCINO", TotalVenta = 150, Cantidad = 10 });
-                response.ListEntities = colDetalleGananciasDTO;
+                response.ListEntities = listSP;
 
                 if (response.ListEntities == null)
                 {
