@@ -24,6 +24,9 @@ namespace Domain.Main.MicroVentas.Cajas
         public DateTime fechaApertura { get; set; }
         public string observacioApertura { get; set; }
         public string observacionCierre { get; set; }
+        public decimal montoGastoDiario { get; set; }
+        public string observacionGastos { get; set; }
+
 
 
     }

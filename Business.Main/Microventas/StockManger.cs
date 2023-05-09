@@ -200,7 +200,7 @@ namespace Business.Main.Microventas
             try
             {
 
-                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.saldoUsuario, requestAperturaCaja.observacion, poRespuesta, poLogRespuesta).FirstOrDefault();
+                response.Object = repositoryMicroventas.GetDataByProcedure<SaldoCajaDTO>("shFinance.spCierreCaja", requestAperturaCaja.idSesion, requestAperturaCaja.idCaja, requestAperturaCaja.saldoUsuario, requestAperturaCaja.observacion, requestAperturaCaja.montoGastoDiario, requestAperturaCaja.observacionGastos, poRespuesta, poLogRespuesta).FirstOrDefault();
                 if (response.Object == null)
                 {
                     response.State = ResponseType.Error;
@@ -445,7 +445,7 @@ namespace Business.Main.Microventas
                 });
 
                 List<typeFormaDePagoPedido> coltypeFormaDePagoPedido = new List<typeFormaDePagoPedido>();
-                coltypeFormaDePagoPedido.Add(new typeFormaDePagoPedido { idFormaPago = 1, idPedidoMaestro = 0, MontoCubierto = transaccionVentas.montoPedido });
+                coltypeFormaDePagoPedido.Add(new typeFormaDePagoPedido { idFormaPago = transaccionVentas.formaPago, idPedidoMaestro = 0, MontoCubierto = transaccionVentas.montoPedido });
 
 
                 ParamOut poRespuesta = new ParamOut(false);

@@ -38,13 +38,13 @@ namespace Domain.Main.MicroVentas.Ventas
         public Nullable<long> idAmbiente { get; set; }
 
         public string observaciones { get; set; }
-
+        public int formaPago { get; set; }
         //public bool? esEfectivo { get; set; }
         //public Nullable<decimal> comision { get; set; }
         //public string bancoDestinoComision { get; set; }
         //public Nullable<long> idcFormaPagoComision { get; set; }
         //public Nullable<long> idcFormaPago { get; set; }
-        
+
 
         public List<TransaccionVentasDetalleDTO> transaccionDetalle { get; set; }
 

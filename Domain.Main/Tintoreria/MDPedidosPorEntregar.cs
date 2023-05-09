@@ -17,6 +17,7 @@ namespace Domain.Main.Tintoreria
         public decimal Total { get; set; }
         public decimal montoApertura { get; set; }
         public decimal montoCierre { get; set; }
+        public int formaPago { get; set; }
     }
 
     public class DetallePedidosEntregar

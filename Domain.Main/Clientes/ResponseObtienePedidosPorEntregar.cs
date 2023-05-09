@@ -18,5 +18,6 @@ namespace Domain.Main.Clientes
         public string Estado { get; set; }
         public decimal montoApertura { get; set; }
         public decimal montoCierre { get; set; }
+        public int formaPago { get; set; }
     }
 }
