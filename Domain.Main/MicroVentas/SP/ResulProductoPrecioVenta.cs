@@ -36,6 +36,7 @@ namespace Domain.Main.MicroVentas.SP
         public byte[] picProductoCombo { get; set; }
         public string picProductoComboB64 { get; set; }
         public List<ResulProductoPrecioVenta> detalleProductos { get; set; }
+
     }
 
     public class ResulProductoPrecioVentaComplex
