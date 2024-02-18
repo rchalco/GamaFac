@@ -16,7 +16,7 @@ namespace Domain.Main.MicroVentas.SP
         public long ParametroLong3 { get; set; }
 
         public int ParametroInt1 { get; set; }
-
+        public int ParametroInt2 { get; set; }
 
     }
 }

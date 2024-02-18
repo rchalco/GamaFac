@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
-https://go.microsoft.com/fwlink/?LinkID=208121. 
+https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\BckDell  15 5500\e\PROYECTOS\GamatekFac\Github\BackgroundAPIRest\bin\Release\net5.0\publish\</_PublishTargetUrl>
-    <History>False|2022-05-02T22:40:09.2802974Z;False|2022-05-02T17:53:22.5999608-04:00;True|2021-04-22T12:21:02.7785433-04:00;True|2021-04-22T00:27:34.0047649-04:00;True|2021-04-22T00:21:48.4548573-04:00;True|2021-04-22T00:01:15.2594534-04:00;True|2021-04-21T22:47:49.9386507-04:00;</History>
+    <_PublishTargetUrl>D:\Desarrollo\GitHub\Backend\GamaFac\BackgroundAPIRest\bin\Release\net8.0\publish\</_PublishTargetUrl>
+    <History>True|2024-02-12T19:07:03.1287543Z;True|2024-02-04T21:56:14.6092338-04:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
 </Project>

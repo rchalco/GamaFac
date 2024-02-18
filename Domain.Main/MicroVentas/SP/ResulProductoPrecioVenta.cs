@@ -35,7 +35,10 @@ namespace Domain.Main.MicroVentas.SP
         public bool esParaMenu { get; set; }
         public byte[] picProductoCombo { get; set; }
         public string picProductoComboB64 { get; set; }
+        public string descripcionProducto { get; set; }
+        
         public List<ResulProductoPrecioVenta> detalleProductos { get; set; }
+
     }
 
     public class ResulProductoPrecioVentaComplex
