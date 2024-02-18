@@ -17,12 +17,13 @@ builder.Services.AddCors(options =>
 
 if (ConfigManager.GetConfiguration().GetSection("mode").Value.Equals("server"))
 {
-    builder.Host.ConfigureWebHostDefaults(webBuilder =>
+    builder.WebHost.ConfigureKestrel((context, serverOptions) =>
     {
-        if (ConfigManager.GetConfiguration().GetSection("mode").Value.Equals("server"))
-        {
-            webBuilder.UseUrls(ConfigManager.GetConfiguration().GetSection("star_url").Value);
-        }
+        //serverOptions.Listen(IPAddress.Loopback, 5000);
+        //serverOptions.Listen(IPAddress.Loopback, 5001, listenOptions =>
+        //{
+        //    listenOptions.UseHttps("testCert.pfx", "testPassword");
+        //});
     });
 }
 builder.Services.AddControllers();

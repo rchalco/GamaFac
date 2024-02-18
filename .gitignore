@@ -1,10 +1,10 @@
-
 WindowsFormsApp1/bin/
 WindowsFormsApp1/obj/
 packages
 BackgroundAPIRest/bin/
 BackgroundAPIRest/obj/
 MinimalAPI/bin/
+MinimalAPI/bin/Debug/
 MinimalAPI/obj/
 Business.Main/obj/
 Business.Main/bin/
