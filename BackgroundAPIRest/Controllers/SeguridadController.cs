@@ -14,7 +14,8 @@ namespace BackgroundAPIRest.Controllers
     {
 
         [HttpPost("LoginUsuario")]
-        [EnableCors("MyPolicy")]
+        //[EnableCors("MyPolicy")]
+        [EnableCors]
         public ResponseObject<LoginDTO> LoginUsuario(RequestLogin requestLogin)
         {
             SeguridadManager seguridadManager  = new SeguridadManager();
