@@ -147,5 +147,13 @@ namespace BackgroundAPIRest.Controllers
             return ventaManger.ActualizaPedidoExpress(requestParametrosGral);
         }
 
+        [HttpPost("CambiaFormaPagoPedido")]
+        [EnableCors("MyPolicy")]
+        public Response CambiaFormaPagoPedido(RequestParametrosGral requestParametrosGral)
+        {
+            VentaManager ventaManger = new VentaManager();
+            return ventaManger.CambiaFormaPagoPedido(requestParametrosGral);
+        }
+
     }
 }

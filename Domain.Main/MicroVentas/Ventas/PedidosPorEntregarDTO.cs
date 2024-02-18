@@ -13,5 +13,8 @@ namespace Domain.Main.MicroVentas.Ventas
         public string nombreCliente { get; set; }
         public string pedido { get; set; }
         public decimal montoPedido { get; set; }
+        public int idFormaDePago { get; set; }
+        public string formaPago { get; set; }
+        
     }
 }

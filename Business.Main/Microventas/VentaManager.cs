@@ -236,6 +236,29 @@ namespace Business.Main.Microventas
             return response;
         }
 
+        public Response CambiaFormaPagoPedido(RequestParametrosGral requestParametrosGral)
+        {
+            Response response = new Response { Message = "Cambio de forma de pago con exito", State = ResponseType.Success };
+            try
+            {
+                ParamOut paramOutRespuesta = new ParamOut(true);
+                ParamOut paramOutLogRespuesta = new ParamOut("");
+                paramOutLogRespuesta.Size = 100;
+                repositoryMicroventas.CallProcedure<Response>("[shBusiness].[spActualziaFormaPagoPedido]", requestParametrosGral.ParametroInt1, requestParametrosGral.ParametroInt2, paramOutRespuesta, paramOutLogRespuesta);
+                repositoryMicroventas.Commit();
+                if (Convert.ToBoolean(paramOutRespuesta.Valor))
+                {
+                    response.State = ResponseType.Warning;
+                    response.Message = Convert.ToString(paramOutLogRespuesta.Valor);
+                }
+            }
+            catch (Exception ex)
+            {
+                ProcessError(ex, response);
+            }
+            return response;
+        }
+
 
 
     }
